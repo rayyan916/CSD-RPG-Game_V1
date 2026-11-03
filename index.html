@@ -1,0 +1,2415 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>公民山海經：香江風雲錄</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --gold: #f59e0b;
+            --jade: #10b981;
+            --crimson: #ef4444;
+        }
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0c0a09;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(217, 119, 6, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 45%);
+            color: #f5f5f4;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .serif-title {
+            font-family: 'Noto Serif TC', serif;
+        }
+        .wuxia-border {
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), inset 0 0 12px rgba(245, 158, 11, 0.08);
+        }
+        .wuxia-card {
+            background: linear-gradient(145deg, rgba(28, 25, 23, 0.92), rgba(12, 10, 9, 0.96));
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .wuxia-card:hover {
+            border-color: rgba(245, 158, 11, 0.75);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.18);
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            border: 1px solid #fbbf24;
+            color: #fffbeb;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            transition: all 0.2s;
+        }
+        .btn-gold:hover:not(:disabled) {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+            transform: scale(1.02);
+        }
+        .btn-gold:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+        .btn-jade {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            border: 1px solid #34d399;
+            color: #ecfdf5;
+            transition: all 0.2s;
+        }
+        .btn-jade:hover:not(:disabled) {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.45);
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #1c1917;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #57534e;
+            border-radius: 3px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #d97706;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .animate-shake {
+            animation: shake 0.4s ease-in-out;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.85); }
+        }
+        .berserk-glow {
+            animation: pulseGlow 1.5s infinite;
+            border-color: #ef4444 !important;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen select-none">
+
+    <!-- Top Navigation / Status Header -->
+    <header class="sticky top-0 z-30 bg-stone-950/90 backdrop-blur-md border-b border-amber-500/30 px-3 py-2.5">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-red-700 flex items-center justify-center shadow-md border border-amber-300/50">
+                    <i class="fa-solid fa-dragon text-white text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="serif-title text-lg sm:text-xl font-bold tracking-wider bg-gradient-to-r from-amber-200 via-amber-400 to-orange-400 bg-clip-text text-transparent">
+                        公民山海經
+                    </h1>
+                    <p class="text-[11px] text-stone-400 hidden sm:block">香江風雲錄 · 憲制與國安試煉</p>
+                </div>
+            </div>
+
+            <!-- Player Quick Bar (Hidden on Welcome) -->
+            <div id="header-player-bar" class="hidden items-center gap-2 sm:gap-4 flex-wrap">
+                <div class="flex items-center gap-1.5 bg-stone-900/90 border border-stone-700 px-2.5 py-1 rounded-full text-xs sm:text-sm">
+                    <i class="fa-solid fa-user-shield text-amber-400"></i>
+                    <span id="header-name" class="font-bold text-amber-100">少俠</span>
+                    <span id="header-stage" class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-1.5 py-0.5 rounded text-[11px]">第1階</span>
+                </div>
+                <div class="hidden md:flex items-center gap-3 text-xs bg-stone-900/80 px-3 py-1.5 rounded-lg border border-stone-800">
+                    <span title="生命值"><i class="fa-solid fa-heart text-rose-500 mr-1"></i><b id="header-hp">500</b></span>
+                    <span title="內力值"><i class="fa-solid fa-fire-flame-simple text-sky-400 mr-1"></i><b id="header-mp">150</b></span>
+                    <span title="攻擊力"><i class="fa-solid fa-khanda text-amber-400 mr-1"></i><b id="header-atk">65</b></span>
+                    <span title="防禦力"><i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i><b id="header-def">40</b></span>
+                    <span title="已答對題目"><i class="fa-solid fa-check-double text-purple-400 mr-1"></i><b id="header-solved">0/180</b></span>
+                </div>
+                <button onclick="openSaveModal()" class="text-xs bg-stone-800 hover:bg-stone-700 text-amber-300 border border-amber-500/40 px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span class="hidden sm:inline">進度/存檔</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-3 sm:p-6 flex flex-col justify-center">
+
+        <!-- 1. SCREEN: WELCOME & NAME INPUT -->
+        <section id="screen-welcome" class="my-auto py-6">
+            <div class="max-w-xl mx-auto wuxia-card rounded-2xl p-6 sm:p-8 text-center relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500/20 to-red-600/20 border border-amber-400/50 flex items-center justify-center shadow-inner">
+                    <i class="fa-solid fa-scroll text-4xl text-amber-400"></i>
+                </div>
+                <h2 class="serif-title text-3xl sm:text-4xl font-black text-amber-300 tracking-wide mb-2">
+                    公民山海經
+                </h2>
+                <p class="text-sm sm:text-base text-amber-100/80 font-medium mb-6">
+                    研習香港憲制與國安法理 · 吞噬山海異獸 · 問鼎公民盟主
+                </p>
+
+                <div class="bg-stone-950/70 border border-stone-800 rounded-xl p-4 text-left text-xs sm:text-sm text-stone-300 space-y-2 mb-6">
+                    <p class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
+                        <span><strong>初入江湖試煉：</strong>開局需完成「導學案01、02、03」三部分各 5 題選擇題（共 15 題）。每答對一題即可隨機挑選武林秘笈或吞噬《山海經》異獸強化自身！</span>
+                    </p>
+                    <p class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                        <span><strong>兩大核心玩法：</strong>完成試煉後可自由選擇「與師父修行」無限刷題練功，或進入「決戰巔峰」挑戰 10 階段動態成長的四大對手！</span>
+                    </p>
+                    <p class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-sky-400 mt-1"></i>
+                        <span><strong>跨設備共通存檔：</strong>支援本機自動儲存及匯出 `.json` 進度檔，預留未來「武器防具更新版」及「多人互動對戰版」完整相容格式。</span>
+                    </p>
+                </div>
+
+                <!-- New Game Input -->
+                <div class="space-y-4">
+                    <div>
+                        <label for="player-name-input" class="block text-left text-xs font-semibold text-amber-300 uppercase tracking-wider mb-1.5">
+                            請輸入少俠尊姓大名：
+                        </label>
+                        <input id="player-name-input" type="text" maxlength="16" placeholder="例如：香江劍客、軒轅行者..." 
+                            class="w-full bg-stone-900 border border-amber-500/50 focus:border-amber-400 rounded-xl px-4 py-3 text-base text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30">
+                    </div>
+
+                    <button onclick="startNewGame()" class="w-full btn-gold py-3.5 rounded-xl font-bold text-base sm:text-lg shadow-lg flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-wand-sparkles"></i>
+                        <span>踏入山海江湖（開始試煉）</span>
+                    </button>
+
+                    <!-- Continue Saved Game Button (if exists) -->
+                    <button id="btn-continue-game" onclick="continueSavedGame()" class="hidden w-full btn-jade py-3 rounded-xl font-bold text-base shadow-lg flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i>
+                        <span id="continue-btn-text">繼續上次進度</span>
+                    </button>
+
+                    <div class="pt-3 border-t border-stone-800 flex flex-wrap items-center justify-center gap-3">
+                        <button onclick="openSaveModal()" class="text-xs sm:text-sm text-amber-400 hover:text-amber-300 underline flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-import"></i> 匯入外部進度檔 (.json)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SCREEN: INTRO 15-QUESTION TRIAL & SHIFU TRAINING -->
+        <section id="screen-quiz" class="hidden my-auto">
+            <div class="max-w-3xl mx-auto wuxia-card rounded-2xl p-4 sm:p-7">
+                <!-- Quiz Header -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-stone-800">
+                    <div>
+                        <span id="quiz-mode-badge" class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                            初入江湖試煉
+                        </span>
+                        <h2 id="quiz-topic-title" class="serif-title text-lg sm:text-xl font-bold text-white mt-1.5">
+                            (主題1) 導學案01：香港問題的由來
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div id="quiz-progress-pill" class="bg-stone-900 border border-stone-700 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono text-amber-300">
+                            進度：1 / 15
+                        </div>
+                        <button id="btn-exit-training" onclick="returnToHub()" class="hidden text-xs bg-stone-800 hover:bg-red-900/60 text-stone-200 border border-stone-600 px-3 py-1.5 rounded-xl transition">
+                            <i class="fa-solid fa-person-walking-arrow-right mr-1"></i>結束修行返回主城
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Phase Stepper for Intro Trial -->
+                <div id="intro-stepper" class="grid grid-cols-3 gap-2 mb-5 text-center text-xs">
+                    <div id="step-t1" class="p-2 rounded-lg border border-amber-500 bg-amber-500/20 text-amber-200 font-bold">
+                        1. 香港問題的由來 (<span id="step-t1-cnt">0</span>/5)
+                    </div>
+                    <div id="step-t2" class="p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400">
+                        2. 憲制關係 (<span id="step-t2-cnt">0</span>/5)
+                    </div>
+                    <div id="step-t3" class="p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400">
+                        3. 維護國家安全 (<span id="step-t3-cnt">0</span>/5)
+                    </div>
+                </div>
+
+                <!-- Question Box -->
+                <div class="bg-stone-950/80 border border-stone-800 rounded-xl p-4 sm:p-6 mb-5">
+                    <div class="flex items-center justify-between text-xs text-stone-400 mb-2">
+                        <span id="quiz-q-id">題號：T1-001</span>
+                        <span id="quiz-q-solved-badge" class="hidden text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i>曾答對題目</span>
+                    </div>
+                    <p id="quiz-q-text" class="text-base sm:text-lg font-medium text-stone-100 leading-relaxed">
+                        題目載入中...
+                    </p>
+                </div>
+
+                <!-- 4 Options Grid -->
+                <div id="quiz-options" class="grid grid-cols-1 gap-3 mb-5">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <!-- Answer Feedback Banner -->
+                <div id="quiz-feedback" class="hidden rounded-xl p-4 mb-4 border">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <h4 id="quiz-feedback-title" class="font-bold text-base"></h4>
+                            <p id="quiz-feedback-desc" class="text-xs sm:text-sm text-stone-300 mt-0.5"></p>
+                        </div>
+                        <button id="btn-quiz-next" onclick="handleQuizNextStep()" class="btn-gold px-5 py-2.5 rounded-xl font-bold text-sm shrink-0">
+                            下一步 <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SCREEN: MAIN HUB (正式遊戲版面) -->
+        <section id="screen-hub" class="hidden space-y-6">
+            <!-- Top Welcome & Power Banner -->
+            <div class="wuxia-card rounded-2xl p-4 sm:p-6 border-amber-500/40">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div class="flex items-start sm:items-center gap-4">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-red-700 flex items-center justify-center text-2xl sm:text-3xl text-white shadow-lg shrink-0">
+                            <i class="fa-solid fa-user-ninja"></i>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <h2 id="hub-player-name" class="serif-title text-2xl font-black text-amber-300">少俠</h2>
+                                <span id="hub-stage-badge" class="bg-amber-500/20 border border-amber-400/50 text-amber-300 text-xs font-bold px-2.5 py-0.5 rounded-full">
+                                    境界：第 1 階 · 初窺門徑
+                                </span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-stone-300 mt-1">
+                                綜合戰力評級：<strong id="hub-power-score" class="text-amber-400 font-mono">1,000</strong> 
+                                ｜ 已吞噬山海異獸：<strong id="hub-beast-count" class="text-emerald-400">0</strong> 隻 
+                                ｜ 題庫制霸率：<strong id="hub-mastery-rate" class="text-sky-400">0%</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="switchHubTab('modes')" id="tab-btn-modes" class="hub-tab-btn btn-gold px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-gamepad"></i> 遊戲征途
+                        </button>
+                        <button onclick="switchHubTab('stats')" id="tab-btn-stats" class="hub-tab-btn bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-chart-pie"></i> 角色戰力與異獸
+                        </button>
+                        <button onclick="switchHubTab('study')" id="tab-btn-study" class="hub-tab-btn bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open-reader"></i> 溫習與答題紀錄
+                        </button>
+                        <button onclick="openSaveModal()" class="bg-stone-800 hover:bg-stone-700 text-amber-300 border border-amber-500/40 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> 儲存/匯出進度
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HUB TAB 1: TWO CORE GAME MODES (與師父修行 & 決戰巔峰) -->
+            <div id="hub-tab-modes" class="space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Mode 1: 與師父修行 -->
+                    <div class="lg:col-span-5 wuxia-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-emerald-500/30">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                                    玩法一 · 練功強化
+                                </span>
+                                <i class="fa-solid fa-person-chalkboard text-2xl text-emerald-400"></i>
+                            </div>
+                            <h3 class="serif-title text-2xl font-bold text-white mb-2">與師父修行</h3>
+                            <p class="text-xs sm:text-sm text-stone-300 leading-relaxed mb-4">
+                                自選「導學案01、02、03」進行隨機抽題修行。每答對一題即可隨機領悟秘笈或吞噬《山海經》異獸，無上限提升生命、內力、攻防及特殊技能！隨時可返回主城並自動儲存數值。
+                            </p>
+
+                            <div class="space-y-2.5 mb-5">
+                                <label class="block text-xs font-bold text-emerald-300">選擇修行卷軸：</label>
+                                <button onclick="startShifuTraining(1)" class="w-full text-left p-3 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                    <div>
+                                        <div class="text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案01：香港問題的由來</div>
+                                        <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t1">0/50</span> 題</div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-emerald-400"></i>
+                                </button>
+                                <button onclick="startShifuTraining(2)" class="w-full text-left p-3 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                    <div>
+                                        <div class="text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案02：國家和香港特區的憲制關係</div>
+                                        <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t2">0/50</span> 題</div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-emerald-400"></i>
+                                </button>
+                                <button onclick="startShifuTraining(3)" class="w-full text-left p-3 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                    <div>
+                                        <div class="text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案03：維護國家安全的意義</div>
+                                        <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t3">0/80</span> 題</div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-emerald-400"></i>
+                                </button>
+                                <button onclick="startShifuTraining(0)" class="w-full text-left p-3 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-600/50 transition flex items-center justify-between group">
+                                    <div>
+                                        <div class="text-sm font-bold text-emerald-200">三卷綜合隨機修行（全 180 題）</div>
+                                        <div class="text-[11px] text-emerald-300/80">融會貫通 · 全面備戰公民盟主</div>
+                                    </div>
+                                    <i class="fa-solid fa-bolt text-emerald-300"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-[11px] text-stone-400 bg-stone-950/70 p-2.5 rounded-lg border border-stone-800">
+                            <i class="fa-solid fa-circle-info text-emerald-400 mr-1"></i> 系統優先抽取你尚未答對過的題目，助你達成 100% 制霸！
+                        </div>
+                    </div>
+
+                    <!-- Mode 2: 決戰巔峰 -->
+                    <div class="lg:col-span-7 wuxia-card rounded-2xl p-5 sm:p-6 border-amber-500/40">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/40">
+                                玩法二 · 回合制巔峰對決
+                            </span>
+                            <div class="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-lg">
+                                對手動態成長：<strong id="boss-scaling-stage">第 1 階段 / 共 10 階段</strong>
+                            </div>
+                        </div>
+                        <h3 class="serif-title text-2xl font-bold text-white mb-1">決戰巔峰</h3>
+                        <p class="text-xs sm:text-sm text-stone-300 mb-4">
+                            選擇四大守關對手進行回合制知識武鬥！對手的生命值、攻防及特殊技能會隨你的戰力成長階段（共 10 階）同步進化。每回合先答題凝聚真氣，再施展招式克敵制勝！
+                        </p>
+
+                        <!-- 4 Opponents Grid -->
+                        <div id="boss-cards-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <!-- Dynamically populated by renderBossCards() -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- HUB TAB 2: PLAYER STATS, SKILLS & SHANHAIJING BEASTS -->
+            <div id="hub-tab-stats" class="hidden space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Attributes Card -->
+                    <div class="wuxia-card rounded-2xl p-5">
+                        <h3 class="serif-title text-xl font-bold text-amber-300 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-id-card-clip"></i> 基礎武學屬性
+                        </h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
+                                <span class="text-stone-400"><i class="fa-solid fa-heart text-rose-500 w-5"></i> 生命值上限 (HP)</span>
+                                <span id="stat-hp" class="font-mono font-bold text-base text-rose-300">500</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
+                                <span class="text-stone-400"><i class="fa-solid fa-fire-flame-simple text-sky-400 w-5"></i> 內力值上限 (MP)</span>
+                                <span id="stat-mp" class="font-mono font-bold text-base text-sky-300">150</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
+                                <span class="text-stone-400"><i class="fa-solid fa-khanda text-amber-400 w-5"></i> 攻擊力 (ATK)</span>
+                                <span id="stat-atk" class="font-mono font-bold text-base text-amber-300">65</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
+                                <span class="text-stone-400"><i class="fa-solid fa-shield-halved text-emerald-400 w-5"></i> 防禦力 (DEF)</span>
+                                <span id="stat-def" class="font-mono font-bold text-base text-emerald-300">40</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
+                                <span class="text-stone-400"><i class="fa-solid fa-wind text-teal-400 w-5"></i> 閃避速度 (EVA)</span>
+                                <span id="stat-eva" class="font-mono font-bold text-base text-teal-300">10%</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
+                                <span class="text-stone-400"><i class="fa-solid fa-dragon text-purple-400 w-5"></i> 必殺技威力倍率</span>
+                                <span id="stat-ult" class="font-mono font-bold text-base text-purple-300">220%</span>
+                            </div>
+                        </div>
+
+                        <!-- Reserved Equipment Slots for Future Update -->
+                        <div class="mt-5 pt-4 border-t border-stone-800">
+                            <div class="flex items-center justify-between text-xs text-stone-400 mb-2">
+                                <span><i class="fa-solid fa-toolbox text-amber-400 mr-1"></i> 神兵與防具欄位（預留更新版擴充）</span>
+                                <span class="bg-stone-800 px-2 py-0.5 rounded text-[10px]">相容 v2.0</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2">
+                                    <i class="fa-solid fa-sword"></i>
+                                    <span>武器：未裝備</span>
+                                </div>
+                                <div class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2">
+                                    <i class="fa-solid fa-vest"></i>
+                                    <span>防具：未裝備</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shanhaijing Special Abilities & Beasts -->
+                    <div class="lg:col-span-2 wuxia-card rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="serif-title text-xl font-bold text-emerald-300 mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-paw"></i> 《山海經》奇禽異獸神通錄
+                            </h3>
+                            <p class="text-xs text-stone-400 mb-4">
+                                透過答題吞噬《山海經》異獸血脈，可解鎖並強化八大特殊神通（最高 5 階），於戰鬥中施展或被動生效：
+                            </p>
+                            <div id="beasts-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HUB TAB 3: STUDY BANK & ANSWERED RECORD -->
+            <div id="hub-tab-study" class="hidden space-y-4">
+                <div class="wuxia-card rounded-2xl p-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-stone-800">
+                        <div>
+                            <h3 class="serif-title text-xl font-bold text-amber-300">
+                                <i class="fa-solid fa-book-bookmark mr-1.5"></i> 導學案題庫溫習與答題紀錄
+                            </h3>
+                            <p class="text-xs text-stone-400 mt-1">
+                                可隨時檢視全部 180 條題目的正確答案，並篩選「已答對」或「尚未答對」的題目重點溫習。
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <select id="study-filter-topic" onchange="renderStudyList()" class="bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white">
+                                <option value="0">全部主題 (180題)</option>
+                                <option value="1">導學案01：香港問題的由來 (50題)</option>
+                                <option value="2">導學案02：國家和特區的憲制關係 (50題)</option>
+                                <option value="3">導學案03：維護國家安全的意義 (80題)</option>
+                            </select>
+                            <select id="study-filter-status" onchange="renderStudyList()" class="bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white">
+                                <option value="all">全部狀態</option>
+                                <option value="solved">✅ 已正確回答</option>
+                                <option value="unsolved">⭕ 尚未答對</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="study-list-container" class="space-y-3 max-h-[60vh] overflow-y-auto custom-scroll pr-1">
+                        <!-- Dynamically rendered -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SCREEN: TURN-BASED PEAK BATTLE (決戰巔峰) -->
+        <section id="screen-battle" class="hidden space-y-4">
+            <!-- Battle Header Bar -->
+            <div class="flex items-center justify-between bg-stone-900/90 border border-amber-500/30 rounded-xl px-4 py-2.5">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold px-2.5 py-1 rounded bg-red-500/20 text-red-300 border border-red-500/40">
+                        回合 <span id="battle-turn-num">1</span>
+                    </span>
+                    <span id="battle-stage-label" class="text-xs text-amber-300 font-medium">巔峰對決 · 第1階段</span>
+                </div>
+                <button onclick="forfeitBattle()" class="text-xs bg-stone-800 hover:bg-red-900/70 text-stone-300 px-3 py-1.5 rounded-lg border border-stone-700 transition">
+                    <i class="fa-solid fa-flag mr-1"></i>撤退返回主城
+                </button>
+            </div>
+
+            <!-- Fighters HUD (Player vs Boss) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Player Card -->
+                <div id="battle-player-card" class="wuxia-card rounded-2xl p-4 border-emerald-500/40 relative">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-600/30 border border-emerald-400 flex items-center justify-center text-emerald-300">
+                                <i class="fa-solid fa-user-shield text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 id="battle-player-name" class="font-bold text-white text-base">少俠</h4>
+                                <div id="battle-player-statuses" class="flex flex-wrap gap-1 mt-0.5"></div>
+                            </div>
+                        </div>
+                        <div class="text-right text-xs text-stone-400">
+                            <div>攻 <b id="battle-p-atk" class="text-amber-300">65</b> / 防 <b id="battle-p-def" class="text-emerald-300">40</b></div>
+                            <div>閃避 <b id="battle-p-eva" class="text-teal-300">10%</b></div>
+                        </div>
+                    </div>
+                    <!-- HP Bar -->
+                    <div class="mb-2">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-rose-400 font-semibold"><i class="fa-solid fa-heart mr-1"></i>生命值 (HP)</span>
+                            <span id="battle-p-hp-text" class="font-mono font-bold text-rose-200">500 / 500</span>
+                        </div>
+                        <div class="w-full h-3 bg-stone-950 rounded-full overflow-hidden border border-stone-800">
+                            <div id="battle-p-hp-bar" class="h-full bg-gradient-to-r from-rose-600 to-rose-400 transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- MP Bar -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-sky-400 font-semibold"><i class="fa-solid fa-fire-flame-simple mr-1"></i>內力值 (MP)</span>
+                            <span id="battle-p-mp-text" class="font-mono font-bold text-sky-200">150 / 150</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-stone-950 rounded-full overflow-hidden border border-stone-800">
+                            <div id="battle-p-mp-bar" class="h-full bg-gradient-to-r from-sky-600 to-cyan-400 transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boss Card -->
+                <div id="battle-boss-card" class="wuxia-card rounded-2xl p-4 border-red-500/40 relative">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-red-600/30 border border-red-400 flex items-center justify-center text-red-300">
+                                <i id="battle-boss-icon" class="fa-solid fa-skull-crossbones text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h4 id="battle-boss-name" class="font-bold text-red-200 text-base">對手</h4>
+                                    <span id="battle-boss-berserk" class="hidden text-[10px] bg-red-600 text-white px-1.5 py-0.5 rounded font-bold animate-pulse">狂暴中</span>
+                                </div>
+                                <div id="battle-boss-traits" class="flex flex-wrap gap-1 mt-0.5 text-[11px] text-amber-300"></div>
+                            </div>
+                        </div>
+                        <div class="text-right text-xs text-stone-400">
+                            <div>攻 <b id="battle-b-atk" class="text-red-300">100</b> / 防 <b id="battle-b-def" class="text-orange-300">60</b></div>
+                            <div>閃避 <b id="battle-b-eva" class="text-purple-300">0%</b></div>
+                        </div>
+                    </div>
+                    <!-- Boss HP Bar -->
+                    <div class="mb-2">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-red-400 font-semibold"><i class="fa-solid fa-heart-crack mr-1"></i>對手生命 (HP)</span>
+                            <span id="battle-b-hp-text" class="font-mono font-bold text-red-200">1000 / 1000</span>
+                        </div>
+                        <div class="w-full h-3.5 bg-stone-950 rounded-full overflow-hidden border border-stone-800">
+                            <div id="battle-b-hp-bar" class="h-full bg-gradient-to-r from-red-700 via-red-500 to-orange-400 transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div id="battle-boss-statuses" class="flex flex-wrap gap-1.5 text-[11px] mt-2"></div>
+                </div>
+            </div>
+
+            <!-- Interactive Battle Stage: Step 1 (Question) OR Step 2 (Combat Action) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Left/Main Action Area (8 cols) -->
+                <div class="lg:col-span-8 wuxia-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
+                    
+                    <!-- PHASE A: ANSWER QUESTION FIRST -->
+                    <div id="battle-phase-question">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                                第一階段：文試聚氣（答對獲天道加持，答錯受破綻反噬）
+                            </span>
+                            <span id="battle-q-id" class="text-xs font-mono text-stone-400">T1-001</span>
+                        </div>
+                        <p id="battle-q-text" class="text-base sm:text-lg font-medium text-white bg-stone-950/90 border border-stone-800 rounded-xl p-3.5 mb-3">
+                            題目載入中...
+                        </p>
+                        <div id="battle-q-options" class="grid grid-cols-1 gap-2.5">
+                            <!-- 4 Options -->
+                        </div>
+                    </div>
+
+                    <!-- PHASE B: SELECT COMBAT SKILL -->
+                    <div id="battle-phase-action" class="hidden space-y-4">
+                        <div id="battle-q-result-banner" class="p-3 rounded-xl border text-xs sm:text-sm font-medium">
+                            <!-- Shows whether question was answered correctly and buff/debuff applied -->
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-amber-300 mb-2.5 flex items-center justify-between">
+                                <span><i class="fa-solid fa-hand-fist mr-1.5"></i>第二階段：請選擇本回合出招方式</span>
+                                <span class="text-xs text-stone-400 font-normal">點擊招式立即過招</span>
+                            </h4>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3">
+                                <button onclick="executeBattleMove('attack')" class="p-3 rounded-xl bg-stone-900 hover:bg-amber-950/60 border border-amber-500/40 text-left transition group">
+                                    <div class="font-bold text-sm text-amber-300 group-hover:text-amber-200"><i class="fa-solid fa-khanda mr-1"></i>基礎攻擊</div>
+                                    <div class="text-[11px] text-stone-400 mt-0.5">消耗 0 內力 · 造成標準武學傷害並回氣 +15</div>
+                                </button>
+                                <button onclick="executeBattleMove('defend')" class="p-3 rounded-xl bg-stone-900 hover:bg-emerald-950/60 border border-emerald-500/40 text-left transition group">
+                                    <div class="font-bold text-sm text-emerald-300 group-hover:text-emerald-200"><i class="fa-solid fa-shield-halved mr-1"></i>基礎防禦</div>
+                                    <div class="text-[11px] text-stone-400 mt-0.5">本回合所受傷害減半 · 回復 35 內力與少量生命</div>
+                                </button>
+                                <button onclick="executeBattleMove('dodge')" class="p-3 rounded-xl bg-stone-900 hover:bg-teal-950/60 border border-teal-500/40 text-left transition group">
+                                    <div class="font-bold text-sm text-teal-300 group-hover:text-teal-200"><i class="fa-solid fa-wind mr-1"></i>身法閃避</div>
+                                    <div class="text-[11px] text-stone-400 mt-0.5">閃避率大幅提升 +45% · 閃避成功則順勢反擊</div>
+                                </button>
+                                <button id="btn-move-ult" onclick="executeBattleMove('ultimate')" class="p-3 rounded-xl bg-stone-900 hover:bg-purple-950/60 border border-purple-500/40 text-left transition group">
+                                    <div class="font-bold text-sm text-purple-300 group-hover:text-purple-200"><i class="fa-solid fa-dragon mr-1"></i>必殺絕學</div>
+                                    <div class="text-[11px] text-stone-400 mt-0.5">消耗 50 內力 · 爆發 <span id="battle-ult-pct">220%</span> 破防重擊</div>
+                                </button>
+                            </div>
+
+                            <!-- Shanhaijing Active Beast Skills -->
+                            <div class="border-t border-stone-800 pt-3">
+                                <div class="text-xs font-bold text-emerald-300 mb-2">
+                                    <i class="fa-solid fa-paw mr-1"></i>《山海經》異獸主動神通（已吞噬解鎖）：
+                                </div>
+                                <div id="battle-beast-skills" class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                    <!-- Populated with unlocked active beast skills: Heal, Poison, Mental Attack -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Combat Log Area (4 cols) -->
+                <div class="lg:col-span-4 wuxia-card rounded-2xl p-4 flex flex-col h-64 lg:h-auto">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400 pb-2 mb-2 border-b border-stone-800 flex items-center justify-between">
+                        <span><i class="fa-solid fa-scroll mr-1"></i> 江湖戰報紀錄</span>
+                        <button onclick="clearBattleLog()" class="text-[11px] text-stone-500 hover:text-stone-300">清除</button>
+                    </h4>
+                    <div id="battle-log" class="flex-1 overflow-y-auto custom-scroll space-y-2 text-xs pr-1 max-h-72">
+                        <!-- Combat logs appended here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL 1: SECRET MANUAL / SHANHAIJING BEAST SELECTION (答對3選1獎勵) -->
+    <div id="modal-reward" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="max-w-3xl w-full wuxia-card rounded-2xl p-5 sm:p-7 border-amber-400 shadow-2xl">
+            <div class="text-center mb-5">
+                <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-bold">
+                    <i class="fa-solid fa-sparkles mr-1"></i>答題正確 · 機緣降臨
+                </span>
+                <h3 class="serif-title text-2xl sm:text-3xl font-black text-white mt-2">
+                    請選擇一項武學秘笈或吞噬山海異獸
+                </h3>
+                <p class="text-xs sm:text-sm text-stone-300 mt-1">
+                    每次正確回答皆可強化自身屬性或覺醒《山海經》異獸特殊神通！
+                </p>
+            </div>
+
+            <div id="reward-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- 3 random reward cards injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: SAVE / EXPORT / IMPORT PROGRESS (跨設備與互動版共通存檔) -->
+    <div id="modal-save" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="max-w-xl w-full wuxia-card rounded-2xl p-5 sm:p-6 border-amber-500/50">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-stone-800">
+                <h3 class="serif-title text-xl font-bold text-amber-300 flex items-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i> 遊戲進度儲存與跨設備匯出入
+                </h3>
+                <button onclick="closeSaveModal()" class="text-stone-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-xs sm:text-sm">
+                <div class="p-3.5 rounded-xl bg-stone-900/90 border border-stone-800 space-y-2">
+                    <div class="font-bold text-emerald-400"><i class="fa-solid fa-hard-drive mr-1.5"></i>1. 當前設備本機儲存</div>
+                    <p class="text-stone-300 text-xs">
+                        系統會在每次能力提升或戰鬥後自動儲存於你的瀏覽器設備中。你亦可以手動點擊下方按鈕立即保存。
+                    </p>
+                    <button onclick="saveToDevice(true)" class="btn-jade px-4 py-2 rounded-xl font-bold text-xs inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-check"></i> 立即儲存至本設備
+                    </button>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-stone-900/90 border border-stone-800 space-y-2">
+                    <div class="font-bold text-amber-400"><i class="fa-solid fa-file-export mr-1.5"></i>2. 另存進度檔案（用於跨設備、更新版及多人互動版）</div>
+                    <p class="text-stone-300 text-xs">
+                        匯出標準 <code class="text-amber-200">.json</code> 英雄戰力存檔。此檔案包含你的角色數值、《山海經》異獸神通、預留武器防具欄位及已答對題目紀錄，可直接匯入其他設備、未來更新版或「多人對戰/共鬥 Boss 互動版」！
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <button onclick="exportSaveFile()" class="btn-gold px-4 py-2 rounded-xl font-bold text-xs inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-download"></i> 下載進度檔 (.json)
+                        </button>
+                        <button onclick="copySaveCode()" class="bg-stone-800 hover:bg-stone-700 text-amber-200 border border-amber-500/40 px-4 py-2 rounded-xl font-bold text-xs inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-copy"></i> 複製進度代碼字串
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-stone-900/90 border border-stone-800 space-y-2">
+                    <div class="font-bold text-sky-400"><i class="fa-solid fa-file-import mr-1.5"></i>3. 讀取 / 匯入進度檔案</div>
+                    <p class="text-stone-300 text-xs">
+                        選擇先前下載的 <code class="text-sky-200">.json</code> 存檔，或貼上進度代碼字串以恢復角色：
+                    </p>
+                    <input type="file" id="import-file-input" accept=".json" onchange="handleFileImport(event)" class="block w-full text-xs text-stone-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-sky-600 file:text-white hover:file:bg-sky-500 cursor-pointer">
+                    
+                    <div class="flex gap-2 pt-2">
+                        <input id="import-code-input" type="text" placeholder="或在此貼上進度代碼字串..." class="flex-1 bg-stone-950 border border-stone-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        <button onclick="importFromCodeString()" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold shrink-0">
+                            讀取字串
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-stone-800 flex justify-between items-center">
+                    <button onclick="resetAllDataPrompt()" class="text-xs text-red-400 hover:text-red-300 underline">
+                        <i class="fa-solid fa-trash-can mr-1"></i>重置本機進度重新開始
+                    </button>
+                    <button onclick="closeSaveModal()" class="bg-stone-800 hover:bg-stone-700 text-stone-200 px-4 py-1.5 rounded-lg text-xs font-bold">
+                        關閉視窗
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: CUSTOM MESSAGE / BATTLE RESULT DIALOG (No native alert/confirm) -->
+    <div id="modal-dialog" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="max-w-md w-full wuxia-card rounded-2xl p-6 text-center border-amber-400/60">
+            <div id="dialog-icon" class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-3xl text-amber-300">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 id="dialog-title" class="serif-title text-2xl font-bold text-white mb-2">提示</h3>
+            <p id="dialog-message" class="text-sm text-stone-300 leading-relaxed mb-5"></p>
+            <div id="dialog-actions" class="flex justify-center gap-3">
+                <button onclick="closeDialog()" class="btn-gold px-6 py-2.5 rounded-xl font-bold text-sm">確定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /*************************************************************************
+         * 1. 完整 180 題題庫 (導學案01: 50題, 導學案02: 50題, 導學案03: 80題)
+         * 嚴格根據用家附上的 3 個檔案完整收錄
+         *************************************************************************/
+        const RAW_QUESTIONS = {
+            // (主題1) 導學案01：香港問題的由來 (50題)
+            1: [
+                [1,"香港自古以來就是中國的領土。根據考古發掘，香港地區早在哪個時期就已經有先民聚居？","A. 新石器時代","B. 秦漢時期","C. 唐宋時期","D. 明清時期","A"],
+                [2,"秦朝平定嶺南後，將香港地區納入版圖，當時香港屬於哪一個郡管轄？","A. 桂林郡","B. 象郡","C. 南海郡","D. 長沙郡","C"],
+                [3,"英國在19世紀通過哪三項不平等條約，先後強佔了香港島、九龍半島（界限街以南）及強租「新界」？","A. 《南京條約》、《天津條約》、《北京條約》","B. 《南京條約》、《北京條約》、《展拓香港界址專條》","C. 《虎門條約》、《馬關條約》、《辛丑條約》","D. 《穿鼻草約》、《北京條約》、《展拓香港界址專條》","B"],
+                [4,"1842年，清政府在第一次鴉片戰爭戰敗後，被迫簽訂《南京條約》，將哪個地方割讓予英國？","A. 九龍司地方一區","B. 香港島","C. 昂船洲","D. 新界","B"],
+                [5,"1860年，英國透過《北京條約》割佔了香港哪一部分的領土？","A. 香港島及鴨脷洲","B. 深圳河以南所有土地","C. 九龍半島界限街以南及昂船洲","D. 大嶼山及周邊235個島嶼","C"],
+                [6,"1898年簽訂的《展拓香港界址專條》中，英國強租「新界」的期限為多少年？","A. 50年","B. 60年","C. 99年","D. 100年","C"],
+                [7,"中國歷屆政府對英國管治香港所依據的三個不平等條約採取甚麼立場？","A. 承認割讓條約，只要求收回租借地","B. 全部不予承認，並堅持香港主權屬於中國","C. 承認條約有效，但要求英國提前歸還","D. 交由聯合國國際法院裁決條約效力","B"],
+                [8,"1949年中華人民共和國成立後，中央政府對香港問題採取的基本方針是甚麼？","A. 立即派兵收回香港","B. 長期打算、充分利用","C. 與英國共同管治香港","D. 將香港交由聯合國託管","B"],
+                [9,"1972年3月，中國常駐聯合國代表致函聯合國非殖民化特別委員會，成功促成聯合國將香港和澳門從甚麼名單中刪去？","A. 發展中國家名單","B. 殖民地名單","C. 戰亂地區名單","D. 自由貿易港名單","B"],
+                [10,"香港從聯合國殖民地名單中被刪去，在國際法上有甚麼重要意義？","A. 香港可以獨立建國","B. 英國獲得香港永久主權","C. 確認香港問題純屬中國主權範圍內的問題，不適用「民族自決」","D. 香港成為聯合國直轄特區","C"],
+                [11,"「一國兩制」構想最初是國家領導人為了解決哪個問題而提出的？","A. 香港問題","B. 澳門問題","C. 台灣問題","D. 南海問題","C"],
+                [12,"哪一位國家領導人創造性地提出「一個國家，兩種制度」的偉大構想，並首先應用於解決香港問題？","A. 毛澤東","B. 周恩來","C. 鄧小平","D. 江澤民","C"],
+                [13,"1982年9月，英國首相戴卓爾夫人訪華，鄧小平在會談中明確指出哪一個問題是不能談判的？","A. 過渡期的經濟安排","B. 主權問題","C. 1997年後的港元制度","D. 英國在港的商業利益","B"],
+                [14,"在中英談判初期，英方曾提出甚麼主張，企圖延續在1997年後對香港的管治，但遭中方堅決拒絕？","A. 「主權換治權」","B. 「中英共管」","C. 「全民公投」","D. 「租約自動續期」","A"],
+                [15,"《中英聯合聲明》於哪一年正式由中英兩國政府首腦在北京簽署？","A. 1982年","B. 1984年","C. 1990年","D. 1997年","B"],
+                [16,"《中英聯合聲明》的核心內容是解決甚麼問題？","A. 制定香港特別行政區的具體法律條文","B. 中國恢復對香港行使主權及過渡期的相關安排","C. 賦予英國在1997年後對香港事務的監督權","D. 確立香港實行三權分立的政治體制","B"],
+                [17,"中國政府對香港的基本方針政策（如「一國兩制」、「港人治港」、高度自治）在《中英聯合聲明》中是如何體現的？","A. 由中英雙方共同協商決定","B. 由中國政府在聲明中單方面宣示（載於第三條及附件一）","C. 由英國議會批准後生效","D. 由香港市民公投決定","B"],
+                [18,"隨着1997年7月1日香港回歸祖國，《中英聯合聲明》中所規定的與英方有關的權利和義務狀態如何？","A. 延長50年不變","B. 已經全部履行完畢","C. 轉交由美國政府監督","D. 成為《基本法》的上位法","B"],
+                [19,"香港回歸後，中國政府治理香港特別行政區的法律依據是甚麼？","A. 《中英聯合聲明》","B. 《中華人民共和國憲法》和《香港特別行政區基本法》","C. 英國《皇室訓令》及《英皇制誥》","D. 《公民權利和政治權利國際公約》","B"],
+                [20,"《中華人民共和國憲法》哪一條規定：「國家在必要時得設立特別行政區」，為設立香港特區提供了憲法依據？","A. 第一條","B. 第三十一條","C. 第六十二條","D. 第一百五十九條","B"],
+                [21,"根據《憲法》第三十一條，在特別行政區內實行的制度由哪個機構以法律規定？","A. 國務院","B. 全國人民代表大會","C. 香港特別行政區立法會","D. 中英聯合聯絡小組","B"],
+                [22,"《香港特別行政區基本法》是由哪一個國家機構制定並通過的？","A. 全國人大常委會","B. 全國人民代表大會","C. 國務院港澳事務辦公室","D. 香港基本法起草委員會","B"],
+                [23,"《香港特別行政區基本法》於哪一年獲通過並頒布，並於何時正式實施？","A. 1984年頒布，1990年實施","B. 1990年頒布，1997年7月1日實施","C. 1995年頒布，1997年7月1日實施","D. 1997年頒布並同年實施","B"],
+                [24,"在《基本法》起草過程中，除了成立「基本法起草委員會」外，還曾在香港成立甚麼機構以廣泛收集香港各界人士的意見？","A. 基本法諮詢委員會","B. 臨時立法會","C. 政制發展專責小組","D. 選舉委員會","A"],
+                [25,"《基本法》的起草歷時多久，充分體現了民主、開放和集思廣益的精神？","A. 兩年零六個月","B. 四年零八個月","C. 六年零三個月","D. 八年","B"],
+                [26,"「一國兩制」方針中，「一國」與「兩制」的關係是怎樣的？","A. 「兩制」高於「一國」","B. 「一國」與「兩制」平起平坐、互不隸屬","C. 「一國」是實行「兩制」的前提和基礎，「兩制」從屬和派生於「一國」","D. 「一國」只管外交，「兩制」決定主權","C"],
+                [27,"在「一國兩制」下，國家主體實行甚麼制度，而香港特別行政區保持甚麼制度？","A. 國家主體實行資本主義，香港保持社會主義","B. 國家主體實行社會主義，香港保持原有的資本主義制度","C. 兩地均實行社會主義制度","D. 兩地均實行資本主義制度","B"],
+                [28,"根據《基本法》第五條，香港特別行政區保持原有的資本主義制度和生活方式，多少年不變？","A. 三十年","B. 五十年","C. 七十年","D. 九十九年","B"],
+                [29,"根據《基本法》第一條，香港特別行政區是中華人民共和國不可分離的部分。這體現了甚麼原則？","A. 地方分權原則","B. 國家主權與領土完整原則","C. 司法獨立原則","D. 自由貿易原則","B"],
+                [30,"根據《基本法》第十二條，香港特別行政區享有高度自治權，直轄於哪一個國家機構？","A. 中華人民共和國中央人民政府（國務院）","B. 全國人大香港基本法委員會","C. 外交部駐港特派員公署","D. 廣東省人民政府","A"],
+                [31,"鄧小平曾指出，「港人治港」有個界線和標準，就是必須由以甚麼人為主體的港人來治理香港？","A. 專業人士","B. 工商界領袖","C. 愛國者","D. 公務員","C"],
+                [32,"根據《基本法》第八條，香港原有法律，即普通法、衡平法、條例、附屬立法和習慣法，在甚麼前提下予以保留？","A. 只要經過英國樞密院批准","B. 除同《基本法》相抵觸或經香港特別行政區的立法機關作出修改者外","C. 不需要任何條件全部無條件保留","D. 必須全部翻譯為中文後才可保留","B"],
+                [33,"香港回歸前，終審權屬於英國樞密院司法委員會；回歸後，香港特別行政區的終審權屬於哪個機構？","A. 最高人民法院","B. 全國人大常委會","C. 香港特別行政區終審法院","D. 香港特別行政區高等法院","C"],
+                [34,"根據《基本法》，下列哪一項事務不屬於香港特別行政區高度自治權的範圍，而由中央人民政府負責管理？","A. 教育及醫療政策","B. 貨幣金融制度","C. 與香港特別行政區有關的外交事務和防務","D. 出入境管制","C"],
+                [35,"香港特別行政區可以使用甚麼名義，在經濟、貿易、金融、航運、文化、體育等領域單獨地同世界各國、各地區及有關國際組織保持和發展關係？","A. 「香港共和國」","B. 「中國香港」","C. 「英屬香港」","D. 「大灣區香港」","B"],
+                [36,"關於《基本法》的法律地位，下列哪一項描述是正確的？","A. 只是香港本地的一條普通法例","B. 是全國性法律、憲制性法律，在香港特別行政區的法律體系中處於最高地位","C. 地位高於《中華人民共和國憲法》","D. 只適用於香港永久性居民，不適用於非永久性居民","B"],
+                [37,"香港特別行政區立法機關制定的任何法律，均不得同哪一部法律相抵觸？","A. 《英國普通法》","B. 《香港特別行政區基本法》","C. 《深圳經濟特區條例》","D. 《澳門特別行政區基本法》","B"],
+                [38,"根據《基本法》第一百五十八條，《基本法》的解釋權屬於哪個機構？","A. 香港特別行政區終審法院","B. 全國人民代表大會常務委員會","C. 國務院港澳事務辦公室","D. 香港特別行政區律政司","B"],
+                [39,"根據《基本法》第一百五十九條，《基本法》的修改權屬於哪個機構？","A. 全國人民代表大會","B. 全國人民代表大會常務委員會","C. 香港特別行政區立法會","D. 香港特別行政區行政長官","A"],
+                [40,"《基本法》第一百五十九條明確規定，《基本法》的任何修改，均不得同甚麼相抵觸？","A. 英國的習慣法","B. 中華人民共和國對香港既定的基本方針政策","C. 國際貨幣基金組織的規定","D. 立法會全體議員的意願","B"],
+                [41,"為確保香港平穩過渡，中英兩國根據《中英聯合聲明》附件二成立了甚麼機構，負責就《聯合聲明》的實施進行磋商？","A. 中英聯合聯絡小組","B. 香港特別行政區籌備委員會","C. 港事顧問團","D. 臨時市政局","A"],
+                [42,"1996年1月，全國人大設立了哪一個機構，負責籌備成立香港特別行政區的有關事宜，並推選第一任行政長官？","A. 香港基本法起草委員會","B. 香港特別行政區籌備委員會","C. 香港事務顧問委員會","D. 選舉管理委員會","B"],
+                [43,"香港特別行政區第一任行政長官是誰？","A. 曾蔭權","B. 董建華","C. 梁振英","D. 林鄭月娥","B"],
+                [44,"1997年7月1日零時，香港政權交接儀式在哪裏隆重舉行，標誌着中國政府正式恢復對香港行使主權？","A. 香港大球場","B. 香港會議展覽中心新翼","C. 添馬艦政府總部","D. 禮賓府","B"],
+                [45,"在「一國兩制」實踐中，國家主席習近平多次強調，中央貫徹「一國兩制」方針堅持兩點：一是堅定不移，不會變、不動搖；二是全面準確，確保甚麼？","A. 「一國兩制」在香港的實踐不走樣、不變形","B. 香港完全照搬內地的經濟模式","C. 香港實行西方代議政制","D. 取消所有資本主義制度","A"],
+                [46,"根據《基本法》第一百零六條，香港特別行政區保持財政獨立，其財政收入如何處理？","A. 每年上繳50%予中央財政","B. 全部用於自身需要，不上繳中央人民政府，中央不在香港徵稅","C. 由中央財政統一調配","D. 用於支付駐港部隊的軍費開支","B"],
+                [47,"香港特別行政區駐軍的費用由哪一方負擔？","A. 香港特別行政區政府全額負擔","B. 中央人民政府負擔","C. 中央與香港特區各負擔一半","D. 向香港市民徵收國防稅負擔","B"],
+                [48,"根據《基本法》第九條，香港特別行政區的行政機關、立法機關和司法機關，除使用中文外，還可使用哪種語言作為正式語文？","A. 法文","B. 英文","C. 葡萄牙文","D. 西班牙文","B"],
+                [49,"解決香港問題的歷史進程充分證明，香港能夠順利回歸祖國的根本原因是甚麼？","A. 英國主動放棄海外領地","B. 祖國綜合國力的不斷增強及「一國兩制」方針的科學務實","C. 聯合國的強制干預","D. 香港本土獨立運動的推動","B"],
+                [50,"總結「香港問題的由來」與回歸歷程，下列哪一項陳述最為準確？","A. 香港問題是三個不平等條約造成的歷史遺留問題，回歸洗刷了民族百年恥辱","B. 香港主權在1842年後已永久轉移給英國，1997年只是主權轉讓","C. 《中英聯合聲明》賦予英國在香港回歸後的監督權","D. 香港的高度自治權是固有權力，並非中央授予","A"]
+            ],
+            // (主題1) 導學案02：國家和香港特別行政區的憲制關係 (50題)
+            2: [
+                [1,"根據《中華人民共和國憲法》，中國的國家結構形式是甚麼？","A. 聯邦制","B. 邦聯制","C. 單一制","D. 君主立憲制","C"],
+                [2,"在單一制國家結構下，中央與香港特別行政區的權力關係是怎樣的？","A. 地方擁有固有權力，並讓渡部分權力予中央","B. 香港特別行政區的高度自治權完全來源於中央的授權","C. 中央與特區實行分權制衡、互不隸屬","D. 特區的權力來源於《中英聯合聲明》的國際授權","B"],
+                [3,"香港特別行政區的憲制基礎是由哪兩部法律共同構成的？","A. 《中英聯合聲明》和《基本法》","B. 《中華人民共和國憲法》和《香港特別行政區基本法》","C. 《香港人權法案條例》和《基本法》","D. 《英國普通法》和《中華人民共和國憲法》","B"],
+                [4,"關於《憲法》與《基本法》的關係，下列哪一項比喻最為貼切？","A. 「姊妹法」關係","B. 「母法」與「子法」的關係（《憲法》是上位法、根本法）","C. 平行並列的關係","D. 國際條約與本地立法的關係","B"],
+                [5,"有人認為「《憲法》除了第三十一條外，其他條文均不適用於香港特區」。這種觀點是否正確？","A. 正確，因為香港實行資本主義制度","B. 錯誤，《憲法》作為國家的根本法，在包括香港特區在內的全國疆域內具有最高法律效力","C. 正確，因為《基本法》已取代《憲法》在香港的地位","D. 視乎香港終審法院的裁決而定","B"],
+                [6,"根據《憲法》第五十七條，中華人民共和國的最高國家權力機關是甚麼？","A. 國務院","B. 全國人民代表大會","C. 最高人民法院","D. 中央軍事委員會","B"],
+                [7,"根據《憲法》第八十五條，中華人民共和國國務院（即中央人民政府）是最高國家權力機關的執行機關，也是甚麼機關？","A. 最高國家立法機關","B. 最高國家行政機關","C. 最高國家審判機關","D. 最高國家監察機關","B"],
+                [8,"中央對香港特別行政區擁有哪些權力？","A. 只有外交和防務兩項權力","B. 全面管治權","C. 只有名義上的主權，沒有實際管治權","D. 只擁有終審權","B"],
+                [9,"中央對香港特別行政區的「全面管治權」與特區的「高度自治權」之間是甚麼關係？","A. 兩者相互排斥、非此即彼","B. 全面管治權是高度自治權的源泉，兩者有機結合、辯證統一","C. 高度自治權限制了全面管治權的行使","D. 全面管治權只在緊急狀態下才存在","B"],
+                [10,"下列哪一項屬於中央直接行使的權力（即中央事權）？","A. 制定香港特區的財政預算案","B. 任命香港特別行政區行政長官和主要官員","C. 審理香港本地的民事糾紛案件","D. 管理香港的公共交通系統","B"],
+                [11,"根據《基本法》第四十五條，香港特別行政區行政長官在當地通過選舉或協商產生後，須由哪個機構任命？","A. 全國人大常委會","B. 中央人民政府（國務院）","C. 香港特別行政區立法會","D. 終審法院首席法官","B"],
+                [12,"中央人民政府對香港特別行政區行政長官的任命權是甚麼性質的權力？","A. 禮儀性、形式上的確認","B. 實質性的任命權","C. 由立法會代為行使的權力","D. 象徵性的備案程序","B"],
+                [13,"根據《基本法》第四十三條，香港特別行政區行政長官具有「雙重身份」和「雙重負責」的憲制地位，具體是指對誰負責？","A. 對英國政府和香港市民負責","B. 對中央人民政府和香港特別行政區負責","C. 只對香港特別行政區立法會負責","D. 對終審法院和選舉委員會負責","B"],
+                [14,"香港特別行政區的主要官員（如各司司長、各局局長、廉政專員、審計署署長、警務處處長等）是如何產生的？","A. 由立法會議員互選產生","B. 由行政長官提名並報請中央人民政府任命","C. 由香港永久性居民直接選舉產生","D. 由公務員敘用委員會直接委任","B"],
+                [15,"根據《基本法》第十七條，香港特別行政區立法機關制定的法律須報哪個機構備案？","A. 國務院港澳辦","B. 全國人民代表大會常務委員會","C. 最高人民法院","D. 中央人民政府駐香港聯絡辦公室","B"],
+                [16,"根據《基本法》第十七條，全國人大常委會在徵詢香港基本法委員會後，如認為香港特區立法機關制定的任何法律不符合《基本法》關於中央管理的事務及中央和香港特區關係的條款，可如何處理？","A. 直接修改該法律條文","B. 將有關法律發回，但不作修改；經發回的法律立即失效","C. 交由香港終審法院重審","D. 解散香港特別行政區立法會","B"],
+                [17,"根據《基本法》第十八條，全國性法律除列於《基本法》哪一個附件外，不在香港特別行政區實施？","A. 附件一","B. 附件二","C. 附件三","D. 附件四","C"],
+                [18,"列於《基本法》附件三的全國性法律，限於有關哪些方面的法律？","A. 稅收、金融與商貿","B. 國防、外交和其他按《基本法》規定不屬於香港特別行政區自治範圍的法律","C. 民事、刑事訴訟及婚姻家庭","D. 教育、醫療與社會福利","B"],
+                [19,"凡列於《基本法》附件三的全國性法律，由香港特別行政區透過甚麼方式在當地實施？","A. 由特區法院自行決定是否適用","B. 在當地公布或立法實施","C. 須經全港市民公投通過","D. 由英國樞密院審核後實施","B"],
+                [20,"下列哪一部法律屬於《基本法》附件三中在香港特別行政區實施的全國性法律？","A. 《中華人民共和國民法典》","B. 《中華人民共和國國歌法》","C. 《中華人民共和國個人所得稅法》","D. 《中華人民共和國道路交通安全法》","B"],
+                [21,"根據《基本法》第十八條第四款，在甚麼情況下，中央人民政府可發布命令將有關全國性法律在香港特別行政區實施？","A. 當香港出現財政赤字時","B. 全國人大常委會決定宣布戰爭狀態或因香港特區內發生特區政府不能控制的危及國家統一或安全的動亂而決定香港特區進入緊急狀態","C. 當行政長官與立法會發生意見分歧時","D. 當外國對香港實施貿易制裁時","B"],
+                [22,"根據《基本法》第一百五十八條，全國人大常委會授權香港特別行政區法院在審理案件時，對《基本法》關於甚麼範圍的條款自行解釋？","A. 關於國防和外交事務的條款","B. 關於香港特別行政區自治範圍內的條款","C. 關於修改《基本法》程序的條款","D. 關於中央人民政府職權的所有條款","B"],
+                [23,"根據《基本法》第一百五十八條，如香港特區法院在審理案件時需要對《基本法》關於中央管理的事務或中央和特區關係的條款進行解釋，而該條款的解釋又影響到案件的判決，在對該案件作出不可上訴的終局判決前，應由哪個法院請全國人大常委會作出解釋？","A. 區域法院","B. 高等法院原訟法庭","C. 香港特別行政區終審法院","D. 裁判法院","C"],
+                [24,"全國人大常委會對《基本法》作出的解釋（「人大釋法」），其法律效力如何？","A. 僅供香港法院參考，無強制約束力","B. 與《基本法》具有同等法律效力，香港特區法院在引用該條款時應以全國人大常委會的解釋為準","C. 效力低於香港終審法院的判例","D. 必須經香港立法會三讀通過後才生效","B"],
+                [25,"香港回歸以來，全國人大常委會曾多次對《基本法》進行解釋。1999年第一次「人大釋法」涉及甚麼問題？","A. 行政長官任期問題","B. 居港權問題（《基本法》第二十二條第四款及第二十四條第二款第(三)項）","C. 公職人員宣誓問題（《基本法》第一百零四條）","D. 國家豁免原則問題","B"],
+                [26,"2016年11月，全國人大常委會就《基本法》第一百零四條作出解釋，明確了甚麼憲制規定？","A. 立法會財委會的審批程序","B. 公職人員就職時依法宣誓擁護《基本法》、效忠中華人民共和國香港特別行政區的法定要求和條件","C. 區議會的職能定位","D. 土地契約續期的安排","B"],
+                [27,"香港特別行政區的政治體制具有甚麼顯著特點？","A. 西方三權分立制","B. 議會內閣制","C. 以行政長官為核心的「行政主導」體制","D. 總統共和制","C"],
+                [28,"在「行政主導」體制下，香港特別行政區的行政機關與立法機關之間的關係是怎樣的？","A. 立法機關凌駕於行政機關之上","B. 既互相制衡又互相配合，且重在配合","C. 行政機關完全不受立法機關監督","D. 兩者合併辦公，不分彼此","B"],
+                [29,"根據《基本法》第七十四條，立法會議員個別或聯名提出法律草案，凡涉及政府政策者，在提出前必須得到誰的書面同意？","A. 立法會主席","B. 行政長官","C. 終審法院首席法官","D. 律政司司長","B"],
+                [30,"根據《基本法》第五十四條，協助行政長官決策的機構是甚麼？","A. 行政會議","B. 立法會內務委員會","C. 廉政公署","D. 公務員事務局","A"],
+                [31,"根據《基本法》第十九條，香港特別行政區法院對甚麼行為無管轄權？","A. 商業合約糾紛","B. 國防、外交等國家行為","C. 行政機關的具體行政決定","D. 刑事犯罪行為","B"],
+                [32,"香港特別行政區法院在審理案件中遇有涉及國防、外交等國家行為的事實問題，應取得誰就此問題發出的證明文件，且該文件對法院有約束力？","A. 立法會主席","B. 行政長官（在發出證明文件前須取得中央人民政府證明書）","C. 警務處處長","D. 外國領事館","B"],
+                [33,"為落實「愛國者治港」原則，2021年3月11日，全國人民代表大會通過了甚麼重要決定，並授權全國人大常委會修改《基本法》附件一和附件二？","A. 《關於完善香港特別行政區選舉制度的決定》","B. 《關於建立健全香港特別行政區維護國家安全的法律制度和執行機制的決定》","C. 《關於香港特別行政區2017年行政長官產生辦法問題的決定》","D. 《關於批准〈廣深港高鐵一地兩檢合作安排〉的決定》","A"],
+                [34,"完善後的香港特別行政區選舉制度，重構並賦權了哪一個核心機構，使其由1200人增加至1500人，並分為五個界別？","A. 區議會","B. 選舉委員會","C. 行政會議","D. 提名委員會","B"],
+                [35,"完善選舉制度後，香港特別行政區立法會的議席總數是多少席，由哪三部分組成？","A. 70席（地區直選35席、功能團體35席）","B. 90席（選舉委員會選舉40席、功能團體選舉30席、分區直接選舉20席）","C. 60席（全部由功能團體產生）","D. 100席（地區直選50席、選舉委員會50席）","B"],
+                [36,"完善後的香港選舉制度設立了甚麼機構，負責審查並確認選舉委員會委員、行政長官和立法會議員候選人的資格？","A. 廉政公署審查處","B. 候選人資格審查委員會","C. 選舉管理委員會","D. 立法會監察委員會","B"],
+                [37,"中央人民政府在香港特別行政區設立了三個機構，下列哪一個不屬於這三個駐港機構？","A. 中央人民政府駐香港特別行政區聯絡辦公室（中聯辦）","B. 外交部駐香港特別行政區特派員公署","C. 中國人民解放軍駐香港部隊","D. 香港特別行政區政府駐北京辦事處","D"],
+                [38,"根據《基本法》第十四條，中央人民政府負責管理香港特別行政區的防務。中國人民解放軍駐香港部隊是否干預香港特別行政區的地方事務？","A. 經常干預地方行政管理","B. 不干預香港特別行政區的地方事務；特區政府在必要時，可向中央人民政府請求駐軍協助維持社會治安和救助災害","C. 直接接管香港警察的日常巡邏工作","D. 負責審批香港的基建工程項目","B"],
+                [39,"根據《基本法》第十四條，駐軍人員除須遵守全國性的法律外，還須遵守甚麼法律？","A. 英國軍法","B. 香港特別行政區的法律","C. 國際海洋法","D. 聯合國維和部隊章程","B"],
+                [40,"全國人大常委會下設哪一個工作委員會，在全國人大常委會對《基本法》進行解釋或修改等職權時提供意見，其成員由內地人士和香港人士各六人組成？","A. 香港特別行政區基本法委員會","B. 港澳事務委員會","C. 憲法和法律委員會","D. 華僑委員會","A"],
+                [41,"根據《基本法》第一百零四條，香港特別行政區行政長官、主要官員、行政會議成員、立法會議員、各級法院法官和其他司法幹部在就職時必須依法宣誓。宣誓的核心內容是甚麼？","A. 擁護《中英聯合聲明》，效忠大英帝國","B. 擁護《中華人民共和國香港特別行政區基本法》，效忠中華人民共和國香港特別行政區","C. 只效忠香港選民，不對任何機構負責","D. 遵守聯合國人權宣言","B"],
+                [42,"2023年香港進行了重塑區議會制度改革，使區議會回歸《基本法》第九十七條的定位。根據《基本法》第九十七條，區域組織（區議會）的憲制性質是甚麼？","A. 地方政權機關","B. 非政權性的區域組織（接受特區政府就地區管理和其他事務的諮詢，或負責提供文化、康樂、環境衛生等服務）","C. 立法會的下屬分支機構","D. 獨立於特區政府的自治議會","B"],
+                [43,"香港特別行政區的區旗和區徽使用了甚麼花朵的圖案，象徵香港是中國不可分離的部分？","A. 牡丹花","B. 紫荊花（動態五星花蕊）","C. 蓮花","D. 梅花","B"],
+                [44,"根據《基本法》第一百五十一條，香港特別行政區可在經濟、貿易、金融、航運、通訊、旅遊、文化、體育等領域以「中國香港」的名義，單獨地同世界各國、各地區及有關國際組織保持和發展關係。這屬於甚麼權力？","A. 完全獨立的外交權","B. 中央授權香港特區自行處理的對外事務權","C. 軍事結盟權","D. 宣戰與媾和權","B"],
+                [45,"在國際組織和國際會議中，以國家為單位參加的，香港特別行政區代表可以如何參與？","A. 作為主權國家獨立代表團參加","B. 作為中華人民共和國代表團的成員或以中央人民政府和上述有關國際組織或國際會議允許的身份參加","C. 由英國代表團代理出席","D. 完全禁止香港代表參與任何國際會議","B"],
+                [46,"根據《基本法》第二十二條，中央人民政府所屬各部門、各省、自治區、直轄市均不得干預香港特別行政區根據《基本法》自行管理的事務。這體現了甚麼？","A. 香港不屬於中國行政區劃","B. 國家依法保障香港特別行政區享有的高度自治權","C. 內地與香港斷絕一切往來","D. 香港特區政府級別高於國務院各部委","B"],
+                [47,"香港特別行政區的中國公民如何參與國家事務的管理？","A. 無法參與任何國家層面的管理","B. 根據全國人大確定的名額和代表產生辦法，在香港選出香港特別行政區的全國人大代表，參加最高國家權力機關的工作","C. 透過參選英國國會議員參與","D. 由立法會議員自動兼任全國人大代表","B"],
+                [48,"關於香港特別行政區的司法獨立，下列哪一項理解是正確的？","A. 司法獨立意味著香港法院脫離國家的憲制秩序，不受《基本法》約束","B. 根據《基本法》第八十五條，香港特別行政區法院獨立進行審判，不受任何干涉，司法人員履行審判職責的行為不受法律追究","C. 法官可以自行制定或廢除《基本法》條文","D. 司法獨立等於外籍法官必須佔多數","B"],
+                [49,"根據《基本法》第九十條，香港特別行政區終審法院和高等法院的首席法官，應由甚麼人擔任？","A. 任何國籍的資深大律師均可","B. 在外國無居留權的香港特別行政區永久性居民中的中國公民","C. 由英國最高法院直接指派的法官","D. 擁有雙重國籍的太平紳士","B"],
+                [50,"總結國家與香港特別行政區的憲制關係，下列哪一項表述最為準確？","A. 維護中央全面管治權與保障特區高度自治權是統一的，堅守「一國」之本，才能善用「兩制」之利","B. 特區的高度自治權沒有任何界限，等同於完全自治","C. 《基本法》的地位高於《憲法》","D. 香港實行三權分立，行政長官無需對中央負責","A"]
+            ],
+            // (主題1) 導學案03：維護國家安全的意義 (80題)
+            3: [
+                [1,"國家安全是指國家政權、主權、統一和領土完整、人民福祉、經濟社會可持續發展和國家其他重大利益相對處於沒有危險和不受內外威脅的狀態，以及甚麼能力？","A. 對外軍事擴張的能力","B. 保障持續安全狀態的能力","C. 壟斷全球貿易的能力","D. 控制國際金融市場的能力","B"],
+                [2,"2014年4月15日，國家主席習近平在中央國家安全委員會第一次會議上，創造性地提出了甚麼重要理念？","A. 傳統軍事安全觀","B. 總體國家安全觀","C. 經濟單一安全觀","D. 區域防禦安全觀","B"],
+                [3,"為增強全民國家安全意識，全國人大常委會將每年的哪一天定為「全民國家安全教育日」？","A. 4月15日","B. 7月1日","C. 10月1日","D. 12月4日","A"],
+                [4,"在「總體國家安全觀」中，以甚麼為宗旨？","A. 人民安全","B. 政治安全","C. 經濟安全","D. 軍事安全","A"],
+                [5,"在「總體國家安全觀」中，以甚麼為根本？","A. 文化安全","B. 政治安全","C. 生態安全","D. 科技安全","B"],
+                [6,"在「總體國家安全觀」中，以甚麼為基礎？","A. 經濟安全","B. 太空安全","C. 極地安全","D. 海外利益安全","A"],
+                [7,"在「總體國家安全觀」中，以甚麼為保障？","A. 糧食安全與資源安全","B. 軍事、科技、文化、社會安全","C. 網絡安全與人工智能安全","D. 核安全與生物安全","B"],
+                [8,"在「總體國家安全觀」中，以甚麼為依託？","A. 促進國際安全","B. 閉關自守","C. 單邊主義","D. 貿易保護主義","A"],
+                [9,"總體國家安全觀涵蓋眾多重點領域，除了政治、軍事、國土、經濟、文化、社會、科技、網絡、生態、資源、核安全、海外利益安全外，還包括哪些新興安全領域（統稱「太空、深海、極地、生物」等）？","A. 僅限於傳統陸地邊境防禦","B. 太空、深海、極地、生物、人工智能、數據、金融、糧食等非傳統安全領域","C. 只關注進出口關稅安全","D. 僅限於體育競賽安全","B"],
+                [10,"為甚麼說「政治安全」是國家安全的根本？","A. 因為政治安全只涉及政府官員的個人安全","B. 因為政治安全直接關係到國家政權的穩固、制度的穩定和主權的獨立，動搖了政治安全就會動搖國家的根基","C. 因為政治安全就是指股票市場不下跌","D. 因為政治安全只與外國選舉有關","B"],
+                [11,"新冠疫情（COVID-19）的全球大流行，突顯了總體國家安全觀中哪一個非傳統安全領域的重要性？","A. 核安全","B. 生物安全","C. 極地安全","D. 深海安全","B"],
+                [12,"保障國家關鍵信息基礎設施不受黑客攻擊、防範跨境數據洩露，屬於總體國家安全觀中的哪個領域？","A. 國土安全","B. 網絡安全與數據安全","C. 生態安全","D. 資源安全","B"],
+                [13,"維護國家安全在憲制層面屬於誰的事權（職權範圍）？","A. 純屬地方政府的自治事務","B. 中央事權（世界各國不論單一制或聯邦制，國家安全立法均屬中央事權）","C. 交由民間非政府組織自行管理","D. 由聯合國安理會統一管理","B"],
+                [14,"根據《基本法》第二十三條規定，香港特別行政區應自行立法禁止多少類危害國家安全的行為？","A. 三類","B. 五類","C. 七類","D. 十類","C"],
+                [15,"《基本法》第二十三條規定香港特區應自行立法禁止的七類行為包括：叛國、分裂國家、煽動叛亂、顛覆中央人民政府、竊取國家機密，以及哪兩項關於政治性組織的規定？","A. 禁止外國的政治性組織或團體在香港特區進行政治活動，禁止香港特區的政治性組織或團體與外國的政治性組織或團體建立聯繫","B. 禁止所有外資企業在香港營業，禁止外國遊客入境","C. 禁止市民參與任何宗教集會，禁止工會組織罷工","D. 禁止使用外國社交媒體，禁止訂閱外國報刊","A"],
+                [16,"《基本法》第二十三條規定香港特區「應自行立法」，這在法律性質上是甚麼？","A. 可做可不做的選擇性權利","B. 香港特別行政區必須履行的憲制責任和義務","C. 已經過時的歷史建議","D. 只適用於1997年之前的過渡期","B"],
+                [17,"香港回歸後長達二十多年未能完成《基本法》第二十三條本地立法，導致香港在維護國家安全方面長期處於甚麼狀態？","A. 固若金湯的狀態","B. 「不設防」的法律漏洞與制度缺失狀態","C. 完全無需國安法律的理想狀態","D. 由英國法律繼續保護的狀態","B"],
+                [18,"2019年香港發生「修例風波」，出現嚴重暴力犯罪、「港獨」主張及勾結外部勢力等行為，對甚麼造成了嚴重危害？","A. 只影響了個別商舖的營業額","B. 嚴重危害國家主權、安全、發展利益，嚴重挑戰「一國兩制」原則底線，嚴重破壞香港法治和社會穩定","C. 僅屬於普通的交通阻塞問題","D. 促進了香港旅遊業的增長","B"],
+                [19,"面對香港嚴峻的國家安全局勢，中央從國家層面建立健全香港特區維護國家安全的法律制度和執行機制，採取了甚麼步驟？","A. 「決定＋立法」兩步走（全國人大作出決定，授權全國人大常委會制定《香港國安法》並列入《基本法》附件三）","B. 直接宣布香港進入戰爭狀態","C. 廢除《基本法》並實行內地刑法","D. 解散香港特別行政區政府","A"],
+                [20,"2020年5月28日，十三屆全國人大三次會議通過《關於建立健全香港特別行政區維護國家安全的法律制度和執行機制的決定》，其憲法依據是甚麼？","A. 《中英聯合聲明》","B. 《中華人民共和國憲法》第三十一條和第六十二條第二項、第十四項、第十六項以及《基本法》的有關規定","C. 《香港人權法案條例》","D. 英國《國家安全法》","B"],
+                [21,"《中華人民共和國香港特別行政區維護國家安全法》（簡稱《香港國安法》）於哪一天獲全國人大常委會通過，並於當晚在香港刊憲生效？","A. 2019年10月1日","B. 2020年6月30日","C. 2021年3月30日","D. 2024年3月23日","B"],
+                [22,"《香港國安法》是透過甚麼法定程序在香港特別行政區實施的？","A. 由香港立法會三讀通過","B. 列入《基本法》附件三，由香港特別行政區在當地公布實施","C. 由終審法院首席法官簽署生效","D. 由全港選民投票通過","B"],
+                [23,"根據《香港國安法》第一條，制定本法的目的包括：堅定不移並全面準確貫徹「一國兩制」、「港人治港」、高度自治的方針，維護國家安全，防範、制止和懲治與香港特區有關的危害國家安全犯罪，還有甚麼？","A. 限制香港與外國的正常商業往來","B. 保持香港特別行政區的繁榮和穩定，保障香港特別行政區居民的合法權益","C. 取消香港的普通法制度","D. 實行外匯管制","B"],
+                [24,"根據《香港國安法》第二條，香港特別行政區《基本法》哪兩條規定是香港特別行政區《基本法》的根本性條款？","A. 第一條（香港特區是中華人民共和國不可分離的部分）和第十二條（香港特區是享有高度自治權的地方行政區域，直轄於中央人民政府）","B. 第五條和第八條","C. 第二十四條和第二十七條","D. 第一百零六條和第一百一十二條","A"],
+                [25,"《香港國安法》第四條明確規定，香港特別行政區維護國家安全應當尊重和保障人權，依法保護香港特區居民根據《基本法》和哪兩個國際公約適用於香港的有關規定享有的權利和自由？","A. 《京都議定書》和《巴黎協定》","B. 《公民權利和政治權利國際公約》和《經濟、社會與文化權利的國際公約》","C. 《聯合國海洋法公約》和《維也納外交關係公約》","D. 《日內瓦公約》和《兒童權利公約》","B"],
+                [26,"《香港國安法》第五條規定，防範、制止和懲治危害國家安全犯罪，應當堅持甚麼原則？","A. 有罪推定原則","B. 法治原則（包括罪刑法定、無罪推定、保障辯護權及其他訴訟權利、一事不再審等）","C. 溯及既往原則（追究2020年6月30日前的所有行為）","D. 秘密審判原則（所有案件一律不公開）","B"],
+                [27,"關於《香港國安法》是否具有溯及力，根據《香港國安法》第三十九條規定，本法對甚麼時候以後發生的行為有效？","A. 1997年7月1日以後","B. 2019年6月1日以後","C. 《香港國安法》施行以後（即2020年6月30日晚上11時生效以後）","D. 1984年簽署聯合聲明以後","C"],
+                [28,"《香港國安法》第三章明確規定了哪四類危害國家安全的罪行和處罰？","A. 叛國罪、煽動叛亂罪、竊取國家機密罪、間諜罪","B. 分裂國家罪、顛覆國家政權罪、恐怖活動罪、勾結外國或者境外勢力危害國家安全罪","C. 暴動罪、非法集結罪、刑事毀壞罪、襲警罪","D. 洗黑錢罪、走私罪、偽造貨幣罪、網絡詐騙罪","B"],
+                [29,"根據《香港國安法》第二十條，任何人組織、策劃、實施或者參與實施旨在分裂國家、破壞國家統一行為的，不論是否使用武力或者以武力相威脅，即屬犯罪。這屬於哪一項罪行？","A. 顛覆國家政權罪","B. 分裂國家罪","C. 恐怖活動罪","D. 尋釁滋事罪","B"],
+                [30,"根據《香港國安法》第二十二條，任何人組織、策劃、實施或者參與實施以武力、威脅使用武力或者其他非法手段旨在推翻、破壞中華人民共和國憲法所確立的根本制度，或者推翻中央政權機關或香港特區政權機關，或者嚴重干擾、阻撓、破壞政權機關依法履行職能，屬於哪一項罪行？","A. 分裂國家罪","B. 顛覆國家政權罪","C. 恐怖活動罪","D. 妨礙公務罪","B"],
+                [31,"根據《香港國安法》第二十四條，為脅迫中央人民政府、香港特別行政區政府或者國際組織，或者威嚇公眾以圖實現政治主張，組織、策劃、實施、參與實施或者威脅實施造成或者意圖造成嚴重社會危害的恐怖活動行為（如針對人的嚴重暴力、爆炸、縱火、破壞交通工具等），屬於哪一項罪行？","A. 恐怖活動罪","B. 勾結外國勢力罪","C. 刑事恐嚇罪","D. 縱火罪","A"],
+                [32,"根據《香港國安法》第二十九條，請求外國或者境外機構、組織、人員實施對香港特別行政區或者中華人民共和國進行制裁、封鎖或者採取其他敵對行動，屬於哪一項罪行？","A. 叛國罪","B. 勾結外國或者境外勢力危害國家安全罪","C. 違反貿易法例罪","D. 誹謗罪","B"],
+                [33,"在《香港國安法》規定的四類罪行中，對首要分子或者罪行重大的，最高可判處甚麼刑罰？","A. 死刑","B. 無期徒刑（終身監禁）","C. 有期徒刑十年","D. 驅逐出境","B"],
+                [34,"根據《香港國安法》第十二條，香港特別行政區設立哪一個機構，負責香港特區維護國家安全事務，承擔維護國家安全的主要責任，並接受中央人民政府的監督和問責？","A. 香港特別行政區維護國家安全委員會（香港特區國安委）","B. 獨立監察警方處理投訴委員會","C. 撲滅罪行委員會","D. 保安事務委員會","A"],
+                [35,"香港特別行政區維護國家安全委員會的主席由誰擔任？","A. 政務司司長","B. 保安局局長","C. 行政長官","D. 警務處處長","C"],
+                [36,"香港特別行政區維護國家安全委員會設立甚麼職務，由中央人民政府指派，就香港特區國安委履行職責相關事務提供意見？","A. 國家安全事務顧問","B. 特別檢察官","C. 駐港軍事代表","D. 憲制法律顧問","A"],
+                [37,"香港特別行政區維護國家安全委員會的工作是否受到香港特區任何其他機構、組織和個人的干涉，其工作信息是否公開？","A. 須向立法會公開所有會議紀錄，其決定可被司法覆核","B. 不受香港特區任何其他機構、組織和個人的干涉，工作信息不予公開，其作出的決定不受司法覆核","C. 由香港傳媒協會監督並定期公布","D. 須經區議會批准後方可執行","B"],
+                [38,"為切實履行維護國家安全職責，香港特別行政區政府警務處設立了甚麼部門，配備執法力量？","A. 商業罪案調查科","B. 維護國家安全部門（警務處國家安全處）","C. 有組織罪案及三合會調查科","D. 網絡安全及科技罪案調查科","B"],
+                [39,"香港特別行政區政府律政司設立了甚麼部門，專門負責危害國家安全犯罪案件的檢控工作和其他相關法律事務？","A. 民事法律科","B. 專門的國家安全犯罪案件檢控部門","C. 法律草擬科","D. 國際法律科","B"],
+                [40,"根據《香港國安法》第四十八條，中央人民政府在香港特別行政區設立哪一個機構，依法履行維護國家安全職責，並對香港特區履行維護國家安全職責進行監督、指導、協調、支持？","A. 中央人民政府駐香港特別行政區維護國家安全公署（駐港國安公署）","B. 國家安全部廣東分廳","C. 最高人民檢察院駐港辦事處","D. 公安部出入境管理局","A"],
+                [41,"關於危害國家安全犯罪案件的管轄權，《香港國安法》規定絕大多數案件由誰管轄？","A. 全部移交內地法院審理","B. 除特定情形外，由香港特別行政區管轄（由香港警方國安處立案偵查、律政司檢控、特區法院審判）","C. 由國際刑事法院管轄","D. 由英國最高法院管轄","B"],
+                [42,"根據《香港國安法》第五十五條，只有在哪三種特定情形下，經香港特區政府或駐港國安公署提出，並報中央人民政府批准，由駐港國安公署對危害國家安全犯罪案件行使管轄權？","A. 案件涉及普通盜竊、交通違例或勞資糾紛","B. (一)案件涉及外國或境外勢力介入的複雜情況，香港特區管轄確有困難；(二)出現香港特區政府無法有效執行本法的嚴重情況；(三)出現國家安全面臨重大現實威脅的情況","C. 只要被告人是外國國籍的所有案件","D. 凡涉及罰款超過一百萬港元的案件","B"],
+                [43,"根據《香港國安法》第四十四條，香港特別行政區各級法院中負責處理危害國家安全犯罪案件的「指定法官」由誰指定？","A. 由立法會議員投票選出","B. 由行政長官自現任裁判官、區域法院法官、高等法院原訟法庭法官、上訴法庭法官以及終審法院法官中指定（指定前可徵詢特區國安委和終審法院首席法官的意見）","C. 由香港大律師公會指派","D. 由駐港國安公署直接任命","B"],
+                [44,"「指定法官」的任期為多久？","A. 一年","B. 三年","C. 五年","D. 終身制","A"],
+                [45,"根據《香港國安法》第四十二條，對犯罪嫌疑人、被告人，除甚麼情況外，不得准予保釋？","A. 只要交納足夠保釋金即可保釋","B. 除非法官有充足理由相信其不會繼續實施危害國家安全行為","C. 只要聘請了資深大律師即可保釋","D. 凡首次犯案者一律自動保釋","B"],
+                [46,"根據《香港國安法》第四十六條，對高等法院原訟法庭進行的就危害國家安全犯罪案件提起的刑事檢控程序，律政司司長可基於保護國家秘密、案件具有涉外因素或者保障陪審員及其家人的人身安全等理由，發出證書指示相關訴訟如何審理？","A. 在毋須陪審團的情況下進行審理，由三名法官組成審判庭","B. 取消審訊直接定罪","C. 交由立法會進行聆訊","D. 邀請外國觀察員擔任陪審團","A"],
+                [47,"《香港國安法》關於效力範圍（域外效力）的規定涵蓋哪些情形？","A. 只適用於香港永久性居民在香港境內的行為","B. 具有屬地管轄、屬人管轄（香港永久性居民在港外犯罪）及保護管轄（非香港永久性居民在港外針對香港特區實施本法規定的犯罪）效力","C. 只適用於外國人在香港境內的行為","D. 沒有任何域外效力","B"],
+                [48,"根據《香港國安法》第六十二條，香港特別行政區本地法律規定與《香港國安法》不一致的，應如何處理？","A. 適用香港本地法律規定","B. 適用《香港國安法》規定","C. 由區域法院法官自行選擇適用哪一條","D. 兩部法律同時失效","B"],
+                [49,"根據《香港國安法》第六十五條，《香港國安法》的解釋權屬於哪個機構？","A. 香港特別行政區終審法院","B. 全國人民代表大會常務委員會","C. 香港特區維護國家安全委員會","D. 律政司","B"],
+                [50,"2022年12月30日，全國人大常委會首次就《香港國安法》哪兩條條文作出解釋，釐清了不具有香港全面執業資格的海外律師能否參與國安案件的問題？","A. 第一條和第二條","B. 第十四條和第四十七條","C. 第二十條和第二十二條","D. 第五十五條和第五十六條","B"],
+                [51,"根據2022年12月全國人大常委會對《香港國安法》第十四條和第四十七條的解釋，不具有香港特區全面執業資格的海外律師是否可以擔任危害國家安全犯罪案件的辯護人或者訴訟代理人，應當取得誰發出的證明書？","A. 香港律師會會長","B. 行政長官","C. 外國駐港總領事","D. 立法會主席","B"],
+                [52,"根据《香港國安法》第九條和第十條，香港特別行政區應當加強維護國家安全和防範恐怖活動的工作，並通過哪些渠道開展國家安全教育，提高香港特區居民的國家安全意識和守法意識？","A. 只在警察學院內部開展","B. 通過學校、社會團體、媒體、網絡等開展國家安全教育","C. 僅透過派發傳單開展","D. 交由外國機構代為開展","B"],
+                [53,"《香港國安法》實施後，香港社會迅速恢復秩序，實現了甚麼重大歷史轉折？","A. 由亂到治，並走向由治及興","B. 由繁榮走向衰退","C. 放棄資本主義制度","D. 關閉金融市場","A"],
+                [54,"《香港國安法》實施後，香港特區是否已經完全履行了《基本法》第二十三條的憲制責任？","A. 是，《香港國安法》已完全取代第二十三條所有內容","B. 否，《香港國安法》只規定了四類罪行，香港特區仍須根據《基本法》第二十三條和《香港國安法》第七條盡早完成維護國家安全立法","C. 《基本法》第二十三條已被廢除","D. 只需修改交通法例即可","B"],
+                [55,"2024年3月19日，香港特別行政區立法會全票三讀通過了哪一部重要條例，並於2024年3月23日刊憲生效，標誌着香港圓滿完成了《基本法》第二十三條賦予的憲制責任？","A. 《公安條例》","B. 《維護國家安全條例》","C. 《刑事罪行條例》","D. 《官方機密條例》","B"],
+                [56,"2024年實施的《維護國家安全條例》與2020年實施的《香港國安法》之間是甚麼關係？","A. 《維護國家安全條例》取代並廢除了《香港國安法》","B. 兩者兼容互補、有機銜接，共同構成香港特區維護國家安全的完整法律體系（「雙法雙機制」）","C. 兩者互相矛盾、各自為政","D. 《維護國家安全條例》只適用於非永久性居民","B"],
+                [57,"《維護國家安全條例》重點針對哪些危害國家安全的罪行作出規定，從而補齊了香港維護國家安全法律制度的短板？","A. 分裂國家與顛覆國家政權（已由國安法完全涵蓋）","B. 叛國、叛亂、煽惑叛變及離叛、與國家秘密及間諜活動相關的罪行、危害國家安全的破壞活動、境外干預及從事危害國家安全活動的組織等","C. 一般商業欺詐與破產條例","D. 版權與專利侵權行為","B"],
+                [58,"根據《維護國家安全條例》，任何人如知悉他人已犯、正犯或即將犯「叛國罪」，在沒有合理辯解下沒有盡快向警務人員披露該情況，會構成甚麼罪行？","A. 不構成任何罪行","B. 隱匿叛國罪","C. 誹謗罪","D. 藐視法庭罪","B"],
+                [59,"在《維護國家安全條例》中，關於「非法披露國家秘密」的罪行，所指的「國家秘密」涵蓋哪些領域的秘密（在沒有合法權限下披露相當可能會危害國家安全）？","A. 任何私營公司的內部會議紀錄","B. 關乎中國或香港特區事務的重大決策、國防建設、外交外事、經濟社會科技發展、維護國家安全或偵查罪行的秘密等七大範疇","C. 市民個人的社交媒體密碼","D. 餐廳的獨家食譜","B"],
+                [60,"根據《維護國家安全條例》，如果有人配合境外勢力，使用不當手段（如作出關鍵失實陳述、使用暴力或造成經濟損失等），意圖帶來干預效果（如影響香港特區選舉、立法會或法院履行職能），會觸犯甚麼罪行？","A. 境外干預罪","B. 普通集會罪","C. 非法入境罪","D. 商業賄賂罪","A"],
+                [61,"根據《維護國家安全條例》，任何人如在懷有危害國家安全的意圖或罔顧是否會危害國家安全的情況下，損壞或削弱「公共基礎設施」（如供水、供電、公共交通、通訊網絡等），會觸犯甚麼罪行？","A. 亂拋垃圾罪","B. 危害國家安全的破壞活動罪","C. 違例泊車罪","D. 噪音滋擾罪","B"],
+                [62,"為甚麼說維護國家安全與保障市民的人權自由並不衝突？","A. 因為維護國家安全會取消所有人權","B. 國家安全是安邦定國的重要基石；沒有國家安全和社會穩定，市民的生命財產和一切權利自由都無從談起，且國安法律僅針對極少數危害國家安全的犯罪分子","C. 因為《基本法》沒有保障任何自由","D. 因為只有外國人才享有自由","B"],
+                [63,"根據《公民權利和政治權利國際公約》，言論自由、集會自由等權利是否絕對、毫無限制的？","A. 是絕對的，任何情況下政府都不得限制","B. 並非絕對，為尊重他人權利或名譽，或為保障國家安全、公共秩序、公共衛生或道德，可依法予以必要限制","C. 只有富人享有絕對自由","D. 在網上發表的言論不受任何法律約束","B"],
+                [64,"維護國家安全對香港作為國際金融、航運、貿易中心的發展有何重要意義？","A. 會導致香港與國際完全脫鉤","B. 提供安全、穩定、可預期的法治和營商環境，增強海內外投資者對香港的信心，保障香港長期繁榮穩定","C. 迫使所有跨國企業撤離香港","D. 禁止外幣在香港自由兌換","B"],
+                [65,"在總體國家安全觀下，為甚麼「文化安全」同樣十分重要？","A. 文化安全只涉及保護博物館建築物","B. 文化是一個國家、一個民族的靈魂；維護文化安全有助於增強中華文化認同、民族凝聚力和價值觀自信，抵禦不良意識形態滲透","C. 文化安全要求禁止學習任何外語","D. 文化安全與國家安全毫無關係","B"],
+                [66,"在總體國家安全觀下，「生態安全」與國家安全有何關聯？","A. 生態環境破壞、氣候變化、污染等問題直接威脅人民的生存健康與經濟社會的可持續發展，是國家安全的重要組成部分","B. 生態安全只屬於環保團體的興趣活動，與國家安全無關","C. 生態安全只關注動物園的管理","D. 只要經濟增長，生態環境無需理會","A"],
+                [67,"在總體國家安全觀下，「科技安全」的戰略地位是怎樣的？","A. 科技可以完全依賴外國進口，無需自主研發","B. 科技安全是國家安全的重要保障；掌握關鍵核心技術、防止「卡脖子」風險，對維護經濟、國防和網絡安全至關重要","C. 科技發展只會帶來失業，應停止研發","D. 科技安全只涉及手機遊戲開發","B"],
+                [68,"在總體國家安全觀下，「金融安全」對香港有甚麼特殊要求？","A. 香港作為國際金融中心，必須防範系統性金融風險、打擊洗黑錢及恐怖分子資金籌集、維護聯繫匯率制度及金融市場穩定，守住不發生系統性金融風險的底線","B. 香港沒有任何金融風險","C. 香港應廢除港元改用外國加密貨幣","D. 金融機構無需遵守任何監管法規","A"],
+                [69,"根據《香港國安法》第六條，香港特別行政區居民在參選或者就任公職時，應當依法簽署文件確認或者宣誓甚麼內容？","A. 擁護《中華人民共和國香港特別行政區基本法》，效忠中華人民共和國香港特別行政區","B. 效忠所屬政黨領袖","C. 承諾減免所有稅收","D. 擁護英國普通法傳統","A"],
+                [70,"根據《香港國安法》第三十五條，任何人經法院判決犯危害國家安全罪行的，即喪失作為候選人參加香港特區立法會、區議會選舉或者出任香港特區任何公職、行政長官選舉委員會委員的資格；曾宣誓或聲明擁護《基本法》、效忠特區的立法會議員、政府官員及公務員、行政會議成員、法官及司法人員、區議員，即時如何處理？","A. 繼續留任直至任期屆滿","B. 即時喪失該等職務，並喪失參選或出任上述職務的資格","C. 只需繳交罰款即可保留職位","D. 停職一個月後復職","B"],
+                [71,"根據《香港國安法》第四十三條，警務處維護國家安全部門辦理危害國家安全犯罪案件時，除可採取香港現行法律准予警方調查嚴重犯罪案件採取的各種措施外，還可採取哪些措施（如搜查、限制離境、凍結財產、要求移除危害國安信息、要求外國及境外政治性組織提供資料等）？","A. 《香港國安法》第四十三條及《實施細則》規定的七項特定措施","B. 無需任何法律程序隨意沒收全港市民財產","C. 直接判處嫌疑人監禁","D. 修改《基本法》條文","A"],
+                [72,"根據《香港國安法》第四十一條，審判應當公開進行。但在甚麼情況下，審判可以不公開進行，但應當公開宣布判決結果？","A. 因為涉及國家秘密、公共秩序等情形不宜公開審理的，禁止新聞界和公眾旁聽全部或者一部分審理程序","B. 只要被告人要求不公開即可","C. 所有案件一律秘密審訊、秘密宣判","D. 當法庭座位不足時","A"],
+                [73,"根據《香港國安法》第五十條，駐港國安公署人員除須遵守全國性法律外，還須遵守甚麼法律，並依法接受國家監察機關的監督？","A. 美國聯邦法律","B. 香港特別行政區法律","C. 歐盟人權公約","D. 英國刑法","B"],
+                [74,"根據《香港國安法》第六十條，駐港國安公署及其人員依據本法執行職務的行為，是否受香港特別行政區管轄？","A. 受香港區議會管轄","B. 不受香港特別行政區管轄；持有駐港國安公署制發的證件或者證明文件執行職務的人員及其使用的車輛等不受香港特區執法人員檢查、搜查和扣押","C. 須事先向香港高等法院申請許可","D. 受外國領事館監督","B"],
+                [75,"世界各國高度重視維護國家安全，均制定了嚴密的國家安全法律。例如美國有《國家安全法》、《愛國者法案》、《反經濟間諜法》等超過20部國安相關法律，英國亦於2023年通過了全面的《國家安全法》。這說明了甚麼？","A. 只有中國制定國家安全法","B. 制定維護國家安全法律是國際社會的通行做法和主權國家的固有權利，任何國家都不會容忍危害本國安全的行為","C. 西方國家從不限制危害國家安全的行為","D. 國家安全立法違反國際慣例","B"],
+                [76,"部分外國政客對《香港國安法》和《維護國家安全條例》進行無理抹黑，同時卻不斷收緊本國的國安法例。這種行為反映了甚麼？","A. 客觀公正的法治精神","B. 典型的「雙重標準」和干預中國內政的霸權行徑","C. 關心香港市民福祉","D. 推動國際法發展","B"],
+                [77,"作為香港特別行政區的青年學生和公民，在維護國家安全方面應當承擔甚麼責任？","A. 維護國家安全只是政府和警察的事，與青年學生無關","B. 自覺學習和遵守《憲法》、《基本法》、《香港國安法》及《維護國家安全條例》，樹立總體國家安全觀，不做任何危害國家安全的行為","C. 隨意在網上轉發煽動分裂國家的信息","D. 參與非法組織的活動","B"],
+                [78,"《香港國安法》第六條第一款明確規定：「維護國家主權、統一和領土完整是包括香港同胞在內的甚麼人的共同義務？」","A. 僅限於政府公務員","B. 全中國人民","C. 僅限於立法會議員","D. 僅限於駐港部隊軍人","B"],
+                [79,"當我們在日常生活中或互聯網上遇到疑似危害國家安全的信息或活動時，正確的做法是甚麼？","A. 出於好奇轉發給朋友分享","B. 保持警惕，不參與、不傳播，並可透過警務處國家安全處舉報熱線等合法渠道向執法部門舉報","C. 加入相關群組協助宣傳","D. 視而不見並刪除警方提示","B"],
+                [80,"總結「維護國家安全的意義」，下列哪一項表述最為全面和準確？","A. 國安才能港安，國安才能家安；維護國家安全是「一國兩制」行穩致遠的根本保障，也是香港實現由治及興、保持長期繁榮穩定的堅實基石","B. 維護國家安全會削弱香港的國際地位","C. 完成23條立法後，香港就不再需要進行國家安全教育","D. 國家安全只涉及軍事防禦，與民生經濟無關","A"]
+            ]
+        };
+
+        // Transform RAW_QUESTIONS into flat structured array
+        const QUESTION_BANK = [];
+        Object.keys(RAW_QUESTIONS).forEach(topicKey => {
+            const topicNum = parseInt(topicKey);
+            const topicNames = {
+                1: "(主題1) 導學案01：香港問題的由來",
+                2: "(主題1) 導學案02：國家和香港特別行政區的憲制關係",
+                3: "(主題1) 導學案03：維護國家安全的意義"
+            };
+            RAW_QUESTIONS[topicNum].forEach(item => {
+                QUESTION_BANK.push({
+                    id: `T${topicNum}-${String(item[0]).padStart(3, '0')}`,
+                    topic: topicNum,
+                    topicName: topicNames[topicNum],
+                    num: item[0],
+                    q: item[1],
+                    options: {
+                        A: item[2],
+                        B: item[3],
+                        C: item[4],
+                        D: item[5]
+                    },
+                    ans: item[6]
+                });
+            });
+        });
+
+        /*************************************************************************
+         * 2. 《山海經》奇禽異獸定義 (8種特殊神通) 與 武林秘笈定義
+         *************************************************************************/
+        const SHANHAI_BEASTS = {
+            qingniao: {
+                key: 'qingniao',
+                name: '青鳥',
+                origin: '《山海經·大荒西經》西王母使者',
+                abilityName: '療傷神通',
+                type: 'active',
+                mpCost: 30,
+                icon: 'fa-dove text-emerald-400',
+                desc: '戰鬥中可主動施展【青鳥回春】，消耗30內力，立即回復生命上限 (22% + 階數×6%) 並清除中毒狀態。'
+            },
+            xiangliu: {
+                key: 'xiangliu',
+                name: '相柳',
+                origin: '《山海經·海外北經》九首蛇身凶神',
+                abilityName: '毒害神通',
+                type: 'active',
+                mpCost: 35,
+                icon: 'fa-staff-snake text-lime-400',
+                desc: '戰鬥中可主動施展【相柳蝕骨毒】，消耗35內力造成傷害並令對手中毒3回合，每回合流失最大生命 (5% + 階數×1.5%)。'
+            },
+            jiuweihu: {
+                key: 'jiuweihu',
+                name: '九尾狐',
+                origin: '《山海經·南山經》青丘奇獸',
+                abilityName: '精神攻擊',
+                type: 'active',
+                mpCost: 40,
+                icon: 'fa-eye text-fuchsia-400',
+                desc: '戰鬥中可主動施展【青丘攝魂術】，消耗40內力無視對手 60% 防禦造成精神重擊，並令對手3回合攻擊力下降 25%。'
+            },
+            baize: {
+                key: 'baize',
+                name: '白澤',
+                origin: '《山海經》通萬物之情瑞獸',
+                abilityName: '抗精神攻擊',
+                type: 'passive',
+                mpCost: 0,
+                icon: 'fa-shield-cat text-sky-400',
+                desc: '被動生效：白澤靈識護體，受到對手「精神攻擊」時，減免 (30% + 階數×12%) 精神傷害並免疫心神混亂。'
+            },
+            qiongqi: {
+                key: 'qiongqi',
+                name: '窮奇',
+                origin: '《山海經·海內北經》翼虎異獸',
+                abilityName: '吸血神通',
+                type: 'passive',
+                mpCost: 0,
+                icon: 'fa-bat text-rose-500',
+                desc: '被動生效：每次攻擊或必殺技命中對手時，自動吸取所造成傷害的 (12% + 階數×5%) 轉化為自身生命值。'
+            },
+            xingtian: {
+                key: 'xingtian',
+                name: '刑天',
+                origin: '《山海經·海外西經》干戚戰神',
+                abilityName: '低血量狂暴',
+                type: 'passive',
+                mpCost: 0,
+                icon: 'fa-fire text-red-500',
+                desc: '被動生效：當生命值低於 40% 時自動觸發【刑天戰意】，攻擊力與必殺技傷害提升 (30% + 階數×10%)！'
+            },
+            kui: {
+                key: 'kui',
+                name: '夔牛',
+                origin: '《山海經·大荒東經》雷澤神獸',
+                abilityName: '反擊神通',
+                type: 'passive',
+                mpCost: 0,
+                icon: 'fa-bolt-lightning text-amber-400',
+                desc: '被動生效：受到對手攻擊時，有 (25% + 階數×10%) 機率引動雷霆震擊，自動反彈自身攻擊力 65% 的真實傷害。'
+            },
+            feiyi: {
+                key: 'feiyi',
+                name: '肥遺',
+                origin: '《山海經·北山經》六足四翼奇蛇',
+                abilityName: '抗毒神通',
+                type: 'passive',
+                mpCost: 0,
+                icon: 'fa-prescription-bottle-medical text-teal-400',
+                desc: '被動生效：百毒不侵體質，受到任何毒素與持續傷害時減免 (35% + 階數×12%)，且每回合自動小幅回血。'
+            }
+        };
+
+        const STAT_MANUALS = [
+            { id: 'hp', name: '《神農百草經》', statName: '生命值上限', gainText: '+120 HP', icon: 'fa-heart text-rose-400', apply: (p) => { p.maxHp += 120; p.hp += 120; } },
+            { id: 'mp', name: '《北冥吐納訣》', statName: '內力值上限', gainText: '+45 MP', icon: 'fa-fire-flame-simple text-sky-400', apply: (p) => { p.maxMp += 45; p.mp += 45; } },
+            { id: 'atk', name: '《軒轅破陣劍譜》', statName: '攻擊力', gainText: '+22 ATK', icon: 'fa-khanda text-amber-400', apply: (p) => { p.atk += 22; } },
+            { id: 'def', name: '《玄武金鐘罩》', statName: '防禦力', gainText: '+18 DEF', icon: 'fa-shield-halved text-emerald-400', apply: (p) => { p.def += 18; } },
+            { id: 'eva', name: '《凌波御風步》', statName: '閃避速度', gainText: '+4% 閃避 (上限60%)', icon: 'fa-wind text-teal-400', apply: (p) => { p.eva = Math.min(60, p.eva + 4); } },
+            { id: 'ult', name: '《山海天罡破》', statName: '必殺技威力', gainText: '+25% 必殺倍率', icon: 'fa-dragon text-purple-400', apply: (p) => { p.ultMult += 25; } }
+        ];
+
+        /*************************************************************************
+         * 3. 決戰巔峰 4 大對手定義 (支援 1~10 階段動態成長)
+         *************************************************************************/
+        const BOSS_DEFINITIONS = [
+            {
+                id: 'boss_t1',
+                name: '香港問題的由來',
+                subtitle: '導學案01 守關宗師',
+                topicFilter: [1],
+                baseHp: 1000,
+                baseAtk: 100,
+                baseDef: 60,
+                baseEva: 5,
+                traits: [],
+                traitLabels: ['穩紮穩打'],
+                icon: 'fa-landmark-dome',
+                desc: '專考「導學案01：香港問題的由來」(50題)，基礎HP 1000、攻 100、防 60。'
+            },
+            {
+                id: 'boss_t2',
+                name: '憲制關係',
+                subtitle: '導學案02 守關宗師',
+                topicFilter: [2],
+                baseHp: 1500,
+                baseAtk: 80,
+                baseDef: 200,
+                baseEva: 8,
+                traits: ['mental'],
+                traitLabels: ['銅牆鐵壁', '精神攻擊'],
+                icon: 'fa-scale-balanced',
+                desc: '專考「導學案02：國家和香港特區的憲制關係」(50題)，基礎HP 1500、攻 80、防 200，擅長精神攻擊！'
+            },
+            {
+                id: 'boss_t3',
+                name: '國家安全',
+                subtitle: '導學案03 守關宗師',
+                topicFilter: [3],
+                baseHp: 2000,
+                baseAtk: 100,
+                baseDef: 200,
+                baseEva: 10,
+                traits: ['berserk'],
+                traitLabels: ['鋼鐵防線', '低血量狂暴'],
+                icon: 'fa-shield-virus',
+                desc: '專考「導學案03：維護國家安全的意義」(80題)，基礎HP 2000、攻 100、防 200，低血量時進入狂暴！'
+            },
+            {
+                id: 'boss_all',
+                name: '公民盟主',
+                subtitle: '三卷合一 · 山海至尊',
+                topicFilter: [1, 2, 3],
+                baseHp: 2500,
+                baseAtk: 200,
+                baseDef: 200,
+                baseEva: 30,
+                traits: ['mental', 'heal', 'dodge30', 'berserk'],
+                traitLabels: ['精神攻擊', '自我療傷', '30%高閃避', '低血量狂暴'],
+                icon: 'fa-crown',
+                desc: '囊括導學案01、02、03全部180題！基礎HP 2500、攻 200、防 200，具備精神攻擊、自我療傷、30%閃避及低血量狂暴！'
+            }
+        ];
+
+        /*************************************************************************
+         * 4. 玩家狀態與跨版本/互動版共通存檔結構
+         *************************************************************************/
+        const STORAGE_KEY = 'CITIZENSHIP_SHANHAIJING_SAVE_V1';
+
+        let gameState = createDefaultGameState('');
+
+        function createDefaultGameState(playerName) {
+            return {
+                schemaVersion: '1.0-INTERACTIVE-READY',
+                updatedAt: new Date().toISOString(),
+                player: {
+                    name: playerName || '少俠',
+                    maxHp: 600,
+                    hp: 600,
+                    maxMp: 160,
+                    mp: 160,
+                    atk: 75,
+                    def: 45,
+                    eva: 10,       // %
+                    ultMult: 220,  // %
+                    beasts: {
+                        qingniao: 0,
+                        xiangliu: 0,
+                        jiuweihu: 0,
+                        baize: 0,
+                        qiongqi: 0,
+                        xingtian: 0,
+                        kui: 0,
+                        feiyi: 0
+                    },
+                    // 預留給之後更新版的武器與防具欄位
+                    equipment: {
+                        weapon: null,
+                        armor: null,
+                        accessory: null,
+                        inventory: []
+                    }
+                },
+                progress: {
+                    introCompleted: false,
+                    introStep: { t1: 0, t2: 0, t3: 0 }, // 各5題
+                    solvedQuestionIds: [],             // 已正確回答的題目ID
+                    bossDefeats: {
+                        boss_t1: 0,
+                        boss_t2: 0,
+                        boss_t3: 0,
+                        boss_all: 0
+                    }
+                }
+            };
+        }
+
+        // Calculate Player Growth Stage (1 to 10) for Dynamic Boss Scaling
+        function getPlayerGrowthStage() {
+            const p = gameState.player;
+            const totalBeastLevels = Object.values(p.beasts).reduce((a, b) => a + b, 0);
+            // Calculate a composite power score
+            const power = Math.round(
+                p.maxHp * 0.6 +
+                p.maxMp * 1.2 +
+                p.atk * 6 +
+                p.def * 6 +
+                p.eva * 15 +
+                p.ultMult * 2 +
+                totalBeastLevels * 140
+            );
+            // Map power to Stage 1..10
+            // Initial power is ~1850 (Stage 1)
+            const stage = Math.max(1, Math.min(10, Math.floor((power - 1400) / 750) + 1));
+            return { stage, power, totalBeastLevels };
+        }
+
+        const STAGE_TITLES = [
+            '',
+            '第 1 階 · 初窺門徑',
+            '第 2 階 · 略有小成',
+            '第 3 階 · 融會貫通',
+            '第 4 階 · 爐火純青',
+            '第 5 階 · 出類拔萃',
+            '第 6 階 · 登峰造極',
+            '第 7 階 · 震古爍今',
+            '第 8 階 · 超凡入聖',
+            '第 9 階 · 天人合一',
+            '第 10 階 · 山海至尊'
+        ];
+
+        // Scale Boss Stats by Player Stage (1..10)
+        function getScaledBossStats(bossDef, stage) {
+            // Stage 1 uses exact base stats specified by user; Stages 2-10 scale smoothly
+            const hpMult = 1 + (stage - 1) * 0.28;
+            const atkMult = 1 + (stage - 1) * 0.22;
+            const defMult = 1 + (stage - 1) * 0.20;
+            return {
+                maxHp: Math.round(bossDef.baseHp * hpMult),
+                atk: Math.round(bossDef.baseAtk * atkMult),
+                def: Math.round(bossDef.baseDef * defMult),
+                eva: Math.min(45, bossDef.baseEva + (stage - 1) * 1)
+            };
+        }
+
+        /*************************************************************************
+         * 5. 遊戲初始化與本機儲存管理
+         *************************************************************************/
+        window.onload = function () {
+            checkExistingSaveOnWelcome();
+        };
+
+        function checkExistingSaveOnWelcome() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && parsed.player && parsed.player.name) {
+                        const btn = document.getElementById('btn-continue-game');
+                        const txt = document.getElementById('continue-btn-text');
+                        btn.classList.remove('hidden');
+                        txt.textContent = `繼續進度：${parsed.player.name} (已答對 ${parsed.progress?.solvedQuestionIds?.length || 0} 題)`;
+                    }
+                }
+            } catch (e) {
+                console.warn('無法讀取本機儲存:', e);
+            }
+        }
+
+        function saveToDevice(showToast = false) {
+            try {
+                gameState.updatedAt = new Date().toISOString();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
+                updateTopHeaderBar();
+                if (showToast) {
+                    showDialog('儲存成功', `少俠【${gameState.player.name}】的戰鬥能力數值與答題進度已安全儲存於本設備！`, 'fa-circle-check text-emerald-400');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function startNewGame() {
+            const nameInput = document.getElementById('player-name-input').value.trim();
+            const finalName = nameInput || '香江少俠';
+            gameState = createDefaultGameState(finalName);
+            saveToDevice(false);
+            startIntroTrial();
+        }
+
+        function continueSavedGame() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return;
+                gameState = JSON.parse(raw);
+                updateTopHeaderBar();
+                if (gameState.progress.introCompleted) {
+                    showScreen('screen-hub');
+                    renderHub();
+                } else {
+                    startIntroTrial();
+                }
+            } catch (e) {
+                showDialog('讀取失敗', '存檔格式異常，請重新開始或匯入備份檔案。', 'fa-triangle-exclamation text-red-400');
+            }
+        }
+
+        function showScreen(screenId) {
+            ['screen-welcome', 'screen-quiz', 'screen-hub', 'screen-battle'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+
+            const headerBar = document.getElementById('header-player-bar');
+            if (screenId === 'screen-welcome') {
+                headerBar.classList.add('hidden');
+                headerBar.classList.remove('flex');
+            } else {
+                headerBar.classList.remove('hidden');
+                headerBar.classList.add('flex');
+                updateTopHeaderBar();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateTopHeaderBar() {
+            const p = gameState.player;
+            const { stage } = getPlayerGrowthStage();
+            document.getElementById('header-name').textContent = p.name;
+            document.getElementById('header-stage').textContent = `第${stage}階`;
+            document.getElementById('header-hp').textContent = p.maxHp;
+            document.getElementById('header-mp').textContent = p.maxMp;
+            document.getElementById('header-atk').textContent = p.atk;
+            document.getElementById('header-def').textContent = p.def;
+            document.getElementById('header-solved').textContent = `${gameState.progress.solvedQuestionIds.length}/180`;
+        }
+
+        /*************************************************************************
+         * 6. 初入江湖試煉 (3部分各5題 = 15題) 與「與師父修行」問答系統
+         *************************************************************************/
+        let currentQuizState = {
+            mode: 'intro', // 'intro' or 'shifu'
+            shifuTopic: 1, // 0=all, 1, 2, 3
+            currentQuestion: null,
+            answered: false,
+            lastCorrect: false,
+            usedIdsInSession: new Set()
+        };
+
+        function startIntroTrial() {
+            currentQuizState.mode = 'intro';
+            showScreen('screen-quiz');
+            document.getElementById('intro-stepper').classList.remove('hidden');
+            document.getElementById('btn-exit-training').classList.add('hidden');
+            document.getElementById('quiz-mode-badge').textContent = '初入江湖試煉（三卷各5題）';
+            loadNextQuizQuestion();
+        }
+
+        function startShifuTraining(topicNum) {
+            currentQuizState.mode = 'shifu';
+            currentQuizState.shifuTopic = topicNum;
+            showScreen('screen-quiz');
+            document.getElementById('intro-stepper').classList.add('hidden');
+            document.getElementById('btn-exit-training').classList.remove('hidden');
+            document.getElementById('quiz-mode-badge').textContent = '與師父修行 · 自由強化';
+            loadNextQuizQuestion();
+        }
+
+        function pickRandomQuestion(topicFilterArray) {
+            const pool = QUESTION_BANK.filter(q => topicFilterArray.includes(q.topic));
+            // Prefer questions not yet solved by the player
+            const unsolvedPool = pool.filter(q => !gameState.progress.solvedQuestionIds.includes(q.id) && !currentQuizState.usedIdsInSession.has(q.id));
+            let chosenPool = unsolvedPool.length > 0 ? unsolvedPool : pool.filter(q => !currentQuizState.usedIdsInSession.has(q.id));
+            if (chosenPool.length === 0) {
+                currentQuizState.usedIdsInSession.clear();
+                chosenPool = pool;
+            }
+            const picked = chosenPool[Math.floor(Math.random() * chosenPool.length)];
+            currentQuizState.usedIdsInSession.add(picked.id);
+            return picked;
+        }
+
+        function loadNextQuizQuestion() {
+            currentQuizState.answered = false;
+            document.getElementById('quiz-feedback').classList.add('hidden');
+
+            if (currentQuizState.mode === 'intro') {
+                const step = gameState.progress.introStep;
+                // Update stepper UI
+                document.getElementById('step-t1-cnt').textContent = step.t1;
+                document.getElementById('step-t2-cnt').textContent = step.t2;
+                document.getElementById('step-t3-cnt').textContent = step.t3;
+
+                let activeTopic = 1;
+                if (step.t1 < 5) activeTopic = 1;
+                else if (step.t2 < 5) activeTopic = 2;
+                else if (step.t3 < 5) activeTopic = 3;
+                else {
+                    // All 15 questions completed!
+                    gameState.progress.introCompleted = true;
+                    saveToDevice(false);
+                    showDialog(
+                        '初入江湖試煉完成！',
+                        `恭喜少俠【${gameState.player.name}】完成導學案01、02、03三部分試煉！正式開啟山海江湖主城，你可隨時選擇「與師父修行」或「決戰巔峰」！`,
+                        'fa-dragon text-amber-400',
+                        () => {
+                            showScreen('screen-hub');
+                            renderHub();
+                        }
+                    );
+                    return;
+                }
+
+                // Highlight active stepper
+                [1, 2, 3].forEach(t => {
+                    const el = document.getElementById(`step-t${t}`);
+                    if (t === activeTopic) {
+                        el.className = 'p-2 rounded-lg border border-amber-400 bg-amber-500/20 text-amber-200 font-bold';
+                    } else if ((t === 1 && step.t1 >= 5) || (t === 2 && step.t2 >= 5)) {
+                        el.className = 'p-2 rounded-lg border border-emerald-500/50 bg-emerald-950/40 text-emerald-300';
+                    } else {
+                        el.className = 'p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400';
+                    }
+                });
+
+                const totalDone = step.t1 + step.t2 + step.t3;
+                document.getElementById('quiz-progress-pill').textContent = `試煉進度：${totalDone + 1} / 15`;
+                currentQuizState.currentQuestion = pickRandomQuestion([activeTopic]);
+            } else {
+                // Shifu Training Mode
+                const topics = currentQuizState.shifuTopic === 0 ? [1, 2, 3] : [currentQuizState.shifuTopic];
+                currentQuizState.currentQuestion = pickRandomQuestion(topics);
+                document.getElementById('quiz-progress-pill').textContent = `已制霸題數：${gameState.progress.solvedQuestionIds.length} / 180`;
+            }
+
+            const q = currentQuizState.currentQuestion;
+            document.getElementById('quiz-topic-title').textContent = q.topicName;
+            document.getElementById('quiz-q-id').textContent = `題號：${q.id}`;
+            document.getElementById('quiz-q-text').textContent = q.q;
+
+            const isSolved = gameState.progress.solvedQuestionIds.includes(q.id);
+            const solvedBadge = document.getElementById('quiz-q-solved-badge');
+            if (isSolved) solvedBadge.classList.remove('hidden');
+            else solvedBadge.classList.add('hidden');
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            ['A', 'B', 'C', 'D'].forEach(letter => {
+                const btn = document.createElement('button');
+                btn.id = `quiz-opt-${letter}`;
+                btn.className = 'w-full text-left p-3.5 sm:p-4 rounded-xl bg-stone-900/90 hover:bg-stone-800 border border-stone-700 hover:border-amber-500/60 text-sm sm:text-base text-stone-100 transition flex items-start gap-3';
+                btn.onclick = () => submitQuizAnswer(letter);
+                btn.innerHTML = `
+                    <span class="w-7 h-7 rounded-lg bg-stone-800 border border-stone-600 flex items-center justify-center font-bold text-amber-400 shrink-0 mt-0.5">${letter}</span>
+                    <span class="flex-1 leading-relaxed">${q.options[letter]}</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function submitQuizAnswer(selectedLetter) {
+            if (currentQuizState.answered) return;
+            currentQuizState.answered = true;
+
+            const q = currentQuizState.currentQuestion;
+            const isCorrect = selectedLetter === q.ans;
+            currentQuizState.lastCorrect = isCorrect;
+
+            // Record intro step progress if in intro mode
+            if (currentQuizState.mode === 'intro') {
+                if (q.topic === 1) gameState.progress.introStep.t1++;
+                else if (q.topic === 2) gameState.progress.introStep.t2++;
+                else if (q.topic === 3) gameState.progress.introStep.t3++;
+            }
+
+            // Record solved question ID if correct
+            if (isCorrect && !gameState.progress.solvedQuestionIds.includes(q.id)) {
+                gameState.progress.solvedQuestionIds.push(q.id);
+            }
+
+            // Highlight option buttons
+            ['A', 'B', 'C', 'D'].forEach(letter => {
+                const btn = document.getElementById(`quiz-opt-${letter}`);
+                btn.disabled = true;
+                if (letter === q.ans) {
+                    btn.className = 'w-full text-left p-3.5 sm:p-4 rounded-xl bg-emerald-950/80 border-2 border-emerald-400 text-sm sm:text-base text-emerald-100 flex items-start gap-3';
+                } else if (letter === selectedLetter && !isCorrect) {
+                    btn.className = 'w-full text-left p-3.5 sm:p-4 rounded-xl bg-red-950/80 border-2 border-red-500 text-sm sm:text-base text-red-100 flex items-start gap-3 animate-shake';
+                } else {
+                    btn.className = 'w-full text-left p-3.5 sm:p-4 rounded-xl bg-stone-950/50 border border-stone-800 text-sm sm:text-base text-stone-500 flex items-start gap-3 opacity-60';
+                }
+            });
+
+            saveToDevice(false);
+
+            const feedbackBox = document.getElementById('quiz-feedback');
+            const feedbackTitle = document.getElementById('quiz-feedback-title');
+            const feedbackDesc = document.getElementById('quiz-feedback-desc');
+            const nextBtn = document.getElementById('btn-quiz-next');
+
+            feedbackBox.classList.remove('hidden');
+            if (isCorrect) {
+                feedbackBox.className = 'rounded-xl p-4 mb-4 border bg-emerald-950/60 border-emerald-500/60';
+                feedbackTitle.className = 'font-bold text-base text-emerald-300';
+                feedbackTitle.innerHTML = '<i class="fa-solid fa-circle-check mr-1.5"></i>回答正確！真氣貫通！';
+                feedbackDesc.textContent = `正確答案為 ${q.ans}。點擊右方按鈕領取武林秘笈或吞噬《山海經》異獸！`;
+                nextBtn.innerHTML = '<i class="fa-solid fa-gift mr-1"></i>挑選秘笈 / 吞噬異獸';
+            } else {
+                feedbackBox.className = 'rounded-xl p-4 mb-4 border bg-red-950/60 border-red-500/60';
+                feedbackTitle.className = 'font-bold text-base text-red-300';
+                feedbackTitle.innerHTML = '<i class="fa-solid fa-circle-xmark mr-1.5"></i>回答錯誤，未能領悟秘笈';
+                feedbackDesc.textContent = `正確答案應為：${q.options[q.ans]}`;
+                nextBtn.innerHTML = '下一題 <i class="fa-solid fa-arrow-right ml-1"></i>';
+            }
+        }
+
+        function handleQuizNextStep() {
+            if (currentQuizState.lastCorrect) {
+                openRewardModal(() => {
+                    loadNextQuizQuestion();
+                });
+            } else {
+                loadNextQuizQuestion();
+            }
+        }
+
+        function returnToHub() {
+            saveToDevice(false);
+            showScreen('screen-hub');
+            renderHub();
+        }
+
+        /*************************************************************************
+         * 7. 秘笈與《山海經》異獸吞噬 3選1 獎勵系統
+         *************************************************************************/
+        let rewardCallback = null;
+
+        function openRewardModal(onCompleteCallback) {
+            rewardCallback = onCompleteCallback;
+            const container = document.getElementById('reward-cards-container');
+            container.innerHTML = '';
+
+            // Generate 3 distinct random choices (2 Stat Manuals + 1 Shanhaijing Beast, or 1 Manual + 2 Beasts)
+            const shuffledManuals = [...STAT_MANUALS].sort(() => Math.random() - 0.5);
+            const beastKeys = Object.keys(SHANHAI_BEASTS).filter(k => gameState.player.beasts[k] < 5);
+            const shuffledBeasts = beastKeys.sort(() => Math.random() - 0.5);
+
+            const choices = [];
+            // Choice 1: Stat Manual
+            choices.push({ type: 'manual', data: shuffledManuals[0] });
+            // Choice 2: Stat Manual
+            choices.push({ type: 'manual', data: shuffledManuals[1] });
+            // Choice 3: Shanhaijing Beast (if any not maxed, else another Manual)
+            if (shuffledBeasts.length > 0) {
+                choices.push({ type: 'beast', data: SHANHAI_BEASTS[shuffledBeasts[0]] });
+            } else {
+                choices.push({ type: 'manual', data: shuffledManuals[2] });
+            }
+
+            choices.forEach((choice) => {
+                const card = document.createElement('div');
+                card.className = 'wuxia-card rounded-xl p-4 flex flex-col justify-between border border-amber-500/40 hover:border-amber-300 cursor-pointer transition';
+
+                if (choice.type === 'manual') {
+                    const m = choice.data;
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">上古武學秘笈</span>
+                                <i class="fa-solid ${m.icon} text-xl"></i>
+                            </div>
+                            <h4 class="serif-title text-lg font-bold text-white mb-1">${m.name}</h4>
+                            <div class="text-sm font-bold text-amber-300 mb-2">提升${m.statName}：${m.gainText}</div>
+                            <p class="text-xs text-stone-400">研讀此卷可永久強化少俠的基礎根骨與武學修為。</p>
+                        </div>
+                        <button class="mt-4 w-full btn-gold py-2 rounded-lg font-bold text-xs">領悟此秘笈</button>
+                    `;
+                    card.onclick = () => {
+                        m.apply(gameState.player);
+                        finishRewardSelection();
+                    };
+                } else {
+                    const b = choice.data;
+                    const curLv = gameState.player.beasts[b.key] || 0;
+                    const nextLv = curLv + 1;
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">吞噬《山海經》異獸</span>
+                                <i class="fa-solid ${b.icon} text-xl"></i>
+                            </div>
+                            <h4 class="serif-title text-lg font-bold text-emerald-200 mb-0.5">${b.name} · ${b.abilityName}</h4>
+                            <div class="text-[11px] text-amber-300 mb-2">${b.origin} ｜ 境界：${curLv === 0 ? '未解鎖 ➔ 第1階' : `第${curLv}階 ➔ 第${nextLv}階`}</div>
+                            <p class="text-xs text-stone-300 leading-relaxed">${b.desc}</p>
+                        </div>
+                        <button class="mt-4 w-full btn-jade py-2 rounded-lg font-bold text-xs">吞噬異獸血脈 (額外+30HP)</button>
+                    `;
+                    card.onclick = () => {
+                        gameState.player.beasts[b.key] = nextLv;
+                        gameState.player.maxHp += 30;
+                        gameState.player.hp += 30;
+                        finishRewardSelection();
+                    };
+                }
+
+                container.appendChild(card);
+            });
+
+            document.getElementById('modal-reward').classList.remove('hidden');
+        }
+
+        function finishRewardSelection() {
+            document.getElementById('modal-reward').classList.add('hidden');
+            saveToDevice(false);
+            if (typeof rewardCallback === 'function') {
+                const cb = rewardCallback;
+                rewardCallback = null;
+                cb();
+            }
+        }
+
+        /*************************************************************************
+         * 8. 主城版面 (Hub) 渲染：模式選擇、角色數值、題庫溫習
+         *************************************************************************/
+        function switchHubTab(tabName) {
+            ['modes', 'stats', 'study'].forEach(t => {
+                document.getElementById(`hub-tab-${t}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-btn-${t}`);
+                btn.className = 'hub-tab-btn bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5';
+            });
+            document.getElementById(`hub-tab-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.className = 'hub-tab-btn btn-gold px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5';
+
+            if (tabName === 'stats') renderStatsTab();
+            if (tabName === 'study') renderStudyList();
+        }
+
+        function renderHub() {
+            const p = gameState.player;
+            const { stage, power } = getPlayerGrowthStage();
+            const unlockedBeasts = Object.values(p.beasts).filter(v => v > 0).length;
+            const solvedCount = gameState.progress.solvedQuestionIds.length;
+
+            document.getElementById('hub-player-name').textContent = p.name;
+            document.getElementById('hub-stage-badge').textContent = `境界：${STAGE_TITLES[stage]}`;
+            document.getElementById('hub-power-score').textContent = power.toLocaleString();
+            document.getElementById('hub-beast-count').textContent = `${unlockedBeasts} / 8`;
+            document.getElementById('hub-mastery-rate').textContent = `${Math.round((solvedCount / 180) * 100)}% (${solvedCount}/180)`;
+
+            // Shifu topic counts
+            const t1Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T1-')).length;
+            const t2Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T2-')).length;
+            const t3Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T3-')).length;
+            document.getElementById('shifu-stat-t1').textContent = `${t1Solved}/50`;
+            document.getElementById('shifu-stat-t2').textContent = `${t2Solved}/50`;
+            document.getElementById('shifu-stat-t3').textContent = `${t3Solved}/80`;
+
+            document.getElementById('boss-scaling-stage').textContent = `第 ${stage} 階段 / 共 10 階段`;
+            renderBossCards(stage);
+            renderStatsTab();
+        }
+
+        function renderBossCards(stage) {
+            const container = document.getElementById('boss-cards-container');
+            container.innerHTML = '';
+
+            BOSS_DEFINITIONS.forEach(boss => {
+                const scaled = getScaledBossStats(boss, stage);
+                const wins = gameState.progress.bossDefeats[boss.id] || 0;
+                const isFinal = boss.id === 'boss_all';
+
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-xl bg-stone-900/90 border ${isFinal ? 'border-amber-500/60 bg-gradient-to-br from-stone-900 to-red-950/30' : 'border-stone-700'} flex flex-col justify-between`;
+
+                const traitsHtml = boss.traitLabels.map(t => `<span class="px-2 py-0.5 rounded text-[10px] bg-red-500/20 text-red-300 border border-red-500/30">${t}</span>`).join('');
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-lg ${isFinal ? 'bg-amber-500/20 text-amber-300 border-amber-400' : 'bg-red-500/20 text-red-300 border-red-500/40'} border flex items-center justify-center">
+                                    <i class="fa-solid ${boss.icon}"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-base text-white">${boss.name}</h4>
+                                    <div class="text-[11px] text-stone-400">${boss.subtitle}</div>
+                                </div>
+                            </div>
+                            <span class="text-[11px] font-mono text-emerald-400">勝場：${wins}</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1 my-2">${traitsHtml}</div>
+                        <p class="text-xs text-stone-300 mb-3 leading-relaxed">${boss.desc}</p>
+
+                        <div class="grid grid-cols-3 gap-1.5 text-center text-xs bg-stone-950/80 p-2 rounded-lg border border-stone-800 mb-3">
+                            <div><span class="text-stone-400 block text-[10px]">生命 HP</span><b class="text-rose-400 font-mono">${scaled.maxHp}</b></div>
+                            <div><span class="text-stone-400 block text-[10px]">攻擊 ATK</span><b class="text-amber-400 font-mono">${scaled.atk}</b></div>
+                            <div><span class="text-stone-400 block text-[10px]">防禦 DEF</span><b class="text-emerald-400 font-mono">${scaled.def}</b></div>
+                        </div>
+                    </div>
+                    <button onclick="startBossBattle('${boss.id}')" class="w-full ${isFinal ? 'btn-gold' : 'bg-red-700 hover:bg-red-600 text-white border border-red-400'} py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-swords"></i> 挑戰【${boss.name}】(第${stage}階)
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderStatsTab() {
+            const p = gameState.player;
+            document.getElementById('stat-hp').textContent = p.maxHp;
+            document.getElementById('stat-mp').textContent = p.maxMp;
+            document.getElementById('stat-atk').textContent = p.atk;
+            document.getElementById('stat-def').textContent = p.def;
+            document.getElementById('stat-eva').textContent = `${p.eva}%`;
+            document.getElementById('stat-ult').textContent = `${p.ultMult}%`;
+
+            const grid = document.getElementById('beasts-grid');
+            grid.innerHTML = '';
+            Object.values(SHANHAI_BEASTS).forEach(b => {
+                const lv = p.beasts[b.key] || 0;
+                const item = document.createElement('div');
+                item.className = `p-3.5 rounded-xl border ${lv > 0 ? 'bg-stone-900/95 border-emerald-500/50' : 'bg-stone-950/60 border-stone-800 opacity-65'}`;
+                item.innerHTML = `
+                    <div class="flex items-center justify-between mb-1">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid ${b.icon} text-lg"></i>
+                            <span class="font-bold text-sm text-white">${b.name} · ${b.abilityName}</span>
+                        </div>
+                        <span class="text-xs font-bold px-2 py-0.5 rounded ${lv > 0 ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-stone-800 text-stone-400'}">
+                            ${lv > 0 ? `第 ${lv} 階 / 5` : '未吞噬'}
+                        </span>
+                    </div>
+                    <div class="text-[11px] text-amber-300/80 mb-1">${b.origin} (${b.type === 'active' ? `主動技 · 耗內力${b.mpCost}` : '被動常駐神通'})</div>
+                    <p class="text-xs text-stone-300 leading-relaxed">${b.desc}</p>
+                `;
+                grid.appendChild(item);
+            });
+        }
+
+        function renderStudyList() {
+            const topicFilter = parseInt(document.getElementById('study-filter-topic').value);
+            const statusFilter = document.getElementById('study-filter-status').value;
+            const container = document.getElementById('study-list-container');
+            container.innerHTML = '';
+
+            const filtered = QUESTION_BANK.filter(q => {
+                if (topicFilter !== 0 && q.topic !== topicFilter) return false;
+                const isSolved = gameState.progress.solvedQuestionIds.includes(q.id);
+                if (statusFilter === 'solved' && !isSolved) return false;
+                if (statusFilter === 'unsolved' && isSolved) return false;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-stone-400 text-sm">沒有符合篩選條件的題目。</div>`;
+                return;
+            }
+
+            filtered.forEach(q => {
+                const isSolved = gameState.progress.solvedQuestionIds.includes(q.id);
+                const div = document.createElement('div');
+                div.className = `p-4 rounded-xl border ${isSolved ? 'bg-stone-900/90 border-emerald-500/30' : 'bg-stone-950/80 border-stone-800'}`;
+                
+                const optsHtml = ['A', 'B', 'C', 'D'].map(letter => {
+                    const isAns = letter === q.ans;
+                    return `<div class="text-xs sm:text-sm py-1 px-2.5 rounded ${isAns ? 'bg-emerald-950/80 text-emerald-300 font-bold border border-emerald-500/40' : 'text-stone-400'}">
+                        ${q.options[letter]} ${isAns ? '<i class="fa-solid fa-check ml-1"></i>' : ''}
+                    </div>`;
+                }).join('');
+
+                div.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-xs font-mono text-amber-400">${q.id} ｜ ${q.topicName}</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full ${isSolved ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-stone-800 text-stone-400'}">
+                            ${isSolved ? '<i class="fa-solid fa-check-circle mr-1"></i>已正確回答' : '尚未答對'}
+                        </span>
+                    </div>
+                    <p class="text-sm sm:text-base font-bold text-white mb-2.5">${q.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">${optsHtml}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /*************************************************************************
+         * 9. 決戰巔峰：回合制戰鬥系統
+         *************************************************************************/
+        let battleState = null;
+
+        function startBossBattle(bossId) {
+            const bossDef = BOSS_DEFINITIONS.find(b => b.id === bossId);
+            if (!bossDef) return;
+
+            const { stage } = getPlayerGrowthStage();
+            const scaled = getScaledBossStats(bossDef, stage);
+            const p = gameState.player;
+
+            // Reset player HP/MP to full before battle
+            p.hp = p.maxHp;
+            p.mp = p.maxMp;
+
+            battleState = {
+                bossDef,
+                stage,
+                turn: 1,
+                currentQuestion: null,
+                questionCorrect: false,
+                usedQIds: new Set(),
+                player: {
+                    hp: p.maxHp,
+                    maxHp: p.maxHp,
+                    mp: p.maxMp,
+                    maxMp: p.maxMp,
+                    atk: p.atk,
+                    def: p.def,
+                    eva: p.eva,
+                    ultMult: p.ultMult,
+                    poisonTurns: 0,
+                    mentalDebuffTurns: 0,
+                    berserkActive: false
+                },
+                boss: {
+                    name: bossDef.name,
+                    hp: scaled.maxHp,
+                    maxHp: scaled.maxHp,
+                    atk: scaled.atk,
+                    def: scaled.def,
+                    eva: scaled.eva,
+                    traits: bossDef.traits,
+                    poisonTurns: 0,
+                    mentalDebuffTurns: 0,
+                    berserkActive: false
+                }
+            };
+
+            showScreen('screen-battle');
+            document.getElementById('battle-log').innerHTML = '';
+            appendBattleLog(`【巔峰開戰】少俠【${p.name}】對決第 ${stage} 階段【${bossDef.name}】！`, 'text-amber-300 font-bold');
+            updateBattleHUD();
+            startBattleTurnQuestion();
+        }
+
+        function updateBattleHUD() {
+            const bp = battleState.player;
+            const bb = battleState.boss;
+
+            document.getElementById('battle-turn-num').textContent = battleState.turn;
+            document.getElementById('battle-stage-label').textContent = `巔峰對決 · 第 ${battleState.stage} 階段`;
+
+            // Player HUD
+            document.getElementById('battle-player-name').textContent = gameState.player.name;
+            document.getElementById('battle-p-atk').textContent = bp.mentalDebuffTurns > 0 ? Math.round(bp.atk * 0.75) : bp.atk;
+            document.getElementById('battle-p-def').textContent = bp.def;
+            document.getElementById('battle-p-eva').textContent = `${bp.eva}%`;
+            document.getElementById('battle-p-hp-text').textContent = `${Math.max(0, bp.hp)} / ${bp.maxHp}`;
+            document.getElementById('battle-p-hp-bar').style.width = `${Math.max(0, Math.min(100, (bp.hp / bp.maxHp) * 100))}%`;
+            document.getElementById('battle-p-mp-text').textContent = `${Math.max(0, bp.mp)} / ${bp.maxMp}`;
+            document.getElementById('battle-p-mp-bar').style.width = `${Math.max(0, Math.min(100, (bp.mp / bp.maxMp) * 100))}%`;
+
+            // Check Player Xingtian Low HP Berserk
+            const xingtianLv = gameState.player.beasts.xingtian || 0;
+            bp.berserkActive = (xingtianLv > 0 && bp.hp <= bp.maxHp * 0.4);
+
+            const pStatuses = [];
+            if (bp.berserkActive) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-red-600 text-white text-[10px] font-bold">刑天狂暴</span>`);
+            if (bp.mentalDebuffTurns > 0) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-fuchsia-900 text-fuchsia-200 text-[10px]">精神受創(${bp.mentalDebuffTurns})</span>`);
+            document.getElementById('battle-player-statuses').innerHTML = pStatuses.join('');
+
+            // Boss HUD
+            document.getElementById('battle-boss-name').textContent = bb.name;
+            document.getElementById('battle-boss-icon').className = `fa-solid ${battleState.bossDef.icon} text-lg`;
+            document.getElementById('battle-b-atk').textContent = bb.mentalDebuffTurns > 0 ? Math.round(bb.atk * 0.75) : bb.atk;
+            document.getElementById('battle-b-def').textContent = bb.def;
+            document.getElementById('battle-b-eva').textContent = `${bb.eva}%`;
+            document.getElementById('battle-b-hp-text').textContent = `${Math.max(0, bb.hp)} / ${bb.maxHp}`;
+            document.getElementById('battle-b-hp-bar').style.width = `${Math.max(0, Math.min(100, (bb.hp / bb.maxHp) * 100))}%`;
+
+            document.getElementById('battle-boss-traits').innerHTML = battleState.bossDef.traitLabels.map(t => `<span class="bg-stone-800 px-1.5 py-0.5 rounded">${t}</span>`).join('');
+
+            const bossCard = document.getElementById('battle-boss-card');
+            const berserkBadge = document.getElementById('battle-boss-berserk');
+            if (bb.berserkActive) {
+                bossCard.classList.add('berserk-glow');
+                berserkBadge.classList.remove('hidden');
+            } else {
+                bossCard.classList.remove('berserk-glow');
+                berserkBadge.classList.add('hidden');
+            }
+
+            const bStatuses = [];
+            if (bb.poisonTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-lime-900/80 text-lime-300 border border-lime-500/40">相柳劇毒 (${bb.poisonTurns}回合)</span>`);
+            if (bb.mentalDebuffTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-fuchsia-900/80 text-fuchsia-300 border border-fuchsia-500/40">青丘攝魂減攻 (${bb.mentalDebuffTurns}回合)</span>`);
+            document.getElementById('battle-boss-statuses').innerHTML = bStatuses.join('');
+        }
+
+        function startBattleTurnQuestion() {
+            document.getElementById('battle-phase-question').classList.remove('hidden');
+            document.getElementById('battle-phase-action').classList.add('hidden');
+
+            // Pick question from Boss's topic pool
+            const pool = QUESTION_BANK.filter(q => battleState.bossDef.topicFilter.includes(q.topic));
+            let available = pool.filter(q => !battleState.usedQIds.has(q.id));
+            if (available.length === 0) {
+                battleState.usedQIds.clear();
+                available = pool;
+            }
+            const q = available[Math.floor(Math.random() * available.length)];
+            battleState.usedQIds.add(q.id);
+            battleState.currentQuestion = q;
+
+            document.getElementById('battle-q-id').textContent = `${q.id} (${q.topicName})`;
+            document.getElementById('battle-q-text').textContent = q.q;
+
+            const optsDiv = document.getElementById('battle-q-options');
+            optsDiv.innerHTML = '';
+            ['A', 'B', 'C', 'D'].forEach(letter => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-3 rounded-xl bg-stone-900 hover:bg-stone-800 border border-stone-700 hover:border-amber-400 text-xs sm:text-sm text-stone-100 transition flex items-start gap-2.5';
+                btn.onclick = () => handleBattleAnswer(letter);
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded bg-stone-800 border border-stone-600 flex items-center justify-center font-bold text-amber-400 shrink-0">${letter}</span>
+                    <span class="flex-1">${q.options[letter]}</span>
+                `;
+                optsDiv.appendChild(btn);
+            });
+        }
+
+        function handleBattleAnswer(selectedLetter) {
+            const q = battleState.currentQuestion;
+            const isCorrect = selectedLetter === q.ans;
+            battleState.questionCorrect = isCorrect;
+
+            if (isCorrect && !gameState.progress.solvedQuestionIds.includes(q.id)) {
+                gameState.progress.solvedQuestionIds.push(q.id);
+                saveToDevice(false);
+            }
+
+            document.getElementById('battle-phase-question').classList.add('hidden');
+            document.getElementById('battle-phase-action').classList.remove('hidden');
+
+            const banner = document.getElementById('battle-q-result-banner');
+            if (isCorrect) {
+                // Recover 20 MP on correct answer
+                battleState.player.mp = Math.min(battleState.player.maxMp, battleState.player.mp + 20);
+                banner.className = 'p-3 rounded-xl border bg-emerald-950/70 border-emerald-500/60 text-emerald-200 text-xs sm:text-sm';
+                banner.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-1.5"></i><strong>答題正確！</strong>天道正氣加持，回復 20 點內力，本回合招式威力提升 <strong>1.35 倍</strong>，且防禦堅不可摧！`;
+                appendBattleLog(`【第${battleState.turn}回合】少俠準確回答題目 (${q.id})，真氣暴漲！`, 'text-emerald-400');
+            } else {
+                banner.className = 'p-3 rounded-xl border bg-red-950/70 border-red-500/60 text-red-200 text-xs sm:text-sm';
+                banner.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-red-400 mr-1.5"></i><strong>答題失誤！</strong>（正確答案：${q.ans}）心神動搖露出破綻，本回合招式威力減弱至 <strong>60%</strong>，且對手攻擊更具威脅！`;
+                appendBattleLog(`【第${battleState.turn}回合】少俠答錯題目 (${q.id})，氣息紊亂露出破綻！`, 'text-red-400');
+            }
+
+            updateBattleHUD();
+            renderBattleSkillButtons();
+        }
+
+        function renderBattleSkillButtons() {
+            const bp = battleState.player;
+            const pBeasts = gameState.player.beasts;
+
+            document.getElementById('battle-ult-pct').textContent = `${bp.ultMult}%`;
+            const ultBtn = document.getElementById('btn-move-ult');
+            ultBtn.disabled = bp.mp < 50;
+            if (bp.mp < 50) ultBtn.classList.add('opacity-40', 'cursor-not-allowed');
+            else ultBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+
+            // Active Beast Skills: Qingniao (Heal), Xiangliu (Poison), Jiuweihu (Mental)
+            const beastContainer = document.getElementById('battle-beast-skills');
+            beastContainer.innerHTML = '';
+
+            ['qingniao', 'xiangliu', 'jiuweihu'].forEach(key => {
+                const b = SHANHAI_BEASTS[key];
+                const lv = pBeasts[key] || 0;
+                const btn = document.createElement('button');
+                const canCast = lv > 0 && bp.mp >= b.mpCost;
+
+                btn.disabled = !canCast;
+                btn.className = `p-2.5 rounded-xl border text-left transition ${
+                    lv === 0 
+                        ? 'bg-stone-950/50 border-stone-800 opacity-45 cursor-not-allowed' 
+                        : canCast 
+                            ? 'bg-stone-900 hover:bg-emerald-950/60 border-emerald-500/50 cursor-pointer' 
+                            : 'bg-stone-900 border-stone-700 opacity-50 cursor-not-allowed'
+                }`;
+                btn.onclick = () => executeBattleMove(key);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between text-xs font-bold ${lv > 0 ? 'text-emerald-300' : 'text-stone-500'}">
+                        <span><i class="fa-solid ${b.icon} mr-1"></i>${b.name}·${b.abilityName}</span>
+                        <span>${lv > 0 ? `${b.mpCost} MP` : '未吞噬'}</span>
+                    </div>
+                    <div class="text-[10px] text-stone-400 mt-0.5">
+                        ${lv > 0 ? `第${lv}階神通` : '需於答題獎勵吞噬解鎖'}
+                    </div>
+                `;
+                beastContainer.appendChild(btn);
+            });
+        }
+
+        function executeBattleMove(moveType) {
+            const bp = battleState.player;
+            const bb = battleState.boss;
+            const pBeasts = gameState.player.beasts;
+
+            // Answer multiplier
+            const ansMult = battleState.questionCorrect ? 1.35 : 0.60;
+            // Player Xingtian Berserk multiplier
+            const xingtianLv = pBeasts.xingtian || 0;
+            const pBerserkMult = (xingtianLv > 0 && bp.hp <= bp.maxHp * 0.4) ? (1 + 0.30 + xingtianLv * 0.10) : 1.0;
+            // Player effective ATK
+            const effPlayerAtk = Math.round(bp.atk * (bp.mentalDebuffTurns > 0 ? 0.75 : 1.0) * pBerserkMult);
+
+            let playerDefending = false;
+            let playerDodging = false;
+            let dmgToBoss = 0;
+
+            // 1. PLAYER ACTION
+            if (moveType === 'attack') {
+                bp.mp = Math.min(bp.maxMp, bp.mp + 15);
+                if (Math.random() * 100 < bb.eva) {
+                    appendBattleLog(`💨 對手【${bb.name}】身形一晃，閃避了你的基礎攻擊！`, 'text-stone-400');
+                } else {
+                    const raw = Math.max(25, effPlayerAtk * 1.45 - bb.def * 0.45);
+                    dmgToBoss = Math.round(raw * ansMult);
+                    bb.hp -= dmgToBoss;
+                    appendBattleLog(`⚔️ 你施展【基礎攻擊】，對【${bb.name}】造成 ${dmgToBoss} 點傷害！`, 'text-amber-300');
+                }
+            } else if (moveType === 'defend') {
+                playerDefending = true;
+                bp.mp = Math.min(bp.maxMp, bp.mp + 35);
+                const healAmt = Math.round(bp.maxHp * 0.08 * ansMult);
+                bp.hp = Math.min(bp.maxHp, bp.hp + healAmt);
+                appendBattleLog(`🛡️ 你運轉玄功【基礎防禦】，本回合減傷 55%，並回復 ${healAmt} 生命與 35 內力！`, 'text-emerald-300');
+            } else if (moveType === 'dodge') {
+                playerDodging = true;
+                bp.mp = Math.min(bp.maxMp, bp.mp + 15);
+                appendBattleLog(`🌪️ 你施展【身法閃避】，閃避率大幅提升，伺機反擊！`, 'text-teal-300');
+            } else if (moveType === 'ultimate') {
+                bp.mp -= 50;
+                const ultChanceToHit = 100 - (bb.eva * 0.4); // Ultimate is harder to dodge
+                if (Math.random() * 100 > ultChanceToHit) {
+                    appendBattleLog(`💨 對手【${bb.name}】驚險避開了你的必殺絕學！`, 'text-stone-400');
+                } else {
+                    const raw = Math.max(60, (effPlayerAtk * (bp.ultMult / 100)) - bb.def * 0.25);
+                    dmgToBoss = Math.round(raw * ansMult);
+                    bb.hp -= dmgToBoss;
+                    appendBattleLog(`🐉 你傾盡真氣施展【必殺絕學】，爆發 ${dmgToBoss} 點毀滅性傷害！`, 'text-purple-300 font-bold');
+                }
+            } else if (moveType === 'qingniao') {
+                const lv = pBeasts.qingniao;
+                bp.mp -= 30;
+                const healPct = 0.22 + lv * 0.06;
+                const healAmt = Math.round(bp.maxHp * healPct * (battleState.questionCorrect ? 1.2 : 0.85));
+                bp.hp = Math.min(bp.maxHp, bp.hp + healAmt);
+                bp.mentalDebuffTurns = 0;
+                appendBattleLog(`🕊️ 你召喚《山海經》【青鳥】施展療傷神通，回復 ${healAmt} 點生命並淨化負面狀態！`, 'text-emerald-300 font-bold');
+            } else if (moveType === 'xiangliu') {
+                const lv = pBeasts.xiangliu;
+                bp.mp -= 35;
+                const raw = Math.max(35, effPlayerAtk * (1.2 + lv * 0.15) - bb.def * 0.3);
+                dmgToBoss = Math.round(raw * ansMult);
+                bb.hp -= dmgToBoss;
+                bb.poisonTurns = 3;
+                appendBattleLog(`🐍 你召喚《山海經》九首【相柳】噴吐劇毒，造成 ${dmgToBoss} 點傷害並令對手中毒 3 回合！`, 'text-lime-300 font-bold');
+            } else if (moveType === 'jiuweihu') {
+                const lv = pBeasts.jiuweihu;
+                bp.mp -= 40;
+                // Ignores 60% of Boss DEF
+                const raw = Math.max(45, effPlayerAtk * (1.4 + lv * 0.18) - bb.def * 0.18);
+                dmgToBoss = Math.round(raw * ansMult);
+                bb.hp -= dmgToBoss;
+                bb.mentalDebuffTurns = 3;
+                appendBattleLog(`🦊 你召喚《山海經》【九尾狐】施展精神攻擊，穿透防禦造成 ${dmgToBoss} 點傷害，並削弱對手攻擊力 3 回合！`, 'text-fuchsia-300 font-bold');
+            }
+
+            // Passive Qiongqi Vampirism (吸血)
+            const qiongqiLv = pBeasts.qiongqi || 0;
+            if (dmgToBoss > 0 && qiongqiLv > 0) {
+                const leechPct = 0.12 + qiongqiLv * 0.05;
+                const leechHp = Math.max(5, Math.round(dmgToBoss * leechPct));
+                bp.hp = Math.min(bp.maxHp, bp.hp + leechHp);
+                appendBattleLog(`🦇 【窮奇吸血】發動，從傷害中汲取 ${leechHp} 點生命！`, 'text-rose-400');
+            }
+
+            // Passive Feiyi Regen
+            const feiyiLv = pBeasts.feiyi || 0;
+            if (feiyiLv > 0 && bp.hp < bp.maxHp) {
+                const regen = Math.round(bp.maxHp * (0.02 + feiyiLv * 0.01));
+                bp.hp = Math.min(bp.maxHp, bp.hp + regen);
+            }
+
+            // Boss Poison Tick
+            if (bb.hp > 0 && bb.poisonTurns > 0) {
+                const xiangliuLv = pBeasts.xiangliu || 1;
+                const poisonDmg = Math.round(bb.maxHp * (0.05 + xiangliuLv * 0.015));
+                bb.hp -= poisonDmg;
+                bb.poisonTurns--;
+                appendBattleLog(`☠️ 【相柳蝕骨毒】發作，【${bb.name}】流失 ${poisonDmg} 點生命！`, 'text-lime-400');
+            }
+
+            // Check if Boss is defeated
+            if (bb.hp <= 0) {
+                bb.hp = 0;
+                updateBattleHUD();
+                handleBattleVictory();
+                return;
+            }
+
+            // Check Boss Berserk trigger (below 35% HP)
+            if (bb.traits.includes('berserk') && !bb.berserkActive && bb.hp <= bb.maxHp * 0.35) {
+                bb.berserkActive = true;
+                appendBattleLog(`🔥 警告！【${bb.name}】生命垂危，觸發【低血量狂暴】，攻擊力大幅飆升 45%！`, 'text-red-400 font-bold');
+            }
+
+            // 2. BOSS TURN ACTION
+            executeBossTurn(playerDefending, playerDodging);
+        }
+
+        function executeBossTurn(playerDefending, playerDodging) {
+            const bp = battleState.player;
+            const bb = battleState.boss;
+            const pBeasts = gameState.player.beasts;
+
+            // Boss Self-Heal Check (Citizen Alliance Master)
+            if (bb.traits.includes('heal') && bb.hp < bb.maxHp * 0.65 && Math.random() < 0.30) {
+                const healAmt = Math.round(bb.maxHp * 0.14);
+                bb.hp = Math.min(bb.maxHp, bb.hp + healAmt);
+                appendBattleLog(`✨ 【${bb.name}】運轉盟主玄功自我療傷，恢復了 ${healAmt} 點生命值！`, 'text-emerald-400 font-bold');
+            } else {
+                // Boss Attacks or Mental Attacks
+                const useMental = bb.traits.includes('mental') && Math.random() < 0.42;
+                const effectiveEva = Math.min(85, bp.eva + (playerDodging ? 45 : 0));
+
+                if (Math.random() * 100 < effectiveEva) {
+                    appendBattleLog(`💨 你身法如電，成功閃避了【${bb.name}】的攻勢！`, 'text-teal-300 font-bold');
+                    if (playerDodging) {
+                        const counterDmg = Math.round(bp.atk * 1.15);
+                        bb.hp -= counterDmg;
+                        appendBattleLog(`⚡ 你順勢施展凌波反擊，對【${bb.name}】造成 ${counterDmg} 點傷害！`, 'text-amber-300');
+                        if (bb.hp <= 0) {
+                            bb.hp = 0;
+                            updateBattleHUD();
+                            handleBattleVictory();
+                            return;
+                        }
+                    }
+                } else {
+                    const bossBerserkMult = bb.berserkActive ? 1.45 : 1.0;
+                    const bossDebuffMult = bb.mentalDebuffTurns > 0 ? 0.75 : 1.0;
+                    const wrongAnsPenalty = battleState.questionCorrect ? 1.0 : 1.25;
+                    const effBossAtk = bb.atk * bossBerserkMult * bossDebuffMult * wrongAnsPenalty;
+
+                    let dmgToPlayer = 0;
+                    if (useMental) {
+                        // Mental Attack ignores 50% player DEF, but reduced by Baize (抗精神攻擊)
+                        const baizeLv = pBeasts.baize || 0;
+                        const resistMult = baizeLv > 0 ? Math.max(0.15, 1 - (0.30 + baizeLv * 0.12)) : 1.0;
+                        const raw = Math.max(25, effBossAtk * 1.35 - bp.def * 0.25);
+                        dmgToPlayer = Math.round(raw * resistMult * (playerDefending ? 0.45 : 1.0));
+                        bp.hp -= dmgToPlayer;
+
+                        if (baizeLv > 0) {
+                            appendBattleLog(`👁️ 【${bb.name}】發動【精神攻擊】，但你體內【白澤】神通護體，減免大量傷害後僅受 ${dmgToPlayer} 點傷害！`, 'text-sky-300');
+                        } else {
+                            bp.mentalDebuffTurns = 2;
+                            appendBattleLog(`👁️ 【${bb.name}】發動【精神攻擊】直擊心神，造成 ${dmgToPlayer} 點傷害並令你攻擊力下降！`, 'text-fuchsia-400 font-bold');
+                        }
+                    } else {
+                        const raw = Math.max(18, effBossAtk * 1.25 - bp.def * 0.55);
+                        dmgToPlayer = Math.round(raw * (playerDefending ? 0.45 : 1.0));
+                        bp.hp -= dmgToPlayer;
+                        appendBattleLog(`💥 【${bb.name}】猛烈出招，對你造成 ${dmgToPlayer} 點傷害！`, 'text-red-300');
+                    }
+
+                    // Passive Kui Counter-attack (夔牛反擊)
+                    const kuiLv = pBeasts.kui || 0;
+                    if (bp.hp > 0 && kuiLv > 0 && Math.random() * 100 < (25 + kuiLv * 10)) {
+                        const reflectDmg = Math.round(bp.atk * 0.65);
+                        bb.hp -= reflectDmg;
+                        appendBattleLog(`⚡ 【夔牛雷霆反擊】觸發！震退對手並造成 ${reflectDmg} 點反擊傷害！`, 'text-amber-400 font-bold');
+                        if (bb.hp <= 0) {
+                            bb.hp = 0;
+                            updateBattleHUD();
+                            handleBattleVictory();
+                            return;
+                        }
+                    }
+                }
+            }
+
+            // Decrement status durations
+            if (bp.mentalDebuffTurns > 0) bp.mentalDebuffTurns--;
+            if (bb.mentalDebuffTurns > 0) bb.mentalDebuffTurns--;
+
+            // Check Player Defeat
+            if (bp.hp <= 0) {
+                bp.hp = 0;
+                updateBattleHUD();
+                handleBattleDefeat();
+                return;
+            }
+
+            // Next Turn
+            battleState.turn++;
+            updateBattleHUD();
+            startBattleTurnQuestion();
+        }
+
+        function handleBattleVictory() {
+            const bossId = battleState.bossDef.id;
+            gameState.progress.bossDefeats[bossId] = (gameState.progress.bossDefeats[bossId] || 0) + 1;
+            saveToDevice(false);
+
+            showDialog(
+                '巔峰決戰大捷！',
+                `恭喜少俠【${gameState.player.name}】成功擊敗第 ${battleState.stage} 階段的【${battleState.bossDef.name}】！獲得一次額外秘笈/異獸吞噬機緣！`,
+                'fa-trophy text-amber-400',
+                () => {
+                    openRewardModal(() => {
+                        showScreen('screen-hub');
+                        renderHub();
+                    });
+                }
+            );
+        }
+
+        function handleBattleDefeat() {
+            saveToDevice(false);
+            showDialog(
+                '勝敗乃兵家常事',
+                `少俠在與【${battleState.bossDef.name}】的對決中力戰而竭。不妨前往「與師父修行」多答幾題，吞噬更多《山海經》異獸強化根骨後再來挑戰！`,
+                'fa-shield-heart text-rose-400',
+                () => {
+                    showScreen('screen-hub');
+                    renderHub();
+                }
+            );
+        }
+
+        function forfeitBattle() {
+            showScreen('screen-hub');
+            renderHub();
+        }
+
+        function appendBattleLog(text, colorClass = 'text-stone-300') {
+            const log = document.getElementById('battle-log');
+            const entry = document.createElement('div');
+            entry.className = `leading-relaxed border-b border-stone-800/70 pb-1 ${colorClass}`;
+            entry.textContent = text;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function clearBattleLog() {
+            document.getElementById('battle-log').innerHTML = '';
+        }
+
+        /*************************************************************************
+         * 10. 存檔匯出 / 匯入與自訂對話框 (相容未來更新版與多人互動版)
+         *************************************************************************/
+        function openSaveModal() {
+            document.getElementById('modal-save').classList.remove('hidden');
+        }
+
+        function closeSaveModal() {
+            document.getElementById('modal-save').classList.add('hidden');
+        }
+
+        function exportSaveFile() {
+            gameState.updatedAt = new Date().toISOString();
+            const dataStr = JSON.stringify(gameState, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const safeName = (gameState.player.name || 'hero').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_');
+            a.href = url;
+            a.download = `公民山海經_${safeName}_進度檔.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function copySaveCode() {
+            gameState.updatedAt = new Date().toISOString();
+            const encoded = btoa(encodeURIComponent(JSON.stringify(gameState)));
+            const tempInput = document.createElement('textarea');
+            tempInput.value = encoded;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showDialog('進度代碼已複製', '已成功複製進度代碼字串至剪貼簿！你可在另一部設備貼上此代碼以還原角色。', 'fa-copy text-amber-400');
+        }
+
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    validateAndLoadSave(parsed);
+                } catch (err) {
+                    showDialog('匯入失敗', '所選檔案並非有效的《公民山海經》JSON 進度檔。', 'fa-circle-xmark text-red-400');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function importFromCodeString() {
+            const rawCode = document.getElementById('import-code-input').value.trim();
+            if (!rawCode) return;
+            try {
+                // Support both raw JSON and base64 encoded string
+                let parsed;
+                if (rawCode.startsWith('{')) {
+                    parsed = JSON.parse(rawCode);
+                } else {
+                    parsed = JSON.parse(decodeURIComponent(atob(rawCode)));
+                }
+                validateAndLoadSave(parsed);
+            } catch (e) {
+                showDialog('讀取失敗', '進度代碼字串格式不正確，請確認複製完整。', 'fa-circle-xmark text-red-400');
+            }
+        }
+
+        function validateAndLoadSave(parsed) {
+            if (!parsed || !parsed.player || typeof parsed.player.maxHp !== 'number') {
+                showDialog('格式不相容', '存檔缺少必要的角色戰鬥能力數值。', 'fa-triangle-exclamation text-red-400');
+                return;
+            }
+            gameState = parsed;
+            // Ensure equipment & beasts keys exist for forward/backward compatibility
+            if (!gameState.player.equipment) {
+                gameState.player.equipment = { weapon: null, armor: null, accessory: null, inventory: [] };
+            }
+            saveToDevice(false);
+            closeSaveModal();
+            showDialog(
+                '進度匯入成功！',
+                `歡迎回來，少俠【${gameState.player.name}】！已成功載入你的戰鬥能力數值、山海經異獸及 ${gameState.progress.solvedQuestionIds.length} 題答題紀錄！`,
+                'fa-cloud-arrow-up text-emerald-400',
+                () => {
+                    if (gameState.progress.introCompleted) {
+                        showScreen('screen-hub');
+                        renderHub();
+                    } else {
+                        startIntroTrial();
+                    }
+                }
+            );
+        }
+
+        function resetAllDataPrompt() {
+            closeSaveModal();
+            showConfirmDialog(
+                '確定重置所有進度？',
+                '這將會清除本設備儲存的角色戰鬥能力與答題紀錄（建議重置前先下載 .json 備份檔）。',
+                () => {
+                    localStorage.removeItem(STORAGE_KEY);
+                    location.reload();
+                }
+            );
+        }
+
+        // Custom Dialog Helpers
+        let dialogCallback = null;
+
+        function showDialog(title, message, iconClass = 'fa-trophy text-amber-300', onOk = null) {
+            dialogCallback = onOk;
+            document.getElementById('dialog-title').textContent = title;
+            document.getElementById('dialog-message').textContent = message;
+            document.getElementById('dialog-icon').innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+            document.getElementById('dialog-actions').innerHTML = `
+                <button onclick="closeDialog()" class="btn-gold px-6 py-2.5 rounded-xl font-bold text-sm">確定</button>
+            `;
+            document.getElementById('modal-dialog').classList.remove('hidden');
+        }
+
+        function showConfirmDialog(title, message, onConfirm) {
+            dialogCallback = onConfirm;
+            document.getElementById('dialog-title').textContent = title;
+            document.getElementById('dialog-message').textContent = message;
+            document.getElementById('dialog-icon').innerHTML = `<i class="fa-solid fa-triangle-exclamation text-red-400"></i>`;
+            document.getElementById('dialog-actions').innerHTML = `
+                <button onclick="document.getElementById('modal-dialog').classList.add('hidden')" class="bg-stone-800 hover:bg-stone-700 text-stone-200 px-5 py-2.5 rounded-xl font-bold text-sm">取消</button>
+                <button onclick="confirmDialogAction()" class="bg-red-600 hover:bg-red-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm">確定執行</button>
+            `;
+            document.getElementById('modal-dialog').classList.remove('hidden');
+        }
+
+        function closeDialog() {
+            document.getElementById('modal-dialog').classList.add('hidden');
+            if (typeof dialogCallback === 'function') {
+                const cb = dialogCallback;
+                dialogCallback = null;
+                cb();
+            }
+        }
+
+        function confirmDialogAction() {
+            document.getElementById('modal-dialog').classList.add('hidden');
+            if (typeof dialogCallback === 'function') {
+                const cb = dialogCallback;
+                dialogCallback = null;
+                cb();
+            }
+        }
+    </script>
+</body>
+</html>
