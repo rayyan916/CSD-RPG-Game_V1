@@ -125,7 +125,7 @@
                 <div class="hidden md:flex items-center gap-3 text-xs bg-stone-900/80 px-3 py-1.5 rounded-lg border border-stone-800">
                     <span title="生命值"><i class="fa-solid fa-heart text-rose-500 mr-1"></i><b id="header-hp">500</b></span>
                     <span title="內力值"><i class="fa-solid fa-fire-flame-simple text-sky-400 mr-1"></i><b id="header-mp">150</b></span>
-                    <span title="攻擊力"><i class="fa-solid fa-khanda text-amber-400 mr-1"></i><b id="header-atk">65</b></span>
+                    <span title="攻擊力"><i class="fa-solid fa-gavel text-amber-400 mr-1"></i><b id="header-atk">65</b></span>
                     <span title="防禦力"><i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i><b id="header-def">40</b></span>
                     <span title="已答對題目"><i class="fa-solid fa-check-double text-purple-400 mr-1"></i><b id="header-solved">0/180</b></span>
                 </div>
@@ -203,14 +203,26 @@
         <section id="screen-quiz" class="hidden my-auto">
             <div class="max-w-3xl mx-auto wuxia-card rounded-2xl p-4 sm:p-7">
                 <!-- Quiz Header -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-stone-800">
-                    <div>
-                        <span id="quiz-mode-badge" class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                            初入江湖試煉
-                        </span>
-                        <h2 id="quiz-topic-title" class="serif-title text-lg sm:text-xl font-bold text-white mt-1.5">
-                            (主題1) 導學案01：香港問題的由來
-                        </h2>
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-stone-800">
+                    <div class="flex items-center gap-3.5">
+                        <!-- 師父水墨立繪頭像 -->
+                        <div class="relative shrink-0 group cursor-pointer" onclick="previewCharacterArt('師父 · 傳道宗師', CHARACTER_ART.shifu)">
+                            <img src="https://i.postimg.cc/J4RvpDPt/CSD-RPG-01-shi-fu.png" alt="師父" 
+                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-amber-400/70 shadow-lg bg-stone-900"
+                                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                            <div class="hidden w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-stone-900 border-2 border-amber-400/70 items-center justify-center text-amber-300 text-2xl">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 bg-amber-500 text-stone-950 text-[10px] font-black px-1.5 py-0.5 rounded shadow">師父</span>
+                        </div>
+                        <div>
+                            <span id="quiz-mode-badge" class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                                初入江湖試煉
+                            </span>
+                            <h2 id="quiz-topic-title" class="serif-title text-lg sm:text-xl font-bold text-white mt-1.5">
+                                (主題1) 導學案01：香港問題的由來
+                            </h2>
+                        </div>
                     </div>
                     <div class="flex items-center gap-2">
                         <div id="quiz-progress-pill" class="bg-stone-900 border border-stone-700 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono text-amber-300">
@@ -319,12 +331,26 @@
                                 <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
                                     玩法一 · 練功強化
                                 </span>
-                                <i class="fa-solid fa-person-chalkboard text-2xl text-emerald-400"></i>
+                                <span class="text-[11px] text-emerald-300/80"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊立繪可放大</span>
                             </div>
-                            <h3 class="serif-title text-2xl font-bold text-white mb-2">與師父修行</h3>
-                            <p class="text-xs sm:text-sm text-stone-300 leading-relaxed mb-4">
-                                自選「導學案01、02、03」進行隨機抽題修行。每答對一題即可隨機領悟秘笈或吞噬《山海經》異獸，無上限提升生命、內力、攻防及特殊技能！隨時可返回主城並自動儲存數值。
-                            </p>
+
+                            <!-- 師父彩色水墨插圖橫幅 -->
+                            <div class="flex items-center gap-4 bg-stone-950/80 border border-emerald-500/30 rounded-2xl p-3 mb-4">
+                                <div class="relative shrink-0 cursor-pointer group" onclick="previewCharacterArt('師父 · 山海傳道宗師', CHARACTER_ART.shifu)">
+                                    <img src="https://i.postimg.cc/J4RvpDPt/CSD-RPG-01-shi-fu.png" alt="師父" 
+                                        class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-emerald-400/70 shadow-md group-hover:scale-105 transition"
+                                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                                    <div class="hidden w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-emerald-950/60 border border-emerald-500/50 items-center justify-center text-3xl text-emerald-300">
+                                        <i class="fa-solid fa-person-chalkboard"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="serif-title text-xl sm:text-2xl font-bold text-white mb-1">與師父修行</h3>
+                                    <p class="text-xs text-stone-300 leading-relaxed">
+                                        由師父引領研習「導學案01、02、03」。每答對一題即可隨機領悟秘笈或吞噬《山海經》異獸，無上限提升戰力！
+                                    </p>
+                                </div>
+                            </div>
 
                             <div class="space-y-2.5 mb-5">
                                 <label class="block text-xs font-bold text-emerald-300">選擇修行卷軸：</label>
@@ -405,7 +431,7 @@
                                 <span id="stat-mp" class="font-mono font-bold text-base text-sky-300">150</span>
                             </div>
                             <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
-                                <span class="text-stone-400"><i class="fa-solid fa-khanda text-amber-400 w-5"></i> 攻擊力 (ATK)</span>
+                                <span class="text-stone-400"><i class="fa-solid fa-gavel text-amber-400 w-5"></i> 攻擊力 (ATK)</span>
                                 <span id="stat-atk" class="font-mono font-bold text-base text-amber-300">65</span>
                             </div>
                             <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
@@ -430,7 +456,7 @@
                             </div>
                             <div class="grid grid-cols-2 gap-2 text-xs">
                                 <div class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2">
-                                    <i class="fa-solid fa-sword"></i>
+                                    <i class="fa-solid fa-gavel"></i>
                                     <span>武器：未裝備</span>
                                 </div>
                                 <div class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2">
@@ -551,13 +577,19 @@
                 <!-- Boss Card -->
                 <div id="battle-boss-card" class="wuxia-card rounded-2xl p-4 border-red-500/40 relative">
                     <div class="flex items-center justify-between mb-2">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-10 h-10 rounded-xl bg-red-600/30 border border-red-400 flex items-center justify-center text-red-300">
-                                <i id="battle-boss-icon" class="fa-solid fa-skull-crossbones text-lg"></i>
+                        <div class="flex items-center gap-3">
+                            <!-- 對手水墨立繪頭像 (點擊可放大預覽) -->
+                            <div class="relative shrink-0 cursor-pointer group" onclick="previewCurrentBossArt()">
+                                <img id="battle-boss-img" src="" alt="對手立繪" 
+                                    class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border-2 border-red-400/80 shadow-lg bg-stone-900 group-hover:scale-105 transition"
+                                    onerror="this.style.display='none'; document.getElementById('battle-boss-icon-fallback').classList.remove('hidden'); document.getElementById('battle-boss-icon-fallback').classList.add('flex');">
+                                <div id="battle-boss-icon-fallback" class="hidden w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-red-600/30 border border-red-400 items-center justify-center text-red-300">
+                                    <i id="battle-boss-icon" class="fa-solid fa-skull-crossbones text-xl"></i>
+                                </div>
                             </div>
                             <div>
                                 <div class="flex items-center gap-2">
-                                    <h4 id="battle-boss-name" class="font-bold text-red-200 text-base">對手</h4>
+                                    <h4 id="battle-boss-name" class="font-bold text-red-200 text-base sm:text-lg">對手</h4>
                                     <span id="battle-boss-berserk" class="hidden text-[10px] bg-red-600 text-white px-1.5 py-0.5 rounded font-bold animate-pulse">狂暴中</span>
                                 </div>
                                 <div id="battle-boss-traits" class="flex flex-wrap gap-1 mt-0.5 text-[11px] text-amber-300"></div>
@@ -617,7 +649,7 @@
 
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3">
                                 <button onclick="executeBattleMove('attack')" class="p-3 rounded-xl bg-stone-900 hover:bg-amber-950/60 border border-amber-500/40 text-left transition group">
-                                    <div class="font-bold text-sm text-amber-300 group-hover:text-amber-200"><i class="fa-solid fa-khanda mr-1"></i>基礎攻擊</div>
+                                    <div class="font-bold text-sm text-amber-300 group-hover:text-amber-200"><i class="fa-solid fa-gavel mr-1"></i>基礎攻擊</div>
                                     <div class="text-[11px] text-stone-400 mt-0.5">消耗 0 內力 · 造成標準武學傷害並回氣 +15</div>
                                 </button>
                                 <button onclick="executeBattleMove('defend')" class="p-3 rounded-xl bg-stone-900 hover:bg-emerald-950/60 border border-emerald-500/40 text-left transition group">
@@ -667,7 +699,7 @@
         <div class="max-w-3xl w-full wuxia-card rounded-2xl p-5 sm:p-7 border-amber-400 shadow-2xl">
             <div class="text-center mb-5">
                 <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-bold">
-                    <i class="fa-solid fa-sparkles mr-1"></i>答題正確 · 機緣降臨
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>答題正確 · 機緣降臨
                 </span>
                 <h3 class="serif-title text-2xl sm:text-3xl font-black text-white mt-2">
                     請選擇一項武學秘笈或吞噬山海異獸
@@ -762,7 +794,47 @@
         </div>
     </div>
 
+    <!-- MODAL 4: CHARACTER INK ARTWORK LIGHTBOX PREVIEW (水墨立繪放大預覽) -->
+    <div id="modal-art-preview" onclick="closeArtPreview()" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out">
+        <div class="max-w-md w-full wuxia-card rounded-2xl p-4 border-amber-400/70 text-center" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-stone-800">
+                <h4 id="art-preview-title" class="serif-title text-lg font-bold text-amber-300">角色立繪</h4>
+                <button onclick="closeArtPreview()" class="text-stone-400 hover:text-white text-lg px-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <img id="art-preview-img" src="" alt="水墨立繪預覽" class="w-full aspect-square object-cover rounded-xl border border-amber-500/40 shadow-2xl mb-3 bg-stone-950">
+            <button onclick="closeArtPreview()" class="btn-gold px-6 py-2 rounded-xl font-bold text-xs">關閉預覽</button>
+        </div>
+    </div>
+
     <script>
+        /*************************************************************************
+         * 0. 角色中國彩色水墨風插圖網址設定 (師父 + 4位巔峰對手)
+         *************************************************************************/
+        const CHARACTER_ART = {
+            shifu: 'https://i.postimg.cc/J4RvpDPt/CSD-RPG-01-shi-fu.png',
+            boss_t1: 'https://i.postimg.cc/pXP4shqd/CSD-RPG-02-xiang-gang-wen-ti-de-you-lai.png',
+            boss_t2: 'https://i.postimg.cc/Qxjwf90C/CSD-RPG-03-xian-zhi-guan-xi.png',
+            boss_t3: 'https://i.postimg.cc/jdRmMwZS/CSD-RPG-04-guo-jia-an-quan.png',
+            boss_all: 'https://i.postimg.cc/Yq8VZrsQ/CSD-RPG-05-gong-min-meng-zhu.png'
+        };
+
+        function previewCharacterArt(title, imgUrl) {
+            document.getElementById('art-preview-title').textContent = title;
+            document.getElementById('art-preview-img').src = imgUrl;
+            document.getElementById('modal-art-preview').classList.remove('hidden');
+        }
+
+        function previewCurrentBossArt() {
+            if (!battleState || !battleState.bossDef) return;
+            previewCharacterArt(`${battleState.bossDef.name} · ${battleState.bossDef.subtitle}`, battleState.bossDef.imgUrl);
+        }
+
+        function closeArtPreview() {
+            document.getElementById('modal-art-preview').classList.add('hidden');
+        }
+
         /*************************************************************************
          * 1. 完整 180 題題庫 (導學案01: 50題, 導學案02: 50題, 導學案03: 80題)
          * 嚴格根據用家附上的 3 個檔案完整收錄
@@ -987,108 +1059,151 @@
         });
 
         /*************************************************************************
-         * 2. 《山海經》奇禽異獸定義 (8種特殊神通) 與 武林秘笈定義
+         * 2. 武學秘笈庫 (STAT_MANUALS) 與《山海經》八大奇禽異獸神通庫 (SHANHAI_BEASTS)
          *************************************************************************/
+        const STAT_MANUALS = [
+            {
+                id: 'manual_hp',
+                name: '《神農百草經》',
+                statName: '生命值上限',
+                gainText: '+120 HP',
+                icon: 'fa-heart text-rose-400',
+                apply: (p) => { p.maxHp += 120; p.hp += 120; }
+            },
+            {
+                id: 'manual_mp',
+                name: '《北冥吐納訣》',
+                statName: '內力值上限',
+                gainText: '+45 MP',
+                icon: 'fa-fire-flame-simple text-sky-400',
+                apply: (p) => { p.maxMp += 45; p.mp += 45; }
+            },
+            {
+                id: 'manual_atk',
+                name: '《破軍軒轅劍譜》',
+                statName: '攻擊力',
+                gainText: '+18 ATK',
+                icon: 'fa-gavel text-amber-400',
+                apply: (p) => { p.atk += 18; }
+            },
+            {
+                id: 'manual_def',
+                name: '《玄武金鐘罩》',
+                statName: '防禦力',
+                gainText: '+15 DEF',
+                icon: 'fa-shield-halved text-emerald-400',
+                apply: (p) => { p.def += 15; }
+            },
+            {
+                id: 'manual_eva',
+                name: '《凌波御風步》',
+                statName: '閃避速度',
+                gainText: '+4% 閃避率 (最高60%)',
+                icon: 'fa-wind text-teal-400',
+                apply: (p) => { p.eva = Math.min(60, p.eva + 4); }
+            },
+            {
+                id: 'manual_ult',
+                name: '《蒼龍破天決》',
+                statName: '必殺技威力',
+                gainText: '+25% 必殺倍率',
+                icon: 'fa-dragon text-purple-400',
+                apply: (p) => { p.ultMult += 25; }
+            }
+        ];
+
         const SHANHAI_BEASTS = {
             qingniao: {
                 key: 'qingniao',
                 name: '青鳥',
-                origin: '《山海經·大荒西經》西王母使者',
-                abilityName: '療傷神通',
+                abilityName: '瑤池甘露（療傷）',
+                origin: '《山海經·大荒西經》西王母靈禽',
                 type: 'active',
                 mpCost: 30,
                 icon: 'fa-dove text-emerald-400',
-                desc: '戰鬥中可主動施展【青鳥回春】，消耗30內力，立即回復生命上限 (22% + 階數×6%) 並清除中毒狀態。'
+                desc: '主動神通（耗30內力）：召喚三足青鳥降下甘露，立即恢復大量生命值並解除精神受創狀態。'
             },
             xiangliu: {
                 key: 'xiangliu',
                 name: '相柳',
-                origin: '《山海經·海外北經》九首蛇身凶神',
-                abilityName: '毒害神通',
+                abilityName: '九首蝕骨毒（毒害）',
+                origin: '《山海經·海外北經》九首蛇身凶獸',
                 type: 'active',
                 mpCost: 35,
-                icon: 'fa-staff-snake text-lime-400',
-                desc: '戰鬥中可主動施展【相柳蝕骨毒】，消耗35內力造成傷害並令對手中毒3回合，每回合流失最大生命 (5% + 階數×1.5%)。'
+                icon: 'fa-skull-crossbones text-lime-400',
+                desc: '主動神通（耗35內力）：噴吐劇毒造成傷害，並令對手陷入「相柳劇毒」3回合，每回合流失最大生命值。'
             },
             jiuweihu: {
                 key: 'jiuweihu',
                 name: '九尾狐',
-                origin: '《山海經·南山經》青丘奇獸',
-                abilityName: '精神攻擊',
+                abilityName: '青丘攝魂術（精神攻擊）',
+                origin: '《山海經·南山經》青丘山奇獸',
                 type: 'active',
                 mpCost: 40,
                 icon: 'fa-eye text-fuchsia-400',
-                desc: '戰鬥中可主動施展【青丘攝魂術】，消耗40內力無視對手 60% 防禦造成精神重擊，並令對手3回合攻擊力下降 25%。'
+                desc: '主動神通（耗40內力）：直擊心神穿透對手大部分防禦力，並削弱對手25%攻擊力持續3回合。'
             },
             baize: {
                 key: 'baize',
                 name: '白澤',
-                origin: '《山海經》通萬物之情瑞獸',
-                abilityName: '抗精神攻擊',
+                abilityName: '通天慧眼（抗精神攻擊）',
+                origin: '《山海經》洞悉萬物之祥瑞神獸',
                 type: 'passive',
                 mpCost: 0,
                 icon: 'fa-shield-cat text-sky-400',
-                desc: '被動生效：白澤靈識護體，受到對手「精神攻擊」時，減免 (30% + 階數×12%) 精神傷害並免疫心神混亂。'
+                desc: '被動常駐：大幅減免「憲制關係」及「公民盟主」施展的精神攻擊傷害，並免疫精神減攻效果。'
             },
             qiongqi: {
                 key: 'qiongqi',
                 name: '窮奇',
-                origin: '《山海經·海內北經》翼虎異獸',
-                abilityName: '吸血神通',
+                abilityName: '噬血魔罡（吸血）',
+                origin: '《山海經·西山經》外貌如虎有翼異獸',
                 type: 'passive',
                 mpCost: 0,
-                icon: 'fa-bat text-rose-500',
-                desc: '被動生效：每次攻擊或必殺技命中對手時，自動吸取所造成傷害的 (12% + 階數×5%) 轉化為自身生命值。'
+                icon: 'fa-droplet text-rose-500',
+                desc: '被動常駐：每次施展攻擊或必殺技造成傷害時，自動吸取一定比例傷害轉化為自身生命值。'
             },
             xingtian: {
                 key: 'xingtian',
                 name: '刑天',
-                origin: '《山海經·海外西經》干戚戰神',
-                abilityName: '低血量狂暴',
+                abilityName: '干戚猛志（低血量狂暴）',
+                origin: '《山海經·海外西經》操干戚以舞戰神',
                 type: 'passive',
                 mpCost: 0,
                 icon: 'fa-fire text-red-500',
-                desc: '被動生效：當生命值低於 40% 時自動觸發【刑天戰意】，攻擊力與必殺技傷害提升 (30% + 階數×10%)！'
+                desc: '被動常駐：當自身生命值低於40%時激發不屈戰意，攻擊力與招式傷害大幅飆升。'
             },
             kui: {
                 key: 'kui',
                 name: '夔牛',
-                origin: '《山海經·大荒東經》雷澤神獸',
-                abilityName: '反擊神通',
+                abilityName: '震雷反震（反擊）',
+                origin: '《山海經·大荒東經》聲如雷霆獨足神獸',
                 type: 'passive',
                 mpCost: 0,
                 icon: 'fa-bolt-lightning text-amber-400',
-                desc: '被動生效：受到對手攻擊時，有 (25% + 階數×10%) 機率引動雷霆震擊，自動反彈自身攻擊力 65% 的真實傷害。'
+                desc: '被動常駐：受到對手攻擊時有高機率引動九天雷霆自動反擊對手，造成可觀的雷電傷害。'
             },
             feiyi: {
                 key: 'feiyi',
                 name: '肥遺',
+                abilityName: '萬毒不侵（抗毒與生機）',
                 origin: '《山海經·北山經》六足四翼奇蛇',
-                abilityName: '抗毒神通',
                 type: 'passive',
                 mpCost: 0,
-                icon: 'fa-prescription-bottle-medical text-teal-400',
-                desc: '被動生效：百毒不侵體質，受到任何毒素與持續傷害時減免 (35% + 階數×12%)，且每回合自動小幅回血。'
+                icon: 'fa-Notes-medical text-teal-400',
+                desc: '被動常駐：百毒不侵，且每回合結束時自動運轉生機恢復生命值。'
             }
         };
 
-        const STAT_MANUALS = [
-            { id: 'hp', name: '《神農百草經》', statName: '生命值上限', gainText: '+120 HP', icon: 'fa-heart text-rose-400', apply: (p) => { p.maxHp += 120; p.hp += 120; } },
-            { id: 'mp', name: '《北冥吐納訣》', statName: '內力值上限', gainText: '+45 MP', icon: 'fa-fire-flame-simple text-sky-400', apply: (p) => { p.maxMp += 45; p.mp += 45; } },
-            { id: 'atk', name: '《軒轅破陣劍譜》', statName: '攻擊力', gainText: '+22 ATK', icon: 'fa-khanda text-amber-400', apply: (p) => { p.atk += 22; } },
-            { id: 'def', name: '《玄武金鐘罩》', statName: '防禦力', gainText: '+18 DEF', icon: 'fa-shield-halved text-emerald-400', apply: (p) => { p.def += 18; } },
-            { id: 'eva', name: '《凌波御風步》', statName: '閃避速度', gainText: '+4% 閃避 (上限60%)', icon: 'fa-wind text-teal-400', apply: (p) => { p.eva = Math.min(60, p.eva + 4); } },
-            { id: 'ult', name: '《山海天罡破》', statName: '必殺技威力', gainText: '+25% 必殺倍率', icon: 'fa-dragon text-purple-400', apply: (p) => { p.ultMult += 25; } }
-        ];
-
         /*************************************************************************
-         * 3. 決戰巔峰 4 大對手定義 (支援 1~10 階段動態成長)
+         * 3. 決戰巔峰 4 大對手定義 (支援 1~10 階段動態成長 + 水墨插圖)
          *************************************************************************/
         const BOSS_DEFINITIONS = [
             {
                 id: 'boss_t1',
                 name: '香港問題的由來',
                 subtitle: '導學案01 守關宗師',
+                imgUrl: CHARACTER_ART.boss_t1,
                 topicFilter: [1],
                 baseHp: 1000,
                 baseAtk: 100,
@@ -1103,6 +1218,7 @@
                 id: 'boss_t2',
                 name: '憲制關係',
                 subtitle: '導學案02 守關宗師',
+                imgUrl: CHARACTER_ART.boss_t2,
                 topicFilter: [2],
                 baseHp: 1500,
                 baseAtk: 80,
@@ -1117,6 +1233,7 @@
                 id: 'boss_t3',
                 name: '國家安全',
                 subtitle: '導學案03 守關宗師',
+                imgUrl: CHARACTER_ART.boss_t3,
                 topicFilter: [3],
                 baseHp: 2000,
                 baseAtk: 100,
@@ -1131,6 +1248,7 @@
                 id: 'boss_all',
                 name: '公民盟主',
                 subtitle: '三卷合一 · 山海至尊',
+                imgUrl: CHARACTER_ART.boss_all,
                 topicFilter: [1, 2, 3],
                 baseHp: 2500,
                 baseAtk: 200,
@@ -1678,17 +1796,22 @@
 
                 card.innerHTML = `
                     <div>
-                        <div class="flex items-center justify-between mb-1.5">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-lg ${isFinal ? 'bg-amber-500/20 text-amber-300 border-amber-400' : 'bg-red-500/20 text-red-300 border-red-500/40'} border flex items-center justify-center">
-                                    <i class="fa-solid ${boss.icon}"></i>
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <div class="flex items-center gap-3">
+                                <div class="relative shrink-0 cursor-pointer group" onclick="previewCharacterArt('${boss.name} · ${boss.subtitle}', '${boss.imgUrl}')">
+                                    <img src="${boss.imgUrl}" alt="${boss.name}" 
+                                        class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border-2 ${isFinal ? 'border-amber-400' : 'border-red-500/60'} shadow-md bg-stone-950 group-hover:scale-105 transition"
+                                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                                    <div class="hidden w-14 h-14 sm:w-16 sm:h-16 rounded-xl ${isFinal ? 'bg-amber-500/20 text-amber-300 border-amber-400' : 'bg-red-500/20 text-red-300 border-red-500/40'} border items-center justify-center text-xl">
+                                        <i class="fa-solid ${boss.icon}"></i>
+                                    </div>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-base text-white">${boss.name}</h4>
                                     <div class="text-[11px] text-stone-400">${boss.subtitle}</div>
+                                    <div class="text-[11px] font-mono text-emerald-400 mt-0.5">勝場：${wins}</div>
                                 </div>
                             </div>
-                            <span class="text-[11px] font-mono text-emerald-400">勝場：${wins}</span>
                         </div>
 
                         <div class="flex flex-wrap gap-1 my-2">${traitsHtml}</div>
@@ -1701,7 +1824,7 @@
                         </div>
                     </div>
                     <button onclick="startBossBattle('${boss.id}')" class="w-full ${isFinal ? 'btn-gold' : 'bg-red-700 hover:bg-red-600 text-white border border-red-400'} py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-swords"></i> 挑戰【${boss.name}】(第${stage}階)
+                        <i class="fa-solid fa-gavel"></i> 挑戰【${boss.name}】(第${stage}階)
                     </button>
                 `;
                 container.appendChild(card);
@@ -1871,7 +1994,15 @@
 
             // Boss HUD
             document.getElementById('battle-boss-name').textContent = bb.name;
-            document.getElementById('battle-boss-icon').className = `fa-solid ${battleState.bossDef.icon} text-lg`;
+            const bossImgEl = document.getElementById('battle-boss-img');
+            const bossFallbackEl = document.getElementById('battle-boss-icon-fallback');
+            if (battleState.bossDef.imgUrl) {
+                bossImgEl.style.display = 'block';
+                bossImgEl.src = battleState.bossDef.imgUrl;
+                bossFallbackEl.classList.add('hidden');
+                bossFallbackEl.classList.remove('flex');
+            }
+            document.getElementById('battle-boss-icon').className = `fa-solid ${battleState.bossDef.icon} text-xl`;
             document.getElementById('battle-b-atk').textContent = bb.mentalDebuffTurns > 0 ? Math.round(bb.atk * 0.75) : bb.atk;
             document.getElementById('battle-b-def').textContent = bb.def;
             document.getElementById('battle-b-eva').textContent = `${bb.eva}%`;
