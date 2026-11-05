@@ -102,7 +102,7 @@
 
     <!-- Top Navigation / Status Header -->
     <header class="sticky top-0 z-30 bg-stone-950/90 backdrop-blur-md border-b border-amber-500/30 px-3 py-2.5">
-        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2.5">
                 <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-red-700 flex items-center justify-center shadow-md border border-amber-300/50">
                     <i class="fa-solid fa-dragon text-white text-lg"></i>
@@ -125,9 +125,9 @@
                 <div class="hidden md:flex items-center gap-3 text-xs bg-stone-900/80 px-3 py-1.5 rounded-lg border border-stone-800">
                     <span title="生命值"><i class="fa-solid fa-heart text-rose-500 mr-1"></i><b id="header-hp">500</b></span>
                     <span title="內力值"><i class="fa-solid fa-fire-flame-simple text-sky-400 mr-1"></i><b id="header-mp">150</b></span>
-                    <span title="攻擊力"><i class="fa-solid fa-gavel text-amber-400 mr-1"></i><b id="header-atk">65</b></span>
+                    <span title="攻擊力"><i class="fa-solid fa-khanda text-amber-400 mr-1"></i><b id="header-atk">65</b></span>
                     <span title="防禦力"><i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i><b id="header-def">40</b></span>
-                    <span title="已答對題目"><i class="fa-solid fa-check-double text-purple-400 mr-1"></i><b id="header-solved">0/180</b></span>
+                    <span title="已答對題目"><i class="fa-solid fa-check-double text-purple-400 mr-1"></i><b id="header-solved">0/360</b></span>
                 </div>
                 <button onclick="openSaveModal()" class="text-xs bg-stone-800 hover:bg-stone-700 text-amber-300 border border-amber-500/40 px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition">
                     <i class="fa-solid fa-floppy-disk"></i>
@@ -138,7 +138,7 @@
     </header>
 
     <!-- Main Container -->
-    <main class="flex-1 max-w-6xl w-full mx-auto p-3 sm:p-6 flex flex-col justify-center">
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 flex flex-col justify-center">
 
         <!-- 1. SCREEN: WELCOME & NAME INPUT -->
         <section id="screen-welcome" class="my-auto py-6">
@@ -151,21 +151,21 @@
                     公民山海經
                 </h2>
                 <p class="text-sm sm:text-base text-amber-100/80 font-medium mb-6">
-                    研習香港憲制與國安法理 · 吞噬山海異獸 · 問鼎公民盟主
+                    研習六卷香江憲制與法治 · 吞噬十四山海異獸 · 問鼎百階公民盟主
                 </p>
 
                 <div class="bg-stone-950/70 border border-stone-800 rounded-xl p-4 text-left text-xs sm:text-sm text-stone-300 space-y-2 mb-6">
                     <p class="flex items-start gap-2">
                         <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
-                        <span><strong>初入江湖試煉：</strong>開局需完成「導學案01、02、03」三部分各 5 題選擇題（共 15 題）。每答對一題即可隨機挑選武林秘笈或吞噬《山海經》異獸強化自身！</span>
+                        <span><strong>初入江湖試煉：</strong>新玩家開局完成「導學案01至06」六部分試煉（舊玩家可直接按綠色按鈕無縫繼續進度）。每答對一題即可隨機挑選武林秘笈或吞噬《山海經》14 大異獸（最高 7 階）！</span>
                     </p>
                     <p class="flex items-start gap-2">
                         <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
-                        <span><strong>兩大核心玩法：</strong>完成試煉後可自由選擇「與師父修行」無限刷題練功，或進入「決戰巔峰」挑戰 10 階段動態成長的四大對手！</span>
+                        <span><strong>兩大核心玩法（100階段進化）：</strong>可自由選擇「與師父修行」研習全 360 題，或進入「決戰巔峰」挑戰隨你同步成長至 <strong>100 階段</strong> 的七大守關宗師與雙倍強化的公民盟主！</span>
                     </p>
                     <p class="flex items-start gap-2">
                         <i class="fa-solid fa-circle-check text-sky-400 mt-1"></i>
-                        <span><strong>跨設備共通存檔：</strong>支援本機自動儲存及匯出 `.json` 進度檔，預留未來「武器防具更新版」及「多人互動對戰版」完整相容格式。</span>
+                        <span><strong>跨版本與互動版共通存檔：</strong>支援匯出 `.json` 進度檔，與未來的「裝備更新版」及「雙人對戰/共鬥Boss互動版」100% 雙向無損互通！</span>
                     </p>
                 </div>
 
@@ -192,7 +192,7 @@
 
                     <div class="pt-3 border-t border-stone-800 flex flex-wrap items-center justify-center gap-3">
                         <button onclick="openSaveModal()" class="text-xs sm:text-sm text-amber-400 hover:text-amber-300 underline flex items-center gap-1.5">
-                            <i class="fa-solid fa-file-import"></i> 匯入外部進度檔 (.json)
+                            <i class="fa-solid fa-file-import"></i> 匯入外部進度檔 (.json / 互動版進度)
                         </button>
                     </div>
                 </div>
@@ -234,16 +234,25 @@
                     </div>
                 </div>
 
-                <!-- Phase Stepper for Intro Trial -->
-                <div id="intro-stepper" class="grid grid-cols-3 gap-2 mb-5 text-center text-xs">
+                <!-- Phase Stepper for Intro Trial (6 Topics) -->
+                <div id="intro-stepper" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5 text-center text-xs">
                     <div id="step-t1" class="p-2 rounded-lg border border-amber-500 bg-amber-500/20 text-amber-200 font-bold">
-                        1. 香港問題的由來 (<span id="step-t1-cnt">0</span>/5)
+                        1. 香港問題由來 (<span id="step-t1-cnt">0</span>/5)
                     </div>
                     <div id="step-t2" class="p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400">
                         2. 憲制關係 (<span id="step-t2-cnt">0</span>/5)
                     </div>
                     <div id="step-t3" class="p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400">
                         3. 維護國家安全 (<span id="step-t3-cnt">0</span>/5)
+                    </div>
+                    <div id="step-t4" class="p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400">
+                        4. 政治體制 (<span id="step-t4-cnt">0</span>/5)
+                    </div>
+                    <div id="step-t5" class="p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400">
+                        5. 法治與司法 (<span id="step-t5-cnt">0</span>/5)
+                    </div>
+                    <div id="step-t6" class="p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400">
+                        6. 權利與義務 (<span id="step-t6-cnt">0</span>/5)
                     </div>
                 </div>
 
@@ -320,22 +329,21 @@
                 </div>
             </div>
 
-            <!-- HUB TAB 1: TWO CORE GAME MODES (與師父修行 & 決戰巔峰) -->
+            <!-- HUB TAB 1: GAME MODES (平板 md 及電腦 lg 以上左右並排顯示「與師父修行」與「決戰巔峰」) -->
             <div id="hub-tab-modes" class="space-y-6">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    
-                    <!-- Mode 1: 與師父修行 -->
-                    <div class="lg:col-span-5 wuxia-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-emerald-500/30">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+
+                    <!-- 左欄 Mode 1: 與師父修行 (平板/電腦佔 5 欄) -->
+                    <div class="md:col-span-5 wuxia-card rounded-2xl p-5 sm:p-6 border-emerald-500/40 flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center justify-between gap-2 mb-3">
                                 <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                                    玩法一 · 練功強化
+                                    玩法一 · 無限強化修煉
                                 </span>
-                                <span class="text-[11px] text-emerald-300/80"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊立繪可放大</span>
+                                <span class="text-xs text-stone-400">隨時自由進出</span>
                             </div>
 
-                            <!-- 師父彩色水墨插圖橫幅 -->
-                            <div class="flex items-center gap-4 bg-stone-950/80 border border-emerald-500/30 rounded-2xl p-3 mb-4">
+                            <div class="flex items-center gap-3.5 mb-4">
                                 <div class="relative shrink-0 cursor-pointer group" onclick="previewCharacterArt('師父 · 山海傳道宗師', CHARACTER_ART.shifu)">
                                     <img src="https://i.postimg.cc/J4RvpDPt/CSD-RPG-01-shi-fu.png" alt="師父" 
                                         class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-emerald-400/70 shadow-md group-hover:scale-105 transition"
@@ -347,38 +355,59 @@
                                 <div>
                                     <h3 class="serif-title text-xl sm:text-2xl font-bold text-white mb-1">與師父修行</h3>
                                     <p class="text-xs text-stone-300 leading-relaxed">
-                                        由師父引領研習「導學案01、02、03」。每答對一題即可隨機領悟秘笈或吞噬《山海經》異獸，無上限提升戰力！
+                                        由師父引領研習「導學案01至06」六大卷軸。每答對一題即可隨機領悟秘笈或吞噬《山海經》14大異獸（最高7階），無上限突破百階戰力！
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="space-y-2.5 mb-5">
-                                <label class="block text-xs font-bold text-emerald-300">選擇修行卷軸：</label>
-                                <button onclick="startShifuTraining(1)" class="w-full text-left p-3 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                            <div class="space-y-2 mb-5">
+                                <label class="block text-xs font-bold text-emerald-300">選擇修行卷軸（共 6 卷 360 題）：</label>
+                                <button onclick="startShifuTraining(1)" class="w-full text-left p-2.5 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
                                     <div>
-                                        <div class="text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案01：香港問題的由來</div>
+                                        <div class="text-xs sm:text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案01：香港問題的由來</div>
                                         <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t1">0/50</span> 題</div>
                                     </div>
                                     <i class="fa-solid fa-chevron-right text-emerald-400"></i>
                                 </button>
-                                <button onclick="startShifuTraining(2)" class="w-full text-left p-3 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                <button onclick="startShifuTraining(2)" class="w-full text-left p-2.5 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
                                     <div>
-                                        <div class="text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案02：國家和香港特區的憲制關係</div>
+                                        <div class="text-xs sm:text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案02：國家和香港特區的憲制關係</div>
                                         <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t2">0/50</span> 題</div>
                                     </div>
                                     <i class="fa-solid fa-chevron-right text-emerald-400"></i>
                                 </button>
-                                <button onclick="startShifuTraining(3)" class="w-full text-left p-3 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                <button onclick="startShifuTraining(3)" class="w-full text-left p-2.5 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
                                     <div>
-                                        <div class="text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案03：維護國家安全的意義</div>
+                                        <div class="text-xs sm:text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案03：維護國家安全的意義</div>
                                         <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t3">0/80</span> 題</div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-emerald-400"></i>
+                                </button>
+                                <button onclick="startShifuTraining(4)" class="w-full text-left p-2.5 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案04：香港特別行政區的政治體制 <span class="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded ml-1">新增</span></div>
+                                        <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t4">0/50</span> 題</div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-emerald-400"></i>
+                                </button>
+                                <button onclick="startShifuTraining(5)" class="w-full text-left p-2.5 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案05：法治精神與司法獨立 <span class="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded ml-1">新增</span></div>
+                                        <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t5">0/80</span> 題</div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-emerald-400"></i>
+                                </button>
+                                <button onclick="startShifuTraining(6)" class="w-full text-left p-2.5 rounded-xl bg-stone-900/90 hover:bg-emerald-950/50 border border-stone-700 hover:border-emerald-500/60 transition flex items-center justify-between group">
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-bold text-stone-100 group-hover:text-emerald-300">導學案06：香港居民的權利與義務 <span class="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded ml-1">新增</span></div>
+                                        <div class="text-[11px] text-stone-400">已制霸：<span id="shifu-stat-t6">0/50</span> 題</div>
                                     </div>
                                     <i class="fa-solid fa-chevron-right text-emerald-400"></i>
                                 </button>
                                 <button onclick="startShifuTraining(0)" class="w-full text-left p-3 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-600/50 transition flex items-center justify-between group">
                                     <div>
-                                        <div class="text-sm font-bold text-emerald-200">三卷綜合隨機修行（全 180 題）</div>
-                                        <div class="text-[11px] text-emerald-300/80">融會貫通 · 全面備戰公民盟主</div>
+                                        <div class="text-sm font-bold text-emerald-200">六卷綜合隨機修行（全 360 題）</div>
+                                        <div class="text-[11px] text-emerald-300/80">融會貫通 · 全面備戰百階公民盟主</div>
                                     </div>
                                     <i class="fa-solid fa-bolt text-emerald-300"></i>
                                 </button>
@@ -389,24 +418,26 @@
                         </div>
                     </div>
 
-                    <!-- Mode 2: 決戰巔峰 -->
-                    <div class="lg:col-span-7 wuxia-card rounded-2xl p-5 sm:p-6 border-amber-500/40">
-                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/40">
-                                玩法二 · 回合制巔峰對決
-                            </span>
-                            <div class="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-lg">
-                                對手動態成長：<strong id="boss-scaling-stage">第 1 階段 / 共 10 階段</strong>
+                    <!-- 右欄 Mode 2: 決戰巔峰 (平板/電腦佔 7 欄) -->
+                    <div class="md:col-span-7 wuxia-card rounded-2xl p-5 sm:p-6 border-amber-500/40 flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/40">
+                                    玩法二 · 回合制巔峰對決
+                                </span>
+                                <div class="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-lg">
+                                    對手動態成長：<strong id="boss-scaling-stage">第 1 階段 / 共 100 階段</strong>
+                                </div>
                             </div>
-                        </div>
-                        <h3 class="serif-title text-2xl font-bold text-white mb-1">決戰巔峰</h3>
-                        <p class="text-xs sm:text-sm text-stone-300 mb-4">
-                            選擇四大守關對手進行回合制知識武鬥！對手的生命值、攻防及特殊技能會隨你的戰力成長階段（共 10 階）同步進化。每回合先答題凝聚真氣，再施展招式克敵制勝！
-                        </p>
+                            <h3 class="serif-title text-2xl font-bold text-white mb-1">決戰巔峰</h3>
+                            <p class="text-xs sm:text-sm text-stone-300 mb-4">
+                                選擇七大守關對手進行回合制知識武鬥！對手的生命值、攻防及特殊技能會隨你的戰力成長階段（最高 <strong>100 階段</strong>）同步進化。每回合先答題凝聚真氣，再施展《山海經》異獸神通克敵制勝！
+                            </p>
 
-                        <!-- 4 Opponents Grid -->
-                        <div id="boss-cards-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                            <!-- Dynamically populated by renderBossCards() -->
+                            <!-- 7 Opponents Grid -->
+                            <div id="boss-cards-container" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5 max-h-[620px] overflow-y-auto custom-scroll pr-1">
+                                <!-- Dynamically populated by renderBossCards() -->
+                            </div>
                         </div>
                     </div>
 
@@ -419,7 +450,7 @@
                     <!-- Attributes Card -->
                     <div class="wuxia-card rounded-2xl p-5">
                         <h3 class="serif-title text-xl font-bold text-amber-300 mb-4 flex items-center gap-2">
-                            <i class="fa-solid fa-id-card-clip"></i> 基礎武學屬性
+                            <i class="fa-solid fa-id-card-clip"></i> 基礎武學屬性（含裝備加成）
                         </h3>
                         <div class="space-y-3 text-sm">
                             <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
@@ -431,7 +462,7 @@
                                 <span id="stat-mp" class="font-mono font-bold text-base text-sky-300">150</span>
                             </div>
                             <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
-                                <span class="text-stone-400"><i class="fa-solid fa-gavel text-amber-400 w-5"></i> 攻擊力 (ATK)</span>
+                                <span class="text-stone-400"><i class="fa-solid fa-khanda text-amber-400 w-5"></i> 攻擊力 (ATK)</span>
                                 <span id="stat-atk" class="font-mono font-bold text-base text-amber-300">65</span>
                             </div>
                             <div class="flex justify-between items-center p-2.5 bg-stone-900/80 rounded-xl border border-stone-800">
@@ -448,20 +479,20 @@
                             </div>
                         </div>
 
-                        <!-- Reserved Equipment Slots for Future Update -->
+                        <!-- Equipment Slots (Supports Imported Equipment from Interactive/Updated Versions) -->
                         <div class="mt-5 pt-4 border-t border-stone-800">
                             <div class="flex items-center justify-between text-xs text-stone-400 mb-2">
-                                <span><i class="fa-solid fa-toolbox text-amber-400 mr-1"></i> 神兵與防具欄位（預留更新版擴充）</span>
-                                <span class="bg-stone-800 px-2 py-0.5 rounded text-[10px]">相容 v2.0</span>
+                                <span><i class="fa-solid fa-toolbox text-amber-400 mr-1"></i> 神兵與防具欄位（共通互動版/更新版）</span>
+                                <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded text-[10px]">雙向互通</span>
                             </div>
                             <div class="grid grid-cols-2 gap-2 text-xs">
-                                <div class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2">
-                                    <i class="fa-solid fa-gavel"></i>
-                                    <span>武器：未裝備</span>
+                                <div id="equip-slot-weapon" class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-400 flex items-center gap-2">
+                                    <i class="fa-solid fa-gavel text-amber-400"></i>
+                                    <span id="equip-weapon-name">武器：未裝備</span>
                                 </div>
-                                <div class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2">
-                                    <i class="fa-solid fa-vest"></i>
-                                    <span>防具：未裝備</span>
+                                <div id="equip-slot-armor" class="p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-400 flex items-center gap-2">
+                                    <i class="fa-solid fa-vest text-emerald-400"></i>
+                                    <span id="equip-armor-name">防具：未裝備</span>
                                 </div>
                             </div>
                         </div>
@@ -471,12 +502,12 @@
                     <div class="lg:col-span-2 wuxia-card rounded-2xl p-5 flex flex-col justify-between">
                         <div>
                             <h3 class="serif-title text-xl font-bold text-emerald-300 mb-2 flex items-center gap-2">
-                                <i class="fa-solid fa-paw"></i> 《山海經》奇禽異獸神通錄
+                                <i class="fa-solid fa-paw"></i> 《山海經》十四奇禽異獸神通錄（最高 7 階）
                             </h3>
                             <p class="text-xs text-stone-400 mb-4">
-                                透過答題吞噬《山海經》異獸血脈，可解鎖並強化八大特殊神通（最高 5 階），於戰鬥中施展或被動生效：
+                                透過答題吞噬《山海經》異獸血脈，可解鎖並強化十四大特殊神通（包含療傷、劇毒、精神、昏迷、冰凍、沉默、嘲諷、狂暴、增攻、提防等，最高可升至 <strong>第 7 階</strong>）：
                             </p>
-                            <div id="beasts-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div id="beasts-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[540px] overflow-y-auto custom-scroll pr-1">
                                 <!-- Populated dynamically -->
                             </div>
                         </div>
@@ -493,15 +524,18 @@
                                 <i class="fa-solid fa-book-bookmark mr-1.5"></i> 導學案題庫溫習與答題紀錄
                             </h3>
                             <p class="text-xs text-stone-400 mt-1">
-                                可隨時檢視全部 180 條題目的正確答案，並篩選「已答對」或「尚未答對」的題目重點溫習。
+                                可隨時檢視全部 6 卷共 360 條題目的正確答案，並篩選「已答對」或「尚未答對」的題目重點溫習。
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-2">
                             <select id="study-filter-topic" onchange="renderStudyList()" class="bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white">
-                                <option value="0">全部主題 (180題)</option>
+                                <option value="0">全部主題 (360題)</option>
                                 <option value="1">導學案01：香港問題的由來 (50題)</option>
                                 <option value="2">導學案02：國家和特區的憲制關係 (50題)</option>
                                 <option value="3">導學案03：維護國家安全的意義 (80題)</option>
+                                <option value="4">導學案04：香港特別行政區的政治體制 (50題)</option>
+                                <option value="5">導學案05：法治精神與司法獨立 (80題)</option>
+                                <option value="6">導學案06：香港居民的權利與義務 (50題)</option>
                             </select>
                             <select id="study-filter-status" onchange="renderStudyList()" class="bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white">
                                 <option value="all">全部狀態</option>
@@ -649,7 +683,7 @@
 
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3">
                                 <button onclick="executeBattleMove('attack')" class="p-3 rounded-xl bg-stone-900 hover:bg-amber-950/60 border border-amber-500/40 text-left transition group">
-                                    <div class="font-bold text-sm text-amber-300 group-hover:text-amber-200"><i class="fa-solid fa-gavel mr-1"></i>基礎攻擊</div>
+                                    <div class="font-bold text-sm text-amber-300 group-hover:text-amber-200"><i class="fa-solid fa-khanda mr-1"></i>基礎攻擊</div>
                                     <div class="text-[11px] text-stone-400 mt-0.5">消耗 0 內力 · 造成標準武學傷害並回氣 +15</div>
                                 </button>
                                 <button onclick="executeBattleMove('defend')" class="p-3 rounded-xl bg-stone-900 hover:bg-emerald-950/60 border border-emerald-500/40 text-left transition group">
@@ -668,11 +702,12 @@
 
                             <!-- Shanhaijing Active Beast Skills -->
                             <div class="border-t border-stone-800 pt-3">
-                                <div class="text-xs font-bold text-emerald-300 mb-2">
-                                    <i class="fa-solid fa-paw mr-1"></i>《山海經》異獸主動神通（已吞噬解鎖）：
+                                <div class="text-xs font-bold text-emerald-300 mb-2 flex items-center justify-between">
+                                    <span><i class="fa-solid fa-paw mr-1"></i>《山海經》異獸主動神通（已吞噬解鎖，最高7階）：</span>
+                                    <span id="player-silence-warning" class="hidden text-red-400 font-bold"><i class="fa-solid fa-volume-xmark mr-1"></i>處於沉默狀態，本回合無法施展主動神通與必殺技</span>
                                 </div>
-                                <div id="battle-beast-skills" class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                                    <!-- Populated with unlocked active beast skills: Heal, Poison, Mental Attack -->
+                                <div id="battle-beast-skills" class="grid grid-cols-1 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto custom-scroll pr-1">
+                                    <!-- Populated with unlocked active beast skills -->
                                 </div>
                             </div>
                         </div>
@@ -720,7 +755,7 @@
         <div class="max-w-xl w-full wuxia-card rounded-2xl p-5 sm:p-6 border-amber-500/50">
             <div class="flex items-center justify-between pb-3 mb-4 border-b border-stone-800">
                 <h3 class="serif-title text-xl font-bold text-amber-300 flex items-center gap-2">
-                    <i class="fa-solid fa-floppy-disk"></i> 遊戲進度儲存與跨設備匯出入
+                    <i class="fa-solid fa-floppy-disk"></i> 遊戲進度儲存與跨版本/互動版匯出入
                 </h3>
                 <button onclick="closeSaveModal()" class="text-stone-400 hover:text-white text-lg">
                     <i class="fa-solid fa-xmark"></i>
@@ -739,9 +774,9 @@
                 </div>
 
                 <div class="p-3.5 rounded-xl bg-stone-900/90 border border-stone-800 space-y-2">
-                    <div class="font-bold text-amber-400"><i class="fa-solid fa-file-export mr-1.5"></i>2. 另存進度檔案（用於跨設備、更新版及多人互動版）</div>
+                    <div class="font-bold text-amber-400"><i class="fa-solid fa-file-export mr-1.5"></i>2. 另存進度檔案（共通於更新版及多人互動版）</div>
                     <p class="text-stone-300 text-xs">
-                        匯出標準 <code class="text-amber-200">.json</code> 英雄戰力存檔。此檔案包含你的角色數值、《山海經》異獸神通、預留武器防具欄位及已答對題目紀錄，可直接匯入其他設備、未來更新版或「多人對戰/共鬥 Boss 互動版」！
+                        匯出標準 <code class="text-amber-200">.json</code> 英雄戰力存檔。此檔案包含你的角色數值、《山海經》異獸神通、武器防具欄位及已答對題目紀錄，可直接匯入其他設備、未來更新版或「多人對戰/共鬥 Boss 互動版」！
                     </p>
                     <div class="flex flex-wrap gap-2 pt-1">
                         <button onclick="exportSaveFile()" class="btn-gold px-4 py-2 rounded-xl font-bold text-xs inline-flex items-center gap-1.5">
@@ -754,9 +789,9 @@
                 </div>
 
                 <div class="p-3.5 rounded-xl bg-stone-900/90 border border-stone-800 space-y-2">
-                    <div class="font-bold text-sky-400"><i class="fa-solid fa-file-import mr-1.5"></i>3. 讀取 / 匯入進度檔案</div>
+                    <div class="font-bold text-sky-400"><i class="fa-solid fa-file-import mr-1.5"></i>3. 讀取 / 匯入進度檔案（支援互動版獎勵回流）</div>
                     <p class="text-stone-300 text-xs">
-                        選擇先前下載的 <code class="text-sky-200">.json</code> 存檔，或貼上進度代碼字串以恢復角色：
+                        選擇先前下載或從「互動版/更新版」匯出的 <code class="text-sky-200">.json</code> 存檔，或貼上進度代碼字串以恢復角色及裝備加成：
                     </p>
                     <input type="file" id="import-file-input" accept=".json" onchange="handleFileImport(event)" class="block w-full text-xs text-stone-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-sky-600 file:text-white hover:file:bg-sky-500 cursor-pointer">
                     
@@ -810,24 +845,28 @@
 
     <script>
         /*************************************************************************
-         * 0. 角色中國彩色水墨風插圖網址設定 (師父 + 4位巔峰對手)
+         * 0. 角色中國彩色水墨風插圖網址設定 (師父 + 7位巔峰對手)
          *************************************************************************/
         const CHARACTER_ART = {
             shifu: 'https://i.postimg.cc/J4RvpDPt/CSD-RPG-01-shi-fu.png',
             boss_t1: 'https://i.postimg.cc/pXP4shqd/CSD-RPG-02-xiang-gang-wen-ti-de-you-lai.png',
             boss_t2: 'https://i.postimg.cc/Qxjwf90C/CSD-RPG-03-xian-zhi-guan-xi.png',
             boss_t3: 'https://i.postimg.cc/jdRmMwZS/CSD-RPG-04-guo-jia-an-quan.png',
+            boss_t4: 'https://i.postimg.cc/fRdTJQ8L/CSD-RPG-06-zheng-zhi-ti-zhi.png',
+            boss_t5: 'https://i.postimg.cc/9Q9FrHLQ/CSD-RPG-07-fa-zhi.png',
+            boss_t6: 'https://i.postimg.cc/wjNT7YwB/CSD-RPG-08-quan-li-yu-yi-wu.png',
             boss_all: 'https://i.postimg.cc/Yq8VZrsQ/CSD-RPG-05-gong-min-meng-zhu.png'
         };
 
         function previewCharacterArt(title, imgUrl) {
+            if (!imgUrl) return;
             document.getElementById('art-preview-title').textContent = title;
             document.getElementById('art-preview-img').src = imgUrl;
             document.getElementById('modal-art-preview').classList.remove('hidden');
         }
 
         function previewCurrentBossArt() {
-            if (!battleState || !battleState.bossDef) return;
+            if (!battleState || !battleState.bossDef || !battleState.bossDef.imgUrl) return;
             previewCharacterArt(`${battleState.bossDef.name} · ${battleState.bossDef.subtitle}`, battleState.bossDef.imgUrl);
         }
 
@@ -836,8 +875,8 @@
         }
 
         /*************************************************************************
-         * 1. 完整 180 題題庫 (導學案01: 50題, 導學案02: 50題, 導學案03: 80題)
-         * 嚴格根據用家附上的 3 個檔案完整收錄
+         * 1. 完整 360 題題庫 (導學案01~06 全6卷)
+         * 嚴格根據用家附上的 6 個檔案完整收錄
          *************************************************************************/
         const RAW_QUESTIONS = {
             // (主題1) 導學案01：香港問題的由來 (50題)
@@ -902,7 +941,7 @@
                 [5,"有人認為「《憲法》除了第三十一條外，其他條文均不適用於香港特區」。這種觀點是否正確？","A. 正確，因為香港實行資本主義制度","B. 錯誤，《憲法》作為國家的根本法，在包括香港特區在內的全國疆域內具有最高法律效力","C. 正確，因為《基本法》已取代《憲法》在香港的地位","D. 視乎香港終審法院的裁決而定","B"],
                 [6,"根據《憲法》第五十七條，中華人民共和國的最高國家權力機關是甚麼？","A. 國務院","B. 全國人民代表大會","C. 最高人民法院","D. 中央軍事委員會","B"],
                 [7,"根據《憲法》第八十五條，中華人民共和國國務院（即中央人民政府）是最高國家權力機關的執行機關，也是甚麼機關？","A. 最高國家立法機關","B. 最高國家行政機關","C. 最高國家審判機關","D. 最高國家監察機關","B"],
-                [8,"中央對香港特別行政區擁有哪些權力？","A. 只有外交和防務兩項權力","B. 全面管治權","C. 只有名義上的主權，沒有實際管治權","D. 只擁有終審權","B"],
+                [8,"中央對香港特別行政區擁有哪些權力？","A. only 外交和防務兩項權力","B. 全面管治權","C. 只有名義上的主權，沒有實際管治權","D. 只擁有終審權","B"],
                 [9,"中央對香港特別行政區的「全面管治權」與特區的「高度自治權」之間是甚麼關係？","A. 兩者相互排斥、非此即彼","B. 全面管治權是高度自治權的源泉，兩者有機結合、辯證統一","C. 高度自治權限制了全面管治權的行使","D. 全面管治權只在緊急狀態下才存在","B"],
                 [10,"下列哪一項屬於中央直接行使的權力（即中央事權）？","A. 制定香港特區的財政預算案","B. 任命香港特別行政區行政長官和主要官員","C. 審理香港本地的民事糾紛案件","D. 管理香港的公共交通系統","B"],
                 [11,"根據《基本法》第四十五條，香港特別行政區行政長官在當地通過選舉或協商產生後，須由哪個機構任命？","A. 全國人大常委會","B. 中央人民政府（國務院）","C. 香港特別行政區立法會","D. 終審法院首席法官","B"],
@@ -1028,23 +1067,215 @@
                 [78,"《香港國安法》第六條第一款明確規定：「維護國家主權、統一和領土完整是包括香港同胞在內的甚麼人的共同義務？」","A. 僅限於政府公務員","B. 全中國人民","C. 僅限於立法會議員","D. 僅限於駐港部隊軍人","B"],
                 [79,"當我們在日常生活中或互聯網上遇到疑似危害國家安全的信息或活動時，正確的做法是甚麼？","A. 出於好奇轉發給朋友分享","B. 保持警惕，不參與、不傳播，並可透過警務處國家安全處舉報熱線等合法渠道向執法部門舉報","C. 加入相關群組協助宣傳","D. 視而不見並刪除警方提示","B"],
                 [80,"總結「維護國家安全的意義」，下列哪一項表述最為全面和準確？","A. 國安才能港安，國安才能家安；維護國家安全是「一國兩制」行穩致遠的根本保障，也是香港實現由治及興、保持長期繁榮穩定的堅實基石","B. 維護國家安全會削弱香港的國際地位","C. 完成23條立法後，香港就不再需要進行國家安全教育","D. 國家安全只涉及軍事防禦，與民生經濟無關","A"]
+            ],
+            // (主題1) 導學案04：香港特別行政區的政治體制 (50題)
+            4: [
+                [1,"香港特別行政區的政治體制是由哪一部法律予以規定和確立的？","A. 《中英聯合聲明》","B. 《香港特別行政區基本法》","C. 英國《皇室訓令》","D. 《香港人權法案條例》","B"],
+                [2,"香港特別行政區政治體制的核心特徵是甚麼？","A. 西方三權分立體制","B. 立法主導制","C. 以行政長官為核心的「行政主導」體制","D. 議會內閣制","C"],
+                [3,"在「行政主導」的政治體制下，行政機關與立法機關的關係是怎樣的？","A. 立法機關凌駕於行政機關之上","B. 互相制衡、互相配合，且重在配合","C. 行政機關與立法機關完全合併","D. 兩者互不往來、各自為政","B"],
+                [4,"根據《基本法》第四十三條，香港特別行政區行政長官是香港特別行政區的甚麼人，代表香港特別行政區？","A. 最高司法官","B. 首長","C. 立法會主席","D. 駐軍司令員","B"],
+                [5,"香港特別行政區行政長官具有「雙重身份」，分別是甚麼？","A. 既是香港特別行政區的首長，又是香港特別行政區政府的ケート（首長）","B. 既是行政長官，又是終審法院首席法官","C. 既是行政長官，又是立法會主席","D. 既是香港特區首長，又是英國樞密院成員","A"],
+                [6,"根據《基本法》第四十三條第二款，香港特別行政區行政長官依照本法的規定對誰負責？","A. 只對香港特別行政區選民負責","B. 對中央人民政府和香港特別行政區負責","C. 對香港特別行政區立法會和終審法院負責","D. 對聯合國秘書長負責","B"],
+                [7,"根據《基本法》第四十四條，香港特別行政區行政長官必須由年滿多少周歲、在香港通常居住連續滿二十年並在外國無居留權的香港特別行政區永久性居民中的中國公民擔任？","A. 三十周歲","B. 三十五周歲","C. 四十周歲","D. 四十五周歲","C"],
+                [8,"根據《基本法》第四十六條，香港特別行政區行政長官任期為多少年，可連任多少次？","A. 任期四年，可連任一次","B. 任期五年，可連任一次","C. 任期五年，可無限期連任","D. 任期六年，不可連任","B"],
+                [9,"根據完善後的選舉制度，行政長官候選人須獲得不少於多少名選舉委員會委員的提名，且在五個界別中每個界別參與提名的委員須不少於多少名？","A. 不少於150名委員提名，每個界別不少於15名","B. 不少於188名委員提名，每個界別不少於15名","C. 不少於300名委員提名，每個界別不少於50名","D. 不少於100名委員提名，無界別限制","B"],
+                [10,"行政長官由選舉委員會選出後，須經甚麼程序方能正式就職？","A. 由終審法院首席法官直接宣布就職","B. 由中央人民政府（國務院）實質性任命","C. 由立法會全體議員投票確認","D. 向英國國王宣誓","B"],
+                [11,"下列哪一項屬於《基本法》第四十八條規定的行政長官職權？","A. 制定、修改和廢除香港法律","B. 領導香港特別行政區政府；負責執行《基本法》和依照《基本法》適用於香港特區的其他法律","C. 行使香港特別行政區的終審權","D. 解釋《基本法》的所有條文","B"],
+                [12,"根據《基本法》第四十八條第(五)項，行政長官提名並報請中央人民政府任命下列哪些主要官員？","A. 各司司長、副司長，各局局長，廉政專員，審計署署長，警務處處長，入境事務處處長，海關關長","B. 立法會全體議員及區議會主席","C. 終審法院及高等法院的所有法官","D. 香港各大專院校的校長","A"],
+                [13,"根據《基本法》第四十八條第(六)項，行政長官依照法定程序任免甚麼人員？","A. 國務院港澳辦官員","B. 各級法院法官","C. 駐港部隊軍官","D. 外交部駐港特派員","B"],
+                [14,"根據《基本法》第四十九條，香港特別行政區行政長官如認為立法會通過的法案不符合香港特別行政區的整體利益，可在多少個月內將法案發回立法會重議？","A. 一個月內","B. 三個月內","C. 六個月內","D. 一年內","B"],
+                [15,"根據《基本法》第五十條，行政長官在一個任期內最多只可解散立法會多少次？","A. 一次","B. 兩次","C. 三次","D. 無限制","A"],
+                [16,"根據《基本法》第五十四條，香港特別行政區設立甚麼機構，作為協助行政長官決策的機構？","A. 政務委員會","B. 行政會議","C. 選舉委員會","D. 策略發展委員會","B"],
+                [17,"根據《基本法》第五十五條，香港特別行政區行政會議的成員由行政長官從哪些人士中委任？","A. 僅限於各級法院法官","B. 行政機關的主要官員、立法會議員和社會人士","C. 外國駐港領事館人員","D. 全國人大常委會委員","B"],
+                [18,"根據《基本法》第五十六條，行政長官在作出重要決策、向立法會提交法案、制定附屬法規和解散立法會前，須徵詢行政會議的意見，但哪兩項事宜除外？","A. 財政預算案和施政報告","B. 人事任免、紀律制裁和緊急情況下採取的措施","C. 教育政策和房屋政策","D. 醫療改革和交通規劃","B"],
+                [19,"行政長官如不採納行政會議多數成員的意見，應如何處理？","A. 必須辭職","B. 應將具體理由記錄在案","C. 交由立法會投票裁決","D. 解散行政會議","B"],
+                [20,"根據《基本法》第五十九條，香港特別行政區政府是香港特別行政區的甚麼機關？","A. 立法機關","B. 行政機關","C. 司法機關","D. 諮詢機關","B"],
+                [21,"根據《基本法》第六十條，香港特別行政區政府設有哪些部門？","A. 政務司、財政司、律政司和各局、處、署","B. 國防部、外交部、財政部","C. 參議院、眾議院、最高法院","D. 內閣辦公廳、樞密院","A"],
+                [22,"根據《基本法》第六十一條，香港特別行政區的主要官員由在香港通常居住連續滿多少年並在外國無居留權的香港特別行政區永久性居民中的中國公民擔任？","A. 七年","B. 十年","C. 十五年","D. 二十年","C"],
+                [23,"根據《基本法》第六十四條，香港特別行政區政府必須遵守法律，對香港特別行政區立法會負責。下列哪一項體現了政府對立法會負責？","A. 執行立法會通過並已生效的法律；定期向立法會作施政報告；答覆立法會議員的質詢；徵稅和公共開支須經立法會批准","B. 政府所有官員均由立法會議員直接任命和罷免","C. 政府日常行政指令須逐一經立法會主席簽署方能執行","D. 律政司的刑事檢控決定須經立法會批准","A"],
+                [24,"香港特別行政區政府實行「主要官員問責制」（政治委任制度），其主要目的是甚麼？","A. 取消公務員制度","B. 強化主要官員的政治承擔，切實回應市民訴求，更有效落實行政長官的施政理念","C. 讓外國籍人士擔任司局長","D. 將行政權移交立法會","B"],
+                [25,"在香港特區政府架構中，公務員隊伍應秉持甚麼原則，盡忠職守，堅定支持行政長官和特區政府依法施政？","A. 絕對擁護特定政黨","B. 效忠中華人民共和國香港特別行政區、擁護《基本法》、盡忠職守、對香港特區政府負責","C. 完全脫離特區政府獨立運作","D. 只向工會組織負責","B"],
+                [26,"根據《基本法》第六十六條，香港特別行政區的立法機關是甚麼？","A. 全國人民代表大會","B. 香港特別行政區立法會","C. 行政會議","D. 區議會","B"],
+                [27,"根據《基本法》第六十七條，香港特別行政區立法會由在外國無居留權的香港特別行政區永久性居民中的中國公民組成。但非中國籍的香港特區永久性居民和在外國有居留權的香港特區永久性居民也可以當選為立法會議員，其所佔比例不得超過立法會全體議員的百分之幾？","A. 百分之十","B. 百分之二十","C. 百分之三十","D. 百分之五十","B"],
+                [28,"根據《基本法》第六十九條，香港特別行政區立法會除第一屆任期為兩年外，每屆任期為多少年？","A. 三年","B. 四年","C. 五年","D. 六年","B"],
+                [29,"根據2021年完善後的香港特別行政區選舉制度，立法會議席總數增至90席，其「40、30、20」的組成結構是指甚麼？","A. 地區直選40席、功能界別30席、選委會20席","B. 選舉委員會選舉產生40席、功能團體選舉產生30席、分區直接選舉產生20席","C. 委任議員40席、功能界別30席、區議會互選20席","D. 港島40席、九龍30席、新界20席","B"],
+                [30,"在完善選舉制度後的立法會分區直接選舉中，全港劃分為多少個地方選區，每個選區選出多少名議員（採用雙議席單票制）？","A. 5個選區，每區4名","B. 10個選區，每區2名（共20名）","C. 18個選區，每區2名","D. 20個選區，每區1名","B"],
+                [31,"根據《基本法》第七十一條，香港特別行政區立法會主席由立法會議員互選產生。立法會主席必須具備甚麼資格？","A. 年滿三十周歲，在港居住滿七年","B. 年滿四十周歲，在香港通常居住連續滿二十年並在外國無居留權的香港特別行政區永久性居民中的中國公民","C. 任何立法會議員均可擔任，無年齡及居留權限制","D. 必須由資深大律師擔任","B"],
+                [32,"下列哪一項屬於《基本法》第七十三條規定的立法會職權？","A. 領導香港特別行政區政府及管理防務","B. 根據《基本法》規定並依照法定程序制定、修改和廢除法律；根據政府的提案，審核、通過財政預算；批准稅收和公共開支","C. 提名並任命各司司長及各局局長","D. 對刑事案件進行獨立審判","B"],
+                [33,"根據《基本法》第七十四條，立法會議員提出法律草案（私人草案）有甚麼嚴格限制，以體現「行政主導」原則？","A. 議員完全不能提出任何法律草案","B. 凡不涉及公共開支或政治體制或政府運作的法律草案，可由議員個別或聯名提出；凡涉及政府政策者，在提出前必須得到行政長官的書面同意","C. 只要有十名議員聯署即可提出任何涉及公共開支的法案","D. 須事先得到終審法院批准","B"],
+                [34,"根據《基本法》附件二，立法會對政府提出的法案和對立法會議員個人提出的議案、法案、修正案，分別採取甚麼表決通過機制？","A. 兩者均只需出席議員過半數通過","B. 政府提出的法案須獲出席會議的全體議員過半數票通過；議員個人提出的議案、法案和對政府法案的修正案須分別獲選舉委員會選舉產生的議員和、功能團體及分區直選產生的議員兩部分出席會議議員各過半數通過（分組點票）","C. 兩者均須全體議員三分之二多數通過","D. 由立法會主席一人決定是否通過","B"],
+                [35,"根據《基本法》第四十八條第(十)項及第六十二條第(五)項，編制並提出財政預算案、法案、議案的職權主要屬於哪個機關，這如何體現「行政主導」？","A. 屬於立法會，體現立法主導","B. 屬於行政長官及特區政府，政府掌握法案與財政預算的提案主導權，體現行政主導","C. 屬於終審法院，體現司法主導","D. 屬於區議會","B"],
+                [36,"2021年完善香港選舉制度，重構了選舉委員會。完善後的選舉委員會由1500名委員組成，共分為哪五個界別？","A. 第一界別：工商、金融界；第二界別：專業界；第三界別：基層、勞工和宗教等界；第四界別：立法會議員、地區組織代表等界；第五界別：香港特區全國人大代表、香港特區全國政協委員和有關全國性團體香港成員的代表界","B. 港島界、九龍界、新界東界、新界西界、離島界","C. 公務員界、教師界、醫生界、律師界、商界","D. 青年界、婦女界、長者界、少數族裔界、體育界","A"],
+                [37,"完善後的選舉委員會除了負責選舉行政長官候任人外，還新增了哪兩項重要職能？","A. 審理國安案件及管理香港外匯基金","B. 選舉產生立法會部分議員（40席），以及參與提名全部立法會議員候選人","C. 直接制定香港稅務條例及委任區議員","D. 任命香港警務處處長及廉政專員","B"],
+                [38,"在完善選舉制度下，香港特別行政區候選人資格審查委員會（資審會）在審查候選人資格時，可根據哪個機構根據警務處國家安全處的審查情況出具的審查意見書作出決定？","A. 選舉管理委員會","B. 香港特別行政區維護國家安全委員會（香港特區國安委）","C. 立法會內務委員會","D. 申訴專員公署","B"],
+                [39,"根據《基本法》附件一和附件二，候選人資格審查委員會根據香港特區國安委的審查意見書作出的候選人資格確認決定，是否可以提起訴訟？","A. 可向高等法院申請司法覆核","B. 不得提起訴訟","C. 可向英國樞密院上訴","D. 可向立法會提出申訴推翻","B"],
+                [40,"完善香港選舉制度的核心原則是全面落實甚麼重要政治原則？","A. 「愛國者治港」","B. 「西方代議制」","C. 「三權分立」","D. 「地方自治邦聯」","A"],
+                [41,"為甚麼說落實「愛國者治港」不是要搞「清一色」，而是「五光十色」？","A. 因為允許反中亂港分子繼續參選","B. 在愛國愛港的共同底線下，選舉委員會和立法會廣泛吸納了香港社會各階層、各界別、各方面代表人士，更具廣泛代表性、政治包容性、均衡參與性和公平競爭性","C. 因為只允許單一行業人士參選","D. 因為取消了所有功能界別","B"],
+                [42,"根據《基本法》第九十七條，香港特別行政區可設立非政權性的區域組織。目前香港設立的區域組織是甚麼？","A. 市政局及區域市政局","B. 區議會","C. 鄉議局立法庭","D. 街道辦事處","B"],
+                [43,"2023年香港特區完成重塑區議會制度立法工作。重塑後的第七屆區議會由哪些部分組成，以體現「愛國者治港」及行政主導？","A. 全部由地方直選產生","B. 由委任議員、地區委員會界別選舉產生的議員、區議會地方選區選舉產生的議員，以及當然議員（新界鄉事委員會主席）組成","C. 全部由立法會議員兼任","D. 由政府公務員直接充任","B"],
+                [44,"重塑區議會制度後，全港18區各區議會的主席由誰擔任？","A. 由區議員互選產生","B. 由當區民政事務專員（DO）擔任","C. 由立法會主席兼任","D. 由警區指揮官擔任","B"],
+                [45,"重塑區議會制度並強化地區治理架構，特區政府與18區區議會、哪兩個基層組織緊密協作，形成「民政事務專員＋區議會＋三會＋關愛隊」的地區治理新格局？","A. 地區服務及關愛隊伍（關愛隊）及「三會」（分區委員會、地區撲滅罪行委員會、地區防火委員會）","B. 國際非政府組織及外國商會","C. 街坊福利會及同鄉會","D. 業主立案法團及物業管理公司","A"],
+                [46,"根據《基本法》第五十七條及第五十八條，香港特別行政區設立哪兩個直接對行政長官負責、獨立工作的機構，分別負責反貪腐及審計政府帳目？","A. 廉政公署及審計署","B. 申訴專員公署及個人資料私隱專員公署","C. 競爭事務委員會及消費者委員會","D. 金管局及證監會","A"],
+                [47,"根據《基本法》第六十三條，香港特別行政區哪一個部門主管刑事檢察工作，不受任何干涉？","A. 警務處","B. 律政司","C. 保安局","D. 終審法院","B"],
+                [48,"在「行政主導」體制下，近年特區政府設立了「前廳交流會」及「行政長官互動交流答問會」，這有甚麼積極意義？","A. 削弱立法會的監督權","B. 促進良政善治，加強行政與立法機關之間的良性互動與政策溝通，凝聚共識為市民謀福祉","C. 讓立法會議員直接接管政府部門","D. 取消立法會的質詢環節","B"],
+                [49,"根據《基本法》第一百零四條及相關本地法例，除行政長官、主要官員、行政會議成員、立法會議員、各級法院法官外，還有哪些人員在就職時亦須依法宣誓或簽署聲明擁護《基本法》、效忠中華人民共和國香港特別行政區？","A. 僅限於外國遊客","B. 區議員、選舉委員會委員及特區政府全體公務員等公職人員","C. 所有私營企業員工","D. 所有大專院校學生","B"],
+                [50,"總結香港特別行政區的政治體制，下列哪一項描述最為準確？","A. 香港特區實行直轄於中央人民政府、以行政長官為核心的行政主導政治體制；行政與立法既互相制衡又互相配合，司法獨立，全面落實「愛國者治港」以實現良政善治","B. 香港特區實行西方三權分立制，立法權高於行政權","C. 區議會是擁有立法權和財政審批權的地方政權機關","D. 行政長官只需對香港選民負責，無需對中央人民政府負責","A"]
+            ],
+            // (主題1) 導學案05：法治精神與司法獨立 (80題)
+            5: [
+                [1,"法治（Rule of Law）是香港社會的核心價值和成功的基石。下列哪一項是法治精神的最基本要素？","A. 政府官員擁有凌駕法律的特權","B. 法律面前人人平等，任何人均不得凌駕於法律之上（包括政府機關和公職人員）","C. 市民可以根據個人政治立場決定是否守法","D. 法官可以隨意創造法律而不受《基本法》約束","B"],
+                [2,"在香港特別行政區的法律體系中，哪兩部法律共同構成香港法治的憲制基礎，處於最高法律地位？","A. 《中英聯合聲明》和《英國普通法》","B. 《中華人民共和國憲法》和《香港特別行政區基本法》","C. 《香港人權法案條例》和《公安條例》","D. 《公民權利和政治權利國際公約》和《衡平法》","B"],
+                [3,"根據《基本法》第八條，香港原有法律，除同《基本法》相抵觸或經香港特別行政區的立法機關作出修改者外，予以保留。香港原有法律包括哪五個部分？","A. 憲法、刑法、民法、商法、行政法","B. 普通法、衡平法、條例、附屬立法和習慣法","C. 英皇制誥、皇室訓令、樞密院令、英國國會法案、判例法","D. 國際條約、聯合國決議、宗教法、部族法、海事法","B"],
+                [4,"根據《基本法》第十八條，在香港特別行政區實行的法律包括哪些？","A. 《基本法》，以及《基本法》第八條規定的香港原有法律和香港特別行政區立法機關制定的法律（並包括列入《基本法》附件三的全國性法律）","B. 內地所有的全國性法律","C. 英國現行有效的所有法律","D. 美國聯邦法律與普通法","A"],
+                [5,"香港是目前中國唯一實行哪一種法律制度（法系）的司法管轄區，這也是「一國兩制」下香港的獨特優勢？","A. 大陸法系（成文法系）","B. 普通法制度（Common Law）","C. 宗教法系","D. 混合部落法系","B"],
+                [6,"在普通法制度下，「遵循先例」（Stare Decisis）原則是指甚麼？","A. 所有法院均可隨意推翻上級法院的裁決","B. 下級法院在審理案件時，受上級法院過往就同類案件所作出的判例（法律原則）約束","C. 香港法院必須無條件遵從英國最高法院在1997年以後的所有判例","D. 立法會制定法例時必須遵循古代習慣法","B"],
+                [7,"根據《基本法》第八十四條，香港特別行政區法院依照《基本法》第十八條所規定的適用於香港特別行政區的法律審判案件，其他普通法適用地區的司法判例具有甚麼作用？","A. 具有絕對的強制約束力，高於《基本法》","B. 可作參考","C. 完全禁止在法庭上引用","D. 自動成為香港的成文法例","B"],
+                [8,"在香港原有法律中，「習慣法」主要是指甚麼，常用於處理新界原居民的傳統權益及土地繼承事宜？","A. 英國中世紀的封建習慣","B. 部分中國傳統習慣法（如大清律例及傳統習俗）","C. 歐洲商人的航海習慣","D. 國際金融交易慣例","B"],
+                [9,"在香港法律體系中，「條例」（Ordinances）是由哪一個機構經三讀程序制定並通過的成文法？","A. 終審法院","B. 香港特別行政區立法會（並經行政長官簽署及公布）","C. 律政司","D. 香港大律師公會","B"],
+                [10,"甚麼是「附屬立法」（Subsidiary Legislation，又稱附屬法例、規例）？","A. 由立法會授權行政長官會同行政會議、政府部門或法定機構就條例的具體執行細節所制定的規例或規則","B. 由區議會自行制定的地方法律","C. 由英國國會為香港制定的法例","D. 法院法官私下制定的審訊守則","A"],
+                [11,"根據《基本法》第十一條第二款，香港特別行政區立法機關制定的任何法律，均不得同哪一部法律相抵觸？","A. 《英國人權法》","B. 《香港特別行政區基本法》","C. 《廣東省地方性法規》","D. 《國際商事仲裁法》","B"],
+                [12,"關於「守法」與「法治」的關係，下列哪一項理解是正確的？","A. 守法只是基層市民的義務，精英階層可以「違法達義」","B. 守法是法治的基石；任何人在行使權利和自由時都必須遵守法律，絕不能以任何政治訴求或崇高理想為藉口去合理化暴力或違法行為","C. 只要願意承擔坐牢的後果，就可以隨意違法破壞公共秩序","D. 法治只要求政府守法，不要求市民守法","B"],
+                [13,"近年有人鼓吹所謂「違法達義」或「公民抗命」，認為只要目的看似「正義」就可以使用暴力或破壞法律。這種觀點對香港法治有何影響？","A. 促進了法治的進步","B. 嚴重歪曲法治精神，侵蝕市民的守法意識，破壞社會秩序與他人合法權益，直接衝擊香港的法治根基","C. 是《基本法》明文保障的權利","D. 受到香港法院的全面支持與豁免刑責","B"],
+                [14,"根據《基本法》第十九條及第八十五條，香港特別行政區享有甚麼權力，法院獨立進行審判，不受任何干涉？","A. 獨立的立法權和終審權","B. 獨立的司法權和終審權","C. 獨立的外交權和軍事審判權","D. 獨立的修憲權","B"],
+                [15,"根據《基本法》第八十五條，香港特別行政區法院獨立進行審判，不受任何干涉，司法人員履行審判職責的行為有甚麼保障？","A. 享有終身免稅待遇","B. 不受法律追究（司法豁免權）","C. 可以兼任立法會議員","D. 不受任何司法行為守則約束","B"],
+                [16,"根據《基本法》第八十一條，香港特別行政區設立終審法院、高等法院、區域法院、裁判署法庭和其他專門法庭。其中高等法院設有哪些法庭？","A. 上訴法庭和原訟法庭","B. 民事法庭和家事法庭","C. 少年法庭和死因裁判法庭","D. 勞資審裁處和小額錢債審裁處","A"],
+                [17,"根據《基本法》第八十一條第二款，原在香港實行的甚麼制度原則予以保留，這保證了訴訟當事人有機會就下級法院的裁決向上級法院提出上訴？","A. 一審終審制度","B. 刑事檢控和民事訴訟的原則及上訴制度","C. 神明裁判制度","D. 政治審查審判制度","B"],
+                [18,"根據《基本法》第八十二條，香港特別行政區的終審權屬於哪個法院？","A. 英國樞密院司法委員會","B. 最高人民法院","C. 香港特別行政區終審法院","D. 高等法院上訴法庭","C"],
+                [19,"根據《基本法》第八十二條，終審法院可根據需要邀請哪裏的法官參加審判？","A. 僅限於英國最高法院法官","B. 其他普通法適用地區的法官（海外非常任法官）","C. 國際法院的所有法官","D. 任何國家的執業律師","B"],
+                [20,"在香港各級法院中，絕大多數刑事案件（包括較輕微及嚴重罪行的初步聆訊）最初在哪一級法院提堂及審理？","A. 終審法院","B. 高等法院上訴法庭","C. 裁判法院（Magistrates' Courts）","D. 競爭事務審裁處","C"],
+                [21,"在香港，區域法院（District Court）審理刑事案件時，可判處的最高監禁刑期一般為多少年？","A. 2年","B. 7年","C. 14年","D. 終身監禁","B"],
+                [22,"最嚴重的刑事案件（如謀殺、誤殺、強姦、持械行劫及嚴重販毒等）由哪一個法院進行初審，其判刑上限可達終身監禁？","A. 裁判法院","B. 區域法院","C. 高等法院原訟法庭","D. 死因裁判法庭","C"],
+                [23,"香港設有多個專門法庭及審裁處，以快捷、廉宜及非正式的方式處理特定類型的糾紛。下列哪一個審裁處專門處理金額不超過75,000港元的民事申索，且不准聘請律師代表出庭？","A. 勞資審裁處","B. 小額錢債審裁處","C. 土地審裁處","D. 淫褻物品審裁處","B"],
+                [24,"專門處理僱主與僱員之間有關僱傭合約或《僱傭條例》引起的金錢申索糾紛，且不准律師代表出庭的是哪個機構？","A. 勞資審裁處","B. 小額錢債審裁處","C. 家事法庭","D. 少年法庭","A"],
+                [25,"當有人在受官方看管期間死亡、死因不明、意外或暴力致死時，由哪一個專門法庭負責研訊死因及死亡情況？","A. 高等法院原訟法庭","B. 死因裁判法庭","C. 少年法庭","D. 區域法院","B"],
+                [26,"根據《基本法》第八十八條，香港特別行政區法院的法官，根據哪一個獨立委員會推薦，由行政長官任命？","A. 選舉委員會","B. 當地法官和法律界及其他方面知名人士組成的獨立委員會（即「司法人員推薦委員會」）","C. 立法會司法及法律事務委員會","D. 公務員敘用委員會","B"],
+                [27,"根據《基本法》第八十九條，香港特別行政區法院的法官只有在甚麼情況下，行政長官才可根據終審法院首席法官任命的不少於三名當地法官組成的審議庭的建議，予以免職？","A. 作出不利於政府的裁決時","B. 無力履行職責或行為不檢","C. 與立法會議員意見不合時","D. 達到50歲時","B"],
+                [28,"根據《基本法》第八十九條第二款，如果是「終審法院首席法官」因無力履行職責或行為不檢而需要進行調查，應由行政長官任命怎樣的審議庭負責？","A. 由三名外國律師組成","B. 不少於五名當地法官組成的審議庭","C. 由立法會全體議員組成","D. 由廉政公署專員組成","B"],
+                [29,"根據《基本法》第九十條，香港特別行政區終審法院的法官和高等法院首席法官的任命或免職，行政長官除須依照法定程序外，還須徵得哪個機構的同意，並報哪個機構備案？","A. 徵得行政會議同意，報國務院港澳辦備案","B. 徵得立法會同意，並報全國人民代表大會常務委員會備案","C. 徵得大律師公會同意，報最高人民法院備案","D. 徵得區議會同意，報中聯辦備案","B"],
+                [30,"根據《基本法》第九十條第一款，香港特別行政區終審法院和高等法院的首席法官，必須具備甚麼國籍及居留權資格？","A. 可由任何國籍的法官擔任","B. 應由在外國無居留權的香港特別行政區永久性居民中的中國公民擔任","C. 必須具有英國或澳洲雙重國籍","D. 只需在香港居住滿三年即可","B"],
+                [31,"根據《基本法》第九十二條，香港特別行政區的法官和其他司法人員，應根據甚麼標準選用，並可從其他普通法適用地區聘用？","A. 根據政治派別背景選用","B. 根據其本人的司法和專業才能選用","C. 根據財富多寡選用","D. 根據社交媒體知名度選用","B"],
+                [32,"《基本法》對法官的任命、任期保障、免職程序、薪酬保障及審判豁免權作出嚴格規定，其根本目的是甚麼？","A. 讓法官成為不受《基本法》約束的特權階層","B. 從制度上保障「司法獨立」，確保法官在審理案件時無懼無偏、不徇私、不畏權勢，純粹依據法律和證據作出公正裁決","C. 讓法院取代立法會制定法律","D. 阻止市民提出上訴","B"],
+                [33,"根據《基本法》第一百零四條，各級法院法官和其他司法幹部在就職時必須依法宣誓。宣誓的法定內容是甚麼？","A. 效忠英國普通法體系","B. 擁護《中華人民共和國香港特別行政區基本法》，效忠中華人民共和國香港特別行政區，盡忠職守，奉公守法，公正廉潔，以無懼、無偏、無私、無欺之精神，維護法制，主持正義","C. 只效忠司法機構本身","D. 承諾永不引用全國性法律","B"],
+                [34,"關於「司法獨立」與「國家憲制秩序」的關係，下列哪一項表述是正確的？","A. 司法獨立等同於「司法主權」或「司法至上」，可以脫離「一國兩制」憲制秩序","B. 香港特區的司法獨立是《基本法》賦予的，必須在《憲法》和《基本法》確立的憲制秩序框架內運作；法官有憲制責任全面準確貫徹「一國兩制」方針及維護國家安全","C. 香港法院有權宣布全國人大或全國人大常委會的決定無效","D. 司法獨立意味著全國人大常委會不能解釋《基本法》","B"],
+                [35,"根據《基本法》第一百五十八條第一款，《基本法》的最終解釋權屬於哪個國家機構？","A. 香港特別行政區終審法院","B. 全國人民代表大會常務委員會","C. 國務院","D. 最高人民法院","B"],
+                [36,"有人聲稱「全國人大常委會釋法會破壞香港司法獨立」。為甚麼這種說法是錯誤的？","A. 因為人大釋法每年都進行數十次","B. 「人大釋法」是《憲法》第六十七條第(四)項和《基本法》第一百五十八條明文規定的憲制權力，是香港法治和憲制秩序的重要組成部分，旨在釐清法律原意、解決重大憲制爭議，並不干預特區法院對具體案件的獨立審判權和終審權","C. 因為人大釋法沒有法律效力","D. 因為終審法院可以推翻人大釋法","B"],
+                [37,"根據《基本法》第八十六條，原在香港實行的甚麼制度原則予以保留，讓普通市民能夠參與高等法院原訟法庭嚴重刑事案件及死因研訊的審判工作？","A. 人民陪審員制度","B. 陪審團制度（Jury System）","C. 鄉紳公審制度","D. 專家仲裁團制度","B"],
+                [38,"在高等法院原訟法庭的刑事審訊中，陪審團與主審法官的分工是怎樣的？","A. 陪審團負責判刑，法官負責決定是否有罪","B. 法官負責裁定法律問題及引導陪審團（並在定罪後量刑），陪審團則根據呈堂證據裁定事實問題（即裁定被告人罪名成立或不成立）","C. 陪審團可隨時罷免主審法官","D. 法官與陪審團一同投票決定罪名","B"],
+                [39,"根據《基本法》第八十七條第二款，任何人在被合法拘捕後，享有甚麼權利，直到被法院判罪為止，假定無罪？","A. 立即獲得釋放免受檢控的權利","B. 盡早接受司法機關公正審判的權利（及無罪推定原則）","C. 拒絕出庭應訊的權利","D. 自行挑選主審法官的權利","B"],
+                [40,"在刑事訴訟中，「無罪推定」（Presumption of Innocence）原則意味著舉證責任（Burden of Proof）主要在哪一方，且舉證標準是甚麼？","A. 舉證責任在被告人，必須自證清白","B. 舉證責任在控方（律政司），控方必須在「毫無合理疑點」（Beyond Reasonable Doubt）下證明被告人有罪","C. 舉證責任在主審法官","D. 只需有51%的可能性（相對可能性的衡量）即可將被告人定罪","B"],
+                [41,"在民事訴訟（如合約糾紛、侵權索償）中，法庭裁定勝訴與否所採用的舉證標準是甚麼？","A. 毫無合理疑點","B. 相對可能性的衡量（Balance of Probabilities，即哪一方的說法較為可信）","C. 必須有十名證人作供","D. 由陪審團全票通過","B"],
+                [42,"法治精神強調「自然公正原則」（Rules of Natural Justice）及程序公義。下列哪兩項是自然公正原則的核心要求？","A. 秘密審訊與快速處決","B. 「任何人不得在與自己利益有關的案件中擔任法官（免受偏頗原則）」以及「在作出不利決定前須聽取當事人的陳詞（公平聽訊原則）」","C. 原告人永遠優先於被告人","D. 有錢人享有優先審訊權","B"],
+                [43,"甚麼是「司法覆核」（Judicial Review）？","A. 上級法院對下級法院刑事判刑的重新審理","B. 高等法院原訟法庭對行政機關或公職人員行使公權力的行政決定進行合法性審查，確保其沒有超越法定權限（越權）、違反法定程序或極度不合理","C. 立法會對法院裁決的審查","D. 市民透過公投推翻法庭判決","B"],
+                [44,"在處理「司法覆核」申請時，法庭的角色是甚麼，界線在哪裏？","A. 法庭可以取代行政機關制定香港的房屋、經濟或福利政策","B. 法庭只審查有關行政決定的「合法性」及「程序恰當性」，而不會審查政策本身的優劣利弊，亦不會取代行政機關作出政策決定；且司法覆核不應被濫用作為阻撓政府依法施政的政治工具","C. 任何市民隨時都可以無條件申請司法覆核並自動暫緩政府所有工程","D. 司法覆核可以審查國防、外交等國家行為以及香港特區國安委的決定","B"],
+                [45,"根據《基本法》第三十五條，香港居民有權得到秘密法律諮詢、向法院提起訴訟、選擇律師及時保護自己的合法權益或在法庭上為其代理和獲得甚麼？","A. 免費移民外國的權利","B. 司法補救（以及有權對行政部門和行政人員的行為向法院提起訴訟）","C. 豁免繳納所有稅項","D. 直接任命律政司司長的權利","B"],
+                [46,"為體現「法律面前人人平等」，確保沒有人因為缺乏經濟能力而無法透過法律途徑尋求公義，香港特區政府設立了甚麼制度？","A. 法律援助制度（由法律援助署及當值律師服務提供）","B. 全民免費私人大律師派發制度","C. 免審直接勝訴制度","D. 眾籌訴訟豁免制度","A"],
+                [47,"申請法律援助（法援）一般需要通過哪兩項審查，以確保公帑得以妥善運用並防止濫訴？","A. 政治立場審查與學歷審查","B. 「經濟審查」（資產不超過法定上限）及「案情審查」（具備合理訴訟理由）","C. 體能測試與語言測試","D. 社交媒體粉絲數量審查","B"],
+                [48,"在香港，法律專業人員主要分為哪兩個分支，各有不同的職責分工？","A. 公證人與書記官","B. 大律師（Barristers，又稱訟務律師）與律師（Solicitors，又稱事務律師）","C. 檢察官與偵探","D. 法學教授與太平紳士","B"],
+                [49,"在香港成立哪兩個專業團體，分別負責監管「大律師」和「律師」的專業操守與執業資格？","A. 香港大律師公會及香港律師會","B. 法律改革委員會及法律援助服務局","C. 司法人員推薦委員會及獨立監警會","D. 仲裁學會及調解員學會","A"],
+                [50,"根據《基本法》第六十三條，香港特別行政區律政司主管刑事檢察工作，不受任何干涉。律政司在決定是否提出刑事檢控時，主要依據《檢控守則》中的哪兩項核心準則？","A. 被告人的社會地位及傳媒關注度","B. 一是「是否有充分證據支持提出和繼續進行檢控（合理定罪機會）」；二是「假若有充分證據，進行檢控是否符合公眾利益」","C. 外國政府的意見及政黨訴求","D. 受害人是否願意支付檢控費用","B"],
+                [51,"除了向法院提出訴訟外，香港積極推動「替代性爭議解決方式」（ADR），鼓勵當事人以更省時、省錢及和諧的方式解決糾紛。常見的替代性爭議解決方式包括哪兩種？","A. 私下武力決鬥與網上公審","B. 調解（Mediation）與仲裁（Arbitration）","C. 申請破產與罷工","D. 向外國領事館投訴","B"],
+                [52,"在「調解」與「仲裁」中，哪一種方式的裁決具有與法院判決相若的法律約束力，並可在全球多個《紐約公約》締約國及內地申請強制執行？","A. 街坊勸解","B. 仲裁（Arbitration）","C. 傳媒調停","D. 心理輔導","B"],
+                [53,"國家《十四五規劃綱要》及二十大報告支持香港建設成為甚麼法律及爭議解決服務中心，充分肯定了香港普通法制度及法治優勢？","A. 歐洲海事仲裁中心","B. 亞太區國際法律及解決爭議服務中心","C. 北美專利訴訟中心","D. 非洲商貿調解中心","B"],
+                [54,"2023年2月，中國政府在香港特別行政區正式成立了哪一個政府間國際法律組織（總部設於香港），標誌着香港在國際調解領域的重要地位？","A. 國際刑事法院分院","B. 國際調解院籌備辦公室（並於香港設立國際調解院總部）","C. 世界貿易組織上訴機構","D. 聯合國國際法院亞洲分庭","B"],
+                [55,"在「一國兩制」下，香港與內地屬於不同的法域。根據《基本法》第九十五條，香港特別行政區可與全國其他地區的司法機關通過協商依法進行司法方面的聯繫和相互提供協助。回歸以來，兩地簽署了多項民商事司法互助安排，這有甚麼重要作用？","A. 用內地成文法取代香港普通法","B. 促進粵港澳大灣區及兩地規則銜接、機制對接，便利跨境民商事糾紛解決、文書送達、取證及判決相互認可和執行，保障兩地居民與企業合法權益","C. 取消香港法院的民事管轄權","D. 讓香港律師無需考試直接成為內地法官","B"],
+                [56,"香港特區設有哪一個諮詢機構，由律政司司長擔任主席，負責研究改革香港法律的有關課題並發表報告書？","A. 香港法律改革委員會（法改會）","B. 立法會財務委員會","C. 撲滅罪行委員會","D. 選舉管理委員會","A"],
+                [57,"如果有市民或傳媒因為對法庭的裁決不滿，而對法官進行「起底」、人身攻擊、威嚇甚至企圖藉施壓影響法官判案，這會構成甚麼嚴重後果？","A. 屬於完全合法的言論自由","B. 嚴重損害司法獨立與法治尊嚴，並可能觸犯「藐視法庭罪」、刑事恐嚇罪或違反《個人資料（私隱）條例》","C. 法官必須立即按網民意見更改判決","D. 只會受到道德譴責，不負法律責任","B"],
+                [58,"公眾和傳媒是否有權評論法院已經作出的判決？","A. 絕對禁止任何人在任何情況下談論法庭案件","B. 可以就法院裁決進行理性、客觀、基於法律理據的討論或提出合法上訴，但絕不能惡意造謠抹黑、威嚇司法人員或干預正在進行的司法程序（妨礙司法公正）","C. 可以在審訊期間在法庭內大聲喧嘩干擾證人作供","D. 可以透過暴力衝擊法院大樓表達不滿","B"],
+                [59,"部分外國政客曾企圖透過施壓，迫使受聘於香港終審法院的海外非常任法官辭職，甚至威脅制裁香港法官和檢控官。這種行徑本質上是甚麼？","A. 維護香港法治的友善舉動","B. 公然踐踏法治精神、粗暴干預香港特區司法獨立的政治操弄和霸凌行徑","C. 符合國際法的正常司法協助","D. 協助香港培訓司法人員","B"],
+                [60,"在《香港國安法》及《維護國家安全條例》實施後，香港法院在審理危害國家安全案件時，是否仍然堅持法治原則和司法獨立？","A. 否，國安案件不再經過法庭審訊","B. 是，特區法院嚴格依照《基本法》、國安法律及普通法程序，堅持無罪推定、公開審訊（除涉及國家秘密等法定例外）、保障被告人聘請律師辯護及上訴等訴訟權利，獨立公正進行審判","C. 國安案件全部交由警察直接判刑","D. 國安案件不再需要任何證據","B"],
+                [61,"根據《香港國安法》第四十四條設立的「指定法官」制度，有人質疑行政長官會否親自挑選某一宗具體案件的主審法官。事實真相是怎樣的？","A. 行政長官會親自為每一宗案件指定哪一位法官審理","B. 行政長官只是從現任各級法院法官中指定若干名法官列入「指定法官」名單（任期一年）；至於具體哪一宗案件由名單中的哪一位法官審理，完全由司法機構按既定獨立運作機制指派，行政長官絕不干預","C. 由律政司司長指定具體案件的主審法官","D. 由被告人自己在名單中挑選","B"],
+                [62,"根據《基本法》第十九條第三款，香港特別行政區法院對國防、外交等國家行為無管轄權。這項規定與司法獨立有否衝突？","A. 有嚴重衝突，法院應該管轄外交事務","B. 毫無衝突；在世界各國（包括英美等普通法國家），國防、外交等「國家行為」（Acts of State）均屬中央最高行政或立法機關的職權，法院均不予管轄，這是主權原則的普世體現","C. 只有香港才有這項規定","D. 法院可以透過司法覆核推翻外交決定","B"],
+                [63,"香港設有多個法定機構負責監察政府行政或保障市民權益，以配合法治體系運作。其中，負責調查市民指稱政府部門或公營機構「行政失當」的獨立機構是甚麼？","A. 申訴專員公署（The Ombudsman）","B. 審計署","C. 破產管理署","D. 土地註冊處","A"],
+                [64,"負責執行《反歧視條例》（包括性別、殘疾、家庭崗位及種族歧視條例），消除歧視並促進平等機會的法定機構是甚麼？","A. 平等機會委員會（平機會）","B. 個人資料私隱專員公署","C. 獨立監察警方處理投訴委員會","D. 社會福利署","A"],
+                [65,"負責監察《個人資料（私隱）條例》的施行，並打擊非法「起底」（Doxxing）行為的法定機構是甚麼？","A. 通訊事務管理局","B. 個人資料私隱專員公署（私隱公署）","C. 知識產權署","D. 政府資訊科技總監辦公室","B"],
+                [66,"香港擁有享譽國際的廉潔法治環境。根據《基本法》第五十七條，全職獨立負責打擊公營及私營機構貪污賄賂罪行，直接向行政長官負責的機構是甚麼？","A. 警務處商業罪案調查科","B. 廉政公署（ICAC）","C. 審計署","D. 競爭事務委員會","B"],
+                [67,"廉政公署自1974年成立以來，採用哪「三管齊下」的策略有效肅清貪污，維護香港公平法治的社會環境？","A. 執法（調查處）、預防（防止貪污處）及教育（社區關係處）","B. 罰款、遣返及宵禁","C. 立法、審判及監獄管理","D. 稅務審查、外匯管制及商業登記","A"],
+                [68,"在刑事司法制度中，「一事不再審」（禁止雙重追訴，Double Jeopardy）原則是指甚麼？","A. 犯過一次罪的人終身不能再被警察調查其他新罪行","B. 任何人如已經由有管轄權的法院依法作出最終有罪或無罪判決，除法定上訴或重審程序外，不得就同一行為再次予以審判或懲罰","C. 同一宗案件不能有超過一名證人","D. 法庭一天只能審理一宗案件","B"],
+                [69,"根據《基本法》第九條及《法定語文條例》，香港特別行政區各級法院在進行審訊時，可使用甚麼語言（實現雙語法制）？","A. 只准使用英文","B. 中文或英文（或中英雙語並用，並提供傳譯服務）","C. 只准使用普通話","D. 拉丁文及英文","B"],
+                [70,"在法治社會中，法律必須具備「公開性、明確性、可預測性及穩定性」。這對市民和投資者有甚麼重要意義？","A. 讓法律條文變成無人能懂的機密","B. 讓市民和投資者清楚知道甚麼行為合法、甚麼行為違法及其法律後果，從而能安心規劃個人生活與商業投資，保障交易安全與產權","C. 讓政府可以追溯處罰十年前的合法行為","D. 讓法官可以按當天心情判案","B"],
+                [71,"根據世界銀行公布的「全球治理指標」（Worldwide Governance Indicators）等多項國際權威評估，香港在「法治」（Rule of Law）指標上的表現如何？","A. 長期處於全球墊底位置","B. 回歸以來長期位居全球前列（由1996年的約60多名大幅躍升並穩定維持在90分位以上的高水平），印證「一國兩制」下香港法治堅如磐石","C. 自1997年起已被取消評分資格","D. 低於所有發展中國家","B"],
+                [72,"香港特別行政區的完善法治及普通法制度，對香港鞏固「國際金融、航運、貿易中心」地位發揮了甚麼關鍵作用？","A. 阻礙了跨國企業來港上市","B. 與國際商貿規則高度接軌，提供公正透明的司法保障、健全的知識產權保護、自由的資金流動保障及高效的爭議解決機制，是吸引全球資本和人才的「金字招牌」","C. 只對本地小型零售店有幫助","D. 限制了香港與「一帶一路」國家的合作","B"],
+                [73,"關於「法律面前人人平等」，下列哪一項描述符合《基本法》第二十五條及香港法治精神？","A. 香港居民在法律面前一律平等；不論種族、性別、貧富、宗教信仰或社會地位，均同等地受法律保護，違法時亦同等地受法律制裁","B. 立法會議員在街頭犯刑事罪行可獲豁免檢控","C. 富商在民事訴訟中自動勝訴","D. 公務員違法無需接受法庭審判","A"],
+                [74,"根據《基本法》第七十七條及第七十八條，立法會議員在甚麼特定場合上的發言和表決不受法律追究，但這是否代表議員在議會外或使用暴力時可凌駕法律？","A. 在任何場合包括街頭暴動中均不受追究","B. 議員在立法會的會議上發言和表決不受法律追究，但這項特權絕不涵蓋在議會內外實施普通刑事犯罪、暴力襲擊或危害國家安全的違法行為","C. 議員在網上發表誹謗言論不受追究","D. 議員可隨時免受廉政公署調查","B"],
+                [75,"如果市民認為自己在與警務人員接觸過程中受到不合理對待，香港設有甚麼法定雙層投訴機制處理，以體現法治下的制度監督？","A. 由投訴警察課（CAPO）進行調查，並必須將調查報告呈交獨立的法定機構「獨立監察警方處理投訴委員會」（監警會 IPCC）進行審核和監察","B. 只能向國際特赦組織投訴","C. 完全沒有任何投訴渠道","D. 直接由區議會進行刑事審訊","A"],
+                [76,"為培養青年學生的法治素養，特區政府律政司近年積極推行甚麼法治教育計劃，培訓各界人士及青年成為法治教育領袖？","A. 「法治教育領袖培訓計劃」（ROLE）","B. 「全民大律師速成計劃」","C. 「海外法官留學計劃」","D. 「商業仲裁免試計劃」","A"],
+                [77,"當市民對現行某項法律條文或政府政策有不同意見時，在法治社會中應透過甚麼途徑表達訴求？","A. 堵塞紅磡海底隧道及破壞港鐵設施","B. 透過合法、和平、理性的途徑（如在公眾諮詢期提交意見、向立法會議員或區議員反映、透過傳媒理性討論、和平合法集會或循司法途徑解決）","C. 圍堵法院及襲擊持不同意見的市民","D. 勾結外國勢力要求制裁香港","B"],
+                [78,"18歲以下的青少年如果不幸觸犯非謀殺類的刑事罪行，通常會由哪一個專門法庭審理，該法庭在處理案件時特別注重甚麼？","A. 高等法院原訟法庭，注重最高刑罰","B. 少年法庭（Juvenile Court，處理10歲至未滿16歲的少年人或兒童），在秉持司法公正的同時，特別注重保護少年犯的私隱、福祉以及協助其改過自新（更生）","C. 勞資審裁處，注重罰款","D. 死因裁判法庭","B"],
+                [79,"在香港，刑事責任的最低年齡（Age of Criminal Responsibility）是多少歲？","A. 7歲","B. 10歲（未滿10歲的兒童在法律上被推定為無犯罪能力）","C. 16歲","D. 18歲","B"],
+                [80,"總結「法治精神與司法獨立」，下列哪一項陳述最為全面和準確？","A. 《憲法》和《基本法》是香港法治的根基；獨立的司法權和終審權、公正無私的法官、獨立的刑事檢控、完善的法律援助以及全社會自覺守法的意識，共同築起了香港繁榮穩定的法治長城","B. 司法獨立意味著香港法院可以凌駕於《憲法》和《基本法》之上","C. 只要動機良好，使用暴力破壞社會秩序也符合法治精神","D. 香港回歸後已不再實行普通法制度","A"]
+            ],
+            // (主題1) 導學案06：香港居民的權利與義務 (50題)
+            6: [
+                [1,"《香港特別行政區基本法》哪一章專門規定了「居民的基本權利和義務」，充分體現了國家對香港居民權利和自由的重視與憲制保障？","A. 第一章","B. 第二章","C. 第三章（第二十四條至第四十二條）","D. 第四章","C"],
+                [2,"根據《基本法》第二十四條第一款，香港特別行政區居民（簡稱香港居民）分為哪兩類？","A. 本地居民和外籍居民","B. 永久性居民和非永久性居民","C. 納稅居民和免稅居民","D. 原居民和新移民","B"],
+                [3,"根據《基本法》第二十四條第二款，下列哪一類人士屬於「香港特別行政區永久性居民」？","A. 來港旅遊逗留七天的外國旅客","B. 在香港特區成立以前或以後在香港出生的中國公民，或在香港通常居住連續七年以上的中國公民（以及符合法定的非中國籍連續居滿七年並以香港為永久居住地的人士等共六類）","C. 在香港持有物業但從未在港居住的外國商人","D. 來港就讀一年制碩士課程的留學生","B"],
+                [4,"根據《基本法》第二十四條第三款，香港特別行政區永久性居民依法享有甚麼重要權利？","A. 豁免遵守香港法律的權利","B. 在香港特別行政區的居留權和有資格依照香港特別行政區法律取得載明其居留權的永久性居民身份證","C. 自動獲得外國護照的權利","D. 免費享用所有私人醫療服務的權利","B"],
+                [5,"根據《基本法》第二十六條，哪一類香港居民依法享有選舉權和被選舉權（政治權利）？","A. 所有在香港逗留的人士（包括遊客）","B. 香港特別行政區永久性居民","C. 僅限於年薪超過一百萬港元的納稅人","D. 香港特別行政區非永久性居民","B"],
+                [6,"根據《基本法》第二十四條第四款，香港特別行政區「非永久性居民」是指甚麼人？","A. 非法入境者","B. 有資格依照香港特別行政區法律取得香港居民身份證，但沒有居留權的人","C. 永久性居民在海外的朋友","D. 外國駐港領事館的外交官","B"],
+                [7,"根據《基本法》第四十一條，在香港特別行政區境內的「香港居民以外的其他人」（如來港旅客、短期工作人士等），享有哪些權利和自由？","A. 完全不享有任何法律保障","B. 依法享有《基本法》第三章規定的香港居民的權利和自由（但永久性居民專屬的居留權、選舉權和被選舉權等除外）","C. 享有立法會議員的投票權","D. 可領取香港特區護照","B"],
+                [8,"根據《基本法》第二十五條，香港居民在甚麼面前一律平等？","A. 財富分配","B. 法律","C. 職位高低","D. 學歷背景","B"],
+                [9,"根據《基本法》第二十七條，香港居民享有言論、新聞、出版的自由，以及哪些自由？","A. 結社、集會、遊行、示威的自由，組織和參加工會、罷工的權利和自由","B. 逃稅及走私的自由","C. 隨意堵塞主要交通幹道的自由","D. 煽動分裂國家及暴力犯罪的自由","A"],
+                [10,"根據《基本法》第二十八條，香港居民的甚麼自由不受侵犯，不受任意或非法逮捕、拘留、監禁，禁止任意或非法搜查居民的身體、剝奪或限制居民的人身自由，禁止對居民施行酷刑、任意或非法奪取居民的生命？","A. 商業壟斷自由","B. 人身自由","C. 網絡匿名毀謗自由","D. 豁免出庭自由","B"],
+                [11,"根據《基本法》第二十九條，香港居民的住宅和其他房屋不受侵犯。禁止甚麼行為？","A. 禁止政府徵收差餉","B. 禁止任意或非法搜查、侵入居民的住宅和其他房屋","C. 禁止業主出租房屋","D. 禁止消防員在火災時進入救援","B"],
+                [12,"根據《基本法》第三十條，香港居民的通訊自由和通訊秘密受法律的保護。除因甚麼需要，由有關機關依照法定程序對通訊進行檢查外，任何部門或個人不得以任何理由侵犯居民的通訊自由和通訊秘密？","A. 商業廣告推銷需要","B. 公共安全和追查刑事犯罪的需要","C. 傳媒八卦採訪需要","D. 私人偵探調查需要","B"],
+                [13,"根據《基本法》第三十一條，香港居民有在香港特別行政區境內遷徙的自由，有移居其他國家和地區的自由，以及甚麼自由？","A. 免簽證進入全球所有國家的自由","B. 旅行和出入境的自由（有效旅行證件的持有人，除非受到法律制止，可自由離開香港特別行政區，無需特別批准）","C. 攜帶違禁品出入境的自由","D. 免受海關檢查的自由","B"],
+                [14,"根據《基本法》第一百五十四條，中央人民政府授權香港特別行政區政府依照法律給持有香港特別行政區永久性居民身份證的中國公民簽發甚麼旅行證件？","A. 英國國民（海外）護照","B. 中華人民共和國香港特別行政區護照","C. 聯合國外交通行證","D. 港澳居民來往內地通行證（回鄉證）","B"],
+                [15,"香港特別行政區護照持有人在境外遇有突發事故、自然災害或緊急困難時，可向哪個機構尋求領事保護與協助，體現了國家對香港居民的堅實保障？","A. 英國駐當地大使館","B. 中華人民共和國駐外國使領館（或外交部全球領事保護與服務應急熱線12308及香港入境處協助在外香港居民小組）","C. 國際紅十字會總部","D. 當地旅遊局","B"],
+                [16,"根據《基本法》第三十二條，香港居民有信仰的自由。香港居民有宗教信仰的自由，有公開傳教和舉行、參加宗教活動的自由。宗教組織和教徒在甚麼前提下可開展活動？","A. 可利用宗教名義進行危害國家安全的活動","B. 不從屬於內地宗教組織，可同其他地方的宗教組織和教徒保持和發展關係，但必須遵守香港特區的法律","C. 享有凌駕於香港法庭之上的宗教裁判權","D. 可強迫全港市民信奉單一宗教","B"],
+                [17,"根據《基本法》第三十三條，香港居民有選擇職業的自由。此外，《基本法》第一百四十二條規定香港特區政府在原有專業制度基礎上，如何管理各專業（如醫生、律師、會計師、工程師等）？","A. 廢除所有專業資格考試","B. 自行制定有關評審各種專業的執業資格和執業條件的辦法，承認原有的專業和專業團體","C. 由外國專業學會直接接管","D. 禁止非永久性居民從事任何專業工作","B"],
+                [18,"根據《基本法》第三十四條，香港居民有進行學術研究、文學藝術創作和其他文化活動的自由。這項自由的前提是甚麼？","A. 可以在學校內向學生宣揚「港獨」及煽動違法暴力","B. 必須在遵守《基本法》、《香港國安法》及香港特區法律的框架下依法享有和行使","C. 可以隨意侵犯他人的版權與知識產權","D. 可以散播誹謗及虛假恐怖威脅信息","B"],
+                [19,"根據《基本法》第三十六條，香港居民有依法享受甚麼的權利；勞工的福利待遇和退休保障受法律保護？","A. 免費豪華住屋","B. 社會福利","C. 終身免息貸款","D. 政府保證就業","B"],
+                [20,"根據《基本法》第三十七條，香港居民的甚麼自由和自願生育的權利受法律保護？","A. 多配偶制","B. 婚姻自由","C. 包辦婚姻","D. 逃避撫養子女責任的自由","B"],
+                [21,"根據《基本法》第六條及第一百零五條，香港特別行政區依法保護私有財產權。企業所有權和外來投資均受法律保護。當政府因公共利益需要依法徵用個人或法人的財產時，必須如何處理？","A. 無償直接沒收","B. 依法徵用並給予相當於該財產當時實際價值的補償，可自由兌換，不得無故遲延支付","C. 只給予象徵性的一元補償","D. 由政府自行決定是否賠償","B"],
+                [22,"根據《基本法》第四十條，哪一類人士的合法傳統權益受香港特別行政區的保護？","A. 英國殖民地時期的高級官員","B. 「新界」原居民","C. 外國跨國企業董事","D. 非法霸佔官地者","B"],
+                [23,"根據《基本法》第三十九條，哪兩個國際人權公約以及國際勞工公約適用於香港的有關規定繼續有效，通過香港特別行政區的法律予以實施？","A. 《公民權利和政治權利國際公約》與《經濟、社會與文化權利的國際公約》","B. 《歐洲人權公約》與《美洲人權公約》","C. 《世界知識產權公約》與《關稅及貿易總協定》","D. 《京都議定書》與《生物多樣性公約》","A"],
+                [24,"《公民權利和政治權利國際公約》中適用於香港的規定，主要是透過香港本地哪一部法例予以實施？","A. 《香港人權法案條例》（香港法例第383章）","B. 《刑事罪行條例》","C. 《公司條例》","D. 《稅務條例》","A"],
+                [25,"根據《基本法》第三十九條第二款，香港居民享有的權利和自由，除依法規定外不得限制，此種限制不得同該條第一款規定（即有關國際公約適用於香港的規定）相抵觸。這說明了關於權利與自由的甚麼重要法理原則？","A. 世界上存在絕對、毫無界限的自由","B. 絕大多數權利和自由並非絕對，而是相對的，在必要時可依法受到合理限制","C. 個人自由永遠高於國家安全和公共利益","D. 在緊急狀態下也不能限制任何集會","B"],
+                [26,"根據《公民權利和政治權利國際公約》第十九條及第二十一條，言論自由、和平集會的權利在甚麼法定理由下，可以由法律規定予以必要限制？","A. 為了保護某一特定政黨的選舉利益","B. 為尊重他人的權利或名譽；或為保障國家安全或公共秩序（公共安全），或公共衛生或風化（道德）","C. 為了限制市民批評市政服務","D. 為了減少街道上的行人數量","B"],
+                [27,"在新冠疫情（COVID-19）期間，特區政府曾依法實施社交距離措施、強制檢疫及限制群組聚集。從憲制與人權角度看，這體現了甚麼？","A. 永久剝奪了市民的人身自由","B. 為保障「公共衛生」及全體市民的生命健康權，依法對部分個人活動自由作出合比例、有期限的必要限制，完全符合《基本法》第三十九條及國際人權公約的規定","C. 違反了《基本法》所有條文","D. 取消了香港的醫療福利制度","B"],
+                [28,"根據香港《公安條例》（第245章），市民在公共場所舉行超過法定人數（公眾集會50人以上、公眾遊行30人以上）的集會或遊行，必須提前向警務處處長辦理甚麼手續，並獲得「不反對通知書」？","A. 無需任何手續，隨時隨地可以堵塞馬路","B. 依法提前作出書面意向通知（申請不反對通知書），並遵守警方為維護國家安全、公共安全、公共秩序及保護他人權利而附加的合理條件","C. 向區議會繳交保證金即可","D. 向外國領事館報備即可","B"],
+                [29,"如果在公眾集會或遊行期間，有人偏離批准路線、縱火、投擲汽油彈、破壞公物或襲擊他人，原本的「和平集會」性質會發生甚麼變化？","A. 仍然受和平集會自由的絕對保護，警方不得執法","B. 已經超越了和平集會自由的法律底線，演變成「非法集結」甚至「暴動」等嚴重刑事罪行，執法部門有法定職責採取果斷行動制止暴力、恢復公共秩序","C. 只要戴上面罩就不算違法","D. 屬於正常的言論表達方式","B"],
+                [30,"在互聯網時代，有人認為「網絡世界是法外之地，在網上發表言論享有絕對自由」。這種看法是否正確？","A. 正確，現實法律不適用於互聯網","B. 錯誤；互聯網並非「法外之地」，適用於現實世界的法律同樣適用於網絡世界。在網上煽動分裂國家、煽動暴力、惡意「起底」、誹謗或詐騙，同樣須承擔嚴重的法律責任","C. 只要使用外國伺服器就不受香港法律規管","D. 轉發違法信息完全沒有法律責任","B"],
+                [31,"在《公民權利和政治權利國際公約》保障的各項權利中，也有極少數權利屬於「絕對權利」（在任何情況下均不得減損或限制）。下列哪一項屬於「絕對權利」？","A. 集會遊行自由","B. 免受酷刑或殘忍、不人道或侮辱性待遇或處罰的權利（以及免受奴役的權利）","C. 經營餐廳的自由","D. 駕駛汽車的自由","B"],
+                [32,"「權利與義務相統一」是現代法治社會的核心原則。根據《基本法》第四十二條，香港居民和在香港的其他人有甚麼最基本的憲制義務？","A. 每年必須捐款予慈善機構的義務","B. 遵守香港特別行政區實行的法律的義務","C. 必須加入政黨的義務","D. 必須購買股票的義務","B"],
+                [33,"根據《香港特別行政區基本法》第十八條，在香港特別行政區實行的法律包括《基本法》、香港原有法律、特區立法機關制定的法律，以及列入《基本法》附件三的全國性法律。因此，香港居民履行「遵守香港特區實行的法律的義務」，是否包括遵守《香港國安法》及《國歌法》？","A. 不包括，只需遵守交通法例","B. 絕對包括；《香港國安法》已列入《基本法》附件三公布實施，《國歌法》亦已透過本地《國歌條例》實施，均屬在香港特區實行的法律，全體居民必須嚴格遵守","C. 只有公務員才需要遵守","D. 只有成年人才需要遵守","B"],
+                [34,"根據《香港國安法》第六條第一款，維護國家主權、統一和領土完整是包括香港同胞在內的全中國人民的甚麼？","A. 選擇性建議","B. 共同義務","C. 額外福利","D. 商業活動","B"],
+                [35,"根據《香港國安法》第六條第二款，在香港特別行政區的任何機構、組織和個人都應當遵守本法和香港特別行政區維護國家安全的其他法律，不得從事甚麼行為？","A. 不得從事跨境電子商務","B. 不得從事危害國家安全的行為和活動","C. 不得學習外國語言","D. 不得前往外國旅遊","B"],
+                [36,"除了遵守法律和維護國家安全外，根據《國旗及國徽條例》、《區旗及區徽條例》和《國歌條例》，香港居民在面對國家象徵和標誌時，應履行甚麼公民義務？","A. 可以隨意塗污或踐踏國旗區旗","B. 尊重國旗、國徽、區旗、區徽及國歌；在奏唱國歌時應當肅立，舉止莊重，不得公開及故意侮辱國旗、國徽、區旗、區徽或國歌","C. 只在國慶日才需要尊重國旗","D. 可將國歌改編為商業廣告歌曲","B"],
+                [37,"在日常生活中，香港居民還須依法履行多項具體的法定義務。下列哪一項屬於香港居民的法定義務？","A. 依法納稅（根據《稅務條例》申報及繳納薪俸稅、利得稅、物業稅等）","B. 強迫購買私人保險","C. 每周必須參與義工服務20小時","D. 必須在25歲前結婚","A"],
+                [38,"當合資格的香港居民（年滿21歲至未滿65歲、精神健全、無失明失聰等缺陷、具備足夠語言能力）收到高等法院司法常務官發出的通知時，有甚麼法定義務參與司法程序？","A. 擔任主審法官的義務","B. 出任「陪審員」（Juror）的法定義務（無合理辯解而缺席屬違法）","C. 免費為被告人擔任辯護律師的義務","D. 負責押解犯人的義務","B"],
+                [39,"根據香港《教育條例》，家長有甚麼法定義務確保適齡兒童（6歲至15歲）接受教育？","A. 家長可以隨時讓10歲兒童輟學打工","B. 家長有法定義務確保6歲至15歲的子女入學接受九年強迫義務教育（而特區政府則提供15年免費公共教育）","C. 必須將子女送往外國留學","D. 只須讓子女在家自學無需向教育局申報","B"],
+                [40,"在行使個人權利和自由時，為甚麼必須強調「尊重他人的權利和自由」？","A. 因為自己的權利永遠比別人重要","B. 社會是由眾多成員組成的共同體；如果每個人都只顧行使自己的自由而肆意侵犯他人的生命安全、財產、私隱、出行自由或營業自由，社會就會陷入弱肉強食的混亂狀態，最終沒有人能真正享有自由","C. 因為《基本法》只保護少數人的權利","D. 因為尊重他人就等於放棄自己所有權利","B"],
+                [41,"為幫助香港永久性居民中的中國公民更便利地在內地學習、就業、創業和生活，國家推出了甚麼重要證件，使其持有人在內地可享有多項公共服務及民生便利？","A. 港澳居民居住證（以及港澳居民來往內地通行證，包括為非中國籍香港永久性居民簽發的來往內地通行證）","B. 外國人永久居留身份證","C. 國際難民通行證","D. 邊境禁區通行證","A"],
+                [42,"在粵港澳大灣區建設及國家發展大局下，香港居民（特別是青年人）享有哪些更廣闊的發展權利與機遇？","A. 只能在面積狹小的香港本地尋找工作","B. 可受惠於大灣區專業資格互認、青年創業資助、內地高校招收香港學生計劃、投考內地公務員及事業單位等惠港政策，在更廣闊的國家舞台實現個人理想","C. 被禁止前往大灣區內地城市置業","D. 在內地創業需繳納雙倍稅款","B"],
+                [43,"香港居民中的中國公民依法享有參與國家事務管理的權利。除了可依法選出港區全國人大代表外，還有眾多香港各界代表人士擔任甚麼職務，就國家大政方針和「一國兩制」實踐建言獻策、參政議政？","A. 英國上議院議員","B. 中國人民政治協商會議全國委員會委員（港區全國政協委員）及各省市地方政協委員","C. 美國國會遊說團成員","D. 聯合國安理會常任代表","B"],
+                [44,"國家近年在載人航天工程中，首次在香港特別行政區選拔甚麼人員，這體現了甚麼？","A. 選拔載荷專家（預備航天員），體現了國家對香港科技人才的高度重視與關愛，讓香港居民有機會親身參與國家頂尖航天事業，共享祖國榮光","B. 選拔外太空遊客","C. 選拔星際採礦工人","D. 選拔天文台長","A"],
+                [45,"香港回歸祖國後，居民享有的民主權利和自由與港英殖民管治時期相比，發生了甚麼根本變化？","A. 權利比殖民時期大幅減少","B. 港英時期總督由英國委派、獨攬大權，港人毫無民主可言；回歸後香港居民真正實現「港人治港」當家作主，在《憲法》和《基本法》保障下依法享有前所未有的廣泛權利、民主與自由","C. 港英時期已有普選行政長官","D. 兩者毫無分別","B"],
+                [46,"根據《基本法》第一百三十六條及第一百三十七條，香港特別行政區政府自行制定教育發展政策，各類院校均可保留其自主性和享有學術自由，學生享有甚麼自由？","A. 逃學及免試升學的自由","B. 選擇院校和在香港特別行政區以外求學的自由","C. 破壞校園設施的自由","D. 拒絕學習中國歷史的自由","B"],
+                [47,"根據《基本法》第一百四十四條，香港特別行政區政府保持原在香港實行的對教育、醫療衛生、文化、藝術、康樂、體育、社會福利、社會工作等方面的民間團體機構的資助政策。這對保障居民福祉有何作用？","A. 讓政府完全退出公共服務","B. 結合政府與民間非政府機構（NGO）的力量，為香港居民特別是弱勢社群提供多元、優質的社會福利、醫療、教育與文康服務","C. 讓所有福利機構變成牟利財團","D. 只資助外國機構","B"],
+                [48,"在《香港國安法》和《維護國家安全條例》實施後，香港居民依法享有的言論、新聞、出版、結社、集會、遊行、示威等權利和自由是否仍然受到保障？","A. 已經被全部廢除","B. 繼續依法受到充分保障！《香港國安法》第四條及《維護國家安全條例》第2條均明文規定尊重和保障人權，依法保護居民根據《基本法》和兩個國際公約享有的權利和自由；國安法律僅懲治極少數危害國家安全的犯罪行為，廣大守法市民的日常生活和自由更加安全有保障","C. 只有外國人繼續享有自由","D. 市民不能再閱讀報紙或使用互聯網","B"],
+                [49,"作為香港特別行政區的青年一代，應如何正確理解並實踐「國民身份」與「香港居民身份」的關係？","A. 只承認自己是世界公民，否認中國公民身份","B. 深刻認識到香港自古以來是中國不可分離的部分，我們既是「香港居民」，更是「中國公民」；應積極培養家國情懷、增強國民身份認同、自覺維護國家安全與香港繁榮穩定，具備國家觀念、香港情懷和國際視野","C. 將「香港人」與「中國人」對立起來","D. 只要求享受權利，拒絕承擔任何對社會和國家的義務","B"],
+                [50,"總結「香港居民的權利與義務」，下列哪一項表述最為全面和準確？","A. 《基本法》第三章全面保障香港居民廣泛的權利和自由；同時，權利並非絕對，權利與義務密不可分，居民必須履行遵守法律、維護國家安全及尊重他人權利的公民義務，方能共同守護香港的法治與美好家園","B. 香港居民只享有權利，不需要履行任何法定義務","C. 言論自由和集會自由在任何情況下都不受法律限制","D. 非永久性居民在香港同樣享有選舉權和被選舉權","A"]
             ]
         };
 
-        // Transform RAW_QUESTIONS into flat structured array
+        // Transform RAW_QUESTIONS into flat structured array (360 questions across 6 topics)
         const QUESTION_BANK = [];
+        const TOPIC_NAMES = {
+            1: "(主題1) 導學案01：香港問題的由來",
+            2: "(主題1) 導學案02：國家和香港特別行政區的憲制關係",
+            3: "(主題1) 導學案03：維護國家安全的意義",
+            4: "(主題1) 導學案04：香港特別行政區的政治體制",
+            5: "(主題1) 導學案05：法治精神與司法獨立",
+            6: "(主題1) 導學案06：香港居民的權利與義務"
+        };
         Object.keys(RAW_QUESTIONS).forEach(topicKey => {
             const topicNum = parseInt(topicKey);
-            const topicNames = {
-                1: "(主題1) 導學案01：香港問題的由來",
-                2: "(主題1) 導學案02：國家和香港特別行政區的憲制關係",
-                3: "(主題1) 導學案03：維護國家安全的意義"
-            };
             RAW_QUESTIONS[topicNum].forEach(item => {
                 QUESTION_BANK.push({
                     id: `T${topicNum}-${String(item[0]).padStart(3, '0')}`,
                     topic: topicNum,
-                    topicName: topicNames[topicNum],
+                    topicName: TOPIC_NAMES[topicNum],
                     num: item[0],
                     q: item[1],
                     options: {
@@ -1059,144 +1290,209 @@
         });
 
         /*************************************************************************
-         * 2. 武學秘笈庫 (STAT_MANUALS) 與《山海經》八大奇禽異獸神通庫 (SHANHAI_BEASTS)
+         * 2. 上古武學秘笈 (STAT_MANUALS) 與 《山海經》十四奇禽異獸 (SHANHAI_BEASTS, 最高7階)
          *************************************************************************/
+        const MAX_BEAST_LEVEL = 7;
+
         const STAT_MANUALS = [
             {
                 id: 'manual_hp',
-                name: '《神農百草經》',
-                statName: '生命值上限',
-                gainText: '+120 HP',
+                name: '《神農本草經·長生卷》',
+                statName: '生命值上限 (HP)',
+                gainText: '+140 HP',
                 icon: 'fa-heart text-rose-400',
-                apply: (p) => { p.maxHp += 120; p.hp += 120; }
+                apply: (p) => { p.maxHp += 140; p.hp += 140; }
             },
             {
                 id: 'manual_mp',
-                name: '《北冥吐納訣》',
-                statName: '內力值上限',
+                name: '《北冥吐納功·真氣卷》',
+                statName: '內力值上限 (MP)',
                 gainText: '+45 MP',
                 icon: 'fa-fire-flame-simple text-sky-400',
                 apply: (p) => { p.maxMp += 45; p.mp += 45; }
             },
             {
                 id: 'manual_atk',
-                name: '《破軍軒轅劍譜》',
-                statName: '攻擊力',
-                gainText: '+18 ATK',
-                icon: 'fa-gavel text-amber-400',
-                apply: (p) => { p.atk += 18; }
+                name: '《軒轅破陣劍譜》',
+                statName: '攻擊力 (ATK)',
+                gainText: '+22 ATK',
+                icon: 'fa-khanda text-amber-400',
+                apply: (p) => { p.atk += 22; }
             },
             {
                 id: 'manual_def',
-                name: '《玄武金鐘罩》',
-                statName: '防禦力',
-                gainText: '+15 DEF',
+                name: '《玄武金鐘罡氣》',
+                statName: '防禦力 (DEF)',
+                gainText: '+18 DEF',
                 icon: 'fa-shield-halved text-emerald-400',
-                apply: (p) => { p.def += 15; }
+                apply: (p) => { p.def += 18; }
             },
             {
                 id: 'manual_eva',
-                name: '《凌波御風步》',
-                statName: '閃避速度',
-                gainText: '+4% 閃避率 (最高60%)',
+                name: '《凌波御風身法》',
+                statName: '閃避速度 (EVA)',
+                gainText: '+4% 閃避率 (上限65%)',
                 icon: 'fa-wind text-teal-400',
-                apply: (p) => { p.eva = Math.min(60, p.eva + 4); }
+                apply: (p) => { p.eva = Math.min(65, p.eva + 4); p.atk += 8; }
             },
             {
                 id: 'manual_ult',
-                name: '《蒼龍破天決》',
-                statName: '必殺技威力',
-                gainText: '+25% 必殺倍率',
+                name: '《蒼龍破穹絕學》',
+                statName: '必殺技威力倍率',
+                gainText: '+30% 必殺倍率',
                 icon: 'fa-dragon text-purple-400',
-                apply: (p) => { p.ultMult += 25; }
+                apply: (p) => { p.ultMult += 30; }
             }
         ];
 
         const SHANHAI_BEASTS = {
+            // 原有 8 大異獸 (上限升至 7 階)
             qingniao: {
                 key: 'qingniao',
                 name: '青鳥',
-                abilityName: '瑤池甘露（療傷）',
+                abilityName: '瑤池療傷',
                 origin: '《山海經·大荒西經》西王母靈禽',
                 type: 'active',
                 mpCost: 30,
                 icon: 'fa-dove text-emerald-400',
-                desc: '主動神通（耗30內力）：召喚三足青鳥降下甘露，立即恢復大量生命值並解除精神受創狀態。'
+                desc: '【主動療傷】消耗 30 內力，召喚青鳥降下甘露，大幅回復自身生命值並淨化精神、冰凍與沉默負面狀態。'
             },
             xiangliu: {
                 key: 'xiangliu',
                 name: '相柳',
-                abilityName: '九首蝕骨毒（毒害）',
-                origin: '《山海經·海外北經》九首蛇身凶獸',
+                abilityName: '九首劇毒',
+                origin: '《山海經·海外北經》共工之臣九首蛇身',
                 type: 'active',
                 mpCost: 35,
-                icon: 'fa-skull-crossbones text-lime-400',
-                desc: '主動神通（耗35內力）：噴吐劇毒造成傷害，並令對手陷入「相柳劇毒」3回合，每回合流失最大生命值。'
+                icon: 'fa-staff-snake text-lime-400',
+                desc: '【主動毒害】消耗 35 內力，召喚九首凶獸相柳噴吐毒澤，造成直接傷害並令對手持續中毒損血 3 回合。'
             },
             jiuweihu: {
                 key: 'jiuweihu',
                 name: '九尾狐',
-                abilityName: '青丘攝魂術（精神攻擊）',
-                origin: '《山海經·南山經》青丘山奇獸',
+                abilityName: '青丘精神攻擊',
+                origin: '《山海經·南山經》青丘之山神獸',
                 type: 'active',
                 mpCost: 40,
                 icon: 'fa-eye text-fuchsia-400',
-                desc: '主動神通（耗40內力）：直擊心神穿透對手大部分防禦力，並削弱對手25%攻擊力持續3回合。'
+                desc: '【主動精神攻擊】消耗 40 內力，無視對手大部分防禦直擊心神，並令對手心神動搖、攻擊力下降 3 回合。'
             },
+            // 新增 6 大《山海經》異獸神通：昏迷、冰凍、沉默、嘲諷、增加攻擊力、提高防禦
+            leishen: {
+                key: 'leishen',
+                name: '雷神',
+                abilityName: '雷澤震擊·昏迷',
+                origin: '《山海經·海內東經》雷澤龍身人頭神獸',
+                type: 'active',
+                mpCost: 45,
+                icon: 'fa-bolt text-yellow-400',
+                desc: '【主動昏迷】消耗 45 內力，引動雷澤天雷重創敵人，並有極高機率令對手陷入「昏迷」1 回合（無法行動且無法閃避）！'
+            },
+            yinglong: {
+                key: 'yinglong',
+                name: '應龍',
+                abilityName: '玄冥寒霜·冰凍',
+                origin: '《山海經·大荒東經》生翼創世神龍',
+                type: 'active',
+                mpCost: 40,
+                icon: 'fa-snowflake text-cyan-400',
+                desc: '【主動冰凍】消耗 40 內力，呼喚寒霜風暴重擊對手，令對手陷入「冰凍」2 回合（閃避率歸零、防禦力與攻擊力大幅下降，且首回合有50%機率凍僵無法出招）！'
+            },
+            jingwei: {
+                key: 'jingwei',
+                name: '精衛',
+                abilityName: '滄海禁言·沉默',
+                origin: '《山海經·北山經》發鳩之山靈禽',
+                type: 'active',
+                mpCost: 35,
+                icon: 'fa-volume-xmark text-indigo-400',
+                desc: '【主動沉默】消耗 35 內力，化作鎮海符印衝擊對手，造成傷害並封印對手神通 2 回合（沉默期間對手無法施展精神攻擊、自我療傷、冰凍或昏迷等特殊技能）！'
+            },
+            bian: {
+                key: 'bian',
+                name: '狴犴',
+                abilityName: '威獄鎮懾·嘲諷',
+                origin: '《山海經》瑞獸·急公好義鎮獄神虎',
+                type: 'active',
+                mpCost: 30,
+                icon: 'fa-gavel text-orange-400',
+                desc: '【主動嘲諷】消耗 30 內力，發動正義威壓「嘲諷」對手 2 回合，強制對手只能使用普通物理攻擊，同時自身獲得強大減傷護盾並百分百觸發反擊！'
+            },
+            zhuyan: {
+                key: 'zhuyan',
+                name: '朱厭',
+                abilityName: '赤焰兵威·增加攻擊力',
+                origin: '《山海經·西山經》小次之山白首赤足巨猿',
+                type: 'active',
+                mpCost: 30,
+                icon: 'fa-hand-fist text-red-400',
+                desc: '【主動增加攻擊力】消耗 30 內力，激發上古戰猿血脈，立即對敵人轟出一拳，並令自身「攻擊力大幅提升」（+40% 至 +110%）持續 3 回合！'
+            },
+            dangkang: {
+                key: 'dangkang',
+                name: '當康',
+                abilityName: '瑞兆金身·提高防禦',
+                origin: '《山海經·東山經》欽山豐年瑞獸',
+                type: 'active',
+                mpCost: 30,
+                icon: 'fa-shield-Cat text-amber-300',
+                desc: '【主動提高防禦】消耗 30 內力，凝聚山海瑞氣護體，立即回復部分生命，並令自身「防禦力大幅提高」（+45% 至 +115%）持續 3 回合！'
+            },
+            // 被動神通 (5隻)
             baize: {
                 key: 'baize',
                 name: '白澤',
-                abilityName: '通天慧眼（抗精神攻擊）',
-                origin: '《山海經》洞悉萬物之祥瑞神獸',
+                abilityName: '通曉萬物·抗精神與沉默',
+                origin: '《山海經·東望山》祥瑞神獸',
                 type: 'passive',
                 mpCost: 0,
                 icon: 'fa-shield-cat text-sky-400',
-                desc: '被動常駐：大幅減免「憲制關係」及「公民盟主」施展的精神攻擊傷害，並免疫精神減攻效果。'
+                desc: '【被動抗精神攻擊】白澤靈識護體，大幅減免對手「精神攻擊」傷害，並有機率直接免疫精神減攻與沉默效果。'
             },
             qiongqi: {
                 key: 'qiongqi',
                 name: '窮奇',
-                abilityName: '噬血魔罡（吸血）',
-                origin: '《山海經·西山經》外貌如虎有翼異獸',
+                abilityName: '噬血凶威·吸血',
+                origin: '《山海經·西山經》插翅巨虎',
                 type: 'passive',
                 mpCost: 0,
-                icon: 'fa-droplet text-rose-500',
-                desc: '被動常駐：每次施展攻擊或必殺技造成傷害時，自動吸取一定比例傷害轉化為自身生命值。'
+                icon: 'fa-teeth-open text-rose-400',
+                desc: '【被動吸血】每次對敵人造成攻擊或技能傷害時，自動汲取一定比例傷害轉化為自身生命值。'
             },
             xingtian: {
                 key: 'xingtian',
                 name: '刑天',
-                abilityName: '干戚猛志（低血量狂暴）',
-                origin: '《山海經·海外西經》操干戚以舞戰神',
+                abilityName: '干戚猛志·低血量狂暴',
+                origin: '《山海經·海外西經》刑天舞干戚',
                 type: 'passive',
                 mpCost: 0,
                 icon: 'fa-fire text-red-500',
-                desc: '被動常駐：當自身生命值低於40%時激發不屈戰意，攻擊力與招式傷害大幅飆升。'
+                desc: '【被動低血量狂暴】當自身生命值低於 45% 時自動覺醒不屈戰意，所有攻擊與技能傷害大幅飆升！'
             },
             kui: {
                 key: 'kui',
                 name: '夔牛',
-                abilityName: '震雷反震（反擊）',
-                origin: '《山海經·大荒東經》聲如雷霆獨足神獸',
+                abilityName: '雷霆震鼓·反擊',
+                origin: '《山海經·大荒東經》流波山獨足雷獸',
                 type: 'passive',
                 mpCost: 0,
                 icon: 'fa-bolt-lightning text-amber-400',
-                desc: '被動常駐：受到對手攻擊時有高機率引動九天雷霆自動反擊對手，造成可觀的雷電傷害。'
+                desc: '【被動反擊】受到對手攻擊時，有機率引動五雷正法自動震退敵人，造成強大雷霆反擊傷害。'
             },
             feiyi: {
                 key: 'feiyi',
                 name: '肥遺',
-                abilityName: '萬毒不侵（抗毒與生機）',
-                origin: '《山海經·北山經》六足四翼奇蛇',
+                abilityName: '六足四翼·抗毒冰與回春',
+                origin: '《山海經·北山經》渾夕之山異獸',
                 type: 'passive',
                 mpCost: 0,
-                icon: 'fa-Notes-medical text-teal-400',
-                desc: '被動常駐：百毒不侵，且每回合結束時自動運轉生機恢復生命值。'
+                icon: 'fa-leaf text-teal-400',
+                desc: '【被動抗毒與回春】萬毒與寒霜不侵，每回合行動結束後自動運轉生機恢復一定比例生命值與內力。'
             }
         };
 
         /*************************************************************************
-         * 3. 決戰巔峰 4 大對手定義 (支援 1~10 階段動態成長 + 水墨插圖)
+         * 3. 決戰巔峰 7 大對手定義 (支援 1~100 階段動態成長 + 新增3位宗師 + 公民盟主雙倍強化)
          *************************************************************************/
         const BOSS_DEFINITIONS = [
             {
@@ -1245,24 +1541,69 @@
                 desc: '專考「導學案03：維護國家安全的意義」(80題)，基礎HP 2000、攻 100、防 200，低血量時進入狂暴！'
             },
             {
+                id: 'boss_t4',
+                name: '香港特別行政區的政治體制',
+                subtitle: '導學案04 守關宗師',
+                imgUrl: CHARACTER_ART.boss_t4,
+                topicFilter: [4],
+                baseHp: 2600,
+                baseAtk: 135,
+                baseDef: 220,
+                baseEva: 12,
+                traits: ['defBuff', 'taunt'],
+                traitLabels: ['行政主導·提高防禦', '威嚴嘲諷', '高階守關'],
+                icon: 'fa-building-columns',
+                desc: '專考「導學案04：香港特別行政區的政治體制」(50題)，基礎HP 2600、攻 135、防 220，擅長「提高防禦」與「嘲諷」壓制！'
+            },
+            {
+                id: 'boss_t5',
+                name: '法治精神與司法獨立',
+                subtitle: '導學案05 守關宗師',
+                imgUrl: CHARACTER_ART.boss_t5,
+                topicFilter: [5],
+                baseHp: 3200,
+                baseAtk: 160,
+                baseDef: 250,
+                baseEva: 15,
+                traits: ['freeze', 'silence', 'counter'],
+                traitLabels: ['寒霜冰凍', '法槌沉默', '公正反擊'],
+                icon: 'fa-gavel',
+                desc: '專考「導學案05：法治精神與司法獨立」(80題)，基礎HP 3200、攻 160、防 250，可施展「冰凍」、「沉默」並自帶反擊！'
+            },
+            {
+                id: 'boss_t6',
+                name: '香港居民的權利與義務',
+                subtitle: '導學案06 守關宗師',
+                imgUrl: CHARACTER_ART.boss_t6,
+                topicFilter: [6],
+                baseHp: 3800,
+                baseAtk: 185,
+                baseDef: 260,
+                baseEva: 18,
+                traits: ['atkBuff', 'heal', 'stun'],
+                traitLabels: ['增加攻擊力', '自我療傷', '雷霆昏迷'],
+                icon: 'fa-people-roof',
+                desc: '專考「導學案06：香港居民的權利與義務」(50題)，基礎HP 3800、攻 185、防 260，具備「增加攻擊力」、「自我療傷」與「昏迷重擊」！'
+            },
+            {
                 id: 'boss_all',
                 name: '公民盟主',
-                subtitle: '三卷合一 · 山海至尊',
+                subtitle: '六卷合一 · 百階山海至尊',
                 imgUrl: CHARACTER_ART.boss_all,
-                topicFilter: [1, 2, 3],
-                baseHp: 2500,
-                baseAtk: 200,
-                baseDef: 200,
+                topicFilter: [1, 2, 3, 4, 5, 6],
+                baseHp: 5000,
+                baseAtk: 400,
+                baseDef: 400,
                 baseEva: 30,
-                traits: ['mental', 'heal', 'dodge30', 'berserk'],
-                traitLabels: ['精神攻擊', '自我療傷', '30%高閃避', '低血量狂暴'],
+                traits: ['mental', 'heal', 'dodge30', 'berserk', 'freeze', 'silence', 'atkBuff'],
+                traitLabels: ['戰力翻倍強化', '精神攻擊', '自我療傷', '30%高閃避', '冰凍與沉默', '低血量狂暴'],
                 icon: 'fa-crown',
-                desc: '囊括導學案01、02、03全部180題！基礎HP 2500、攻 200、防 200，具備精神攻擊、自我療傷、30%閃避及低血量狂暴！'
+                desc: '囊括導學案01至06全部360題！基礎戰力強化一倍（HP 5000、攻 400、防 400），兼具精神攻擊、自我療傷、30%閃避、冰凍沉默及低血量狂暴！'
             }
         ];
 
         /*************************************************************************
-         * 4. 玩家狀態與跨版本/互動版共通存檔結構
+         * 4. 玩家狀態與跨版本/互動版共通存檔結構 (支援舊版無縫升級 + 100階段成長)
          *************************************************************************/
         const STORAGE_KEY = 'CITIZENSHIP_SHANHAIJING_SAVE_V1';
 
@@ -1270,7 +1611,7 @@
 
         function createDefaultGameState(playerName) {
             return {
-                schemaVersion: '1.0-INTERACTIVE-READY',
+                schemaVersion: '2.0-INTERACTIVE-READY',
                 updatedAt: new Date().toISOString(),
                 player: {
                     name: playerName || '少俠',
@@ -1286,13 +1627,19 @@
                         qingniao: 0,
                         xiangliu: 0,
                         jiuweihu: 0,
+                        leishen: 0,
+                        yinglong: 0,
+                        jingwei: 0,
+                        bian: 0,
+                        zhuyan: 0,
+                        dangkang: 0,
                         baize: 0,
                         qiongqi: 0,
                         xingtian: 0,
                         kui: 0,
                         feiyi: 0
                     },
-                    // 預留給之後更新版的武器與防具欄位
+                    // 共通於更新版與互動版的武器、防具與背包欄位
                     equipment: {
                         weapon: null,
                         armor: null,
@@ -1302,63 +1649,93 @@
                 },
                 progress: {
                     introCompleted: false,
-                    introStep: { t1: 0, t2: 0, t3: 0 }, // 各5題
+                    introStep: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0, t6: 0 }, // 6部分各5題
                     solvedQuestionIds: [],             // 已正確回答的題目ID
                     bossDefeats: {
                         boss_t1: 0,
                         boss_t2: 0,
                         boss_t3: 0,
+                        boss_t4: 0,
+                        boss_t5: 0,
+                        boss_t6: 0,
                         boss_all: 0
                     }
-                }
+                },
+                // 預留給多人互動版 (PvP對打 / Co-op共鬥Boss) 的紀錄與額外獎勵欄位
+                multiplayerRecord: {
+                    pvpWins: 0,
+                    pvpMatches: 0,
+                    coopBossClears: 0,
+                    earnedRewards: []
+                },
+                customExtensions: {}
             };
         }
 
-        // Calculate Player Growth Stage (1 to 10) for Dynamic Boss Scaling
+        // 計算包含「互動版/更新版」武器與防具加成的最終有效屬性
+        function getEffectivePlayerStats() {
+            const p = gameState.player;
+            const eq = p.equipment || {};
+            const wp = eq.weapon || {};
+            const am = eq.armor || {};
+            const ac = eq.accessory || {};
+
+            const hpBonus = (wp.hpBonus || 0) + (am.hpBonus || 0) + (ac.hpBonus || 0);
+            const mpBonus = (wp.mpBonus || 0) + (am.mpBonus || 0) + (ac.mpBonus || 0);
+            const atkBonus = (wp.atkBonus || 0) + (am.atkBonus || 0) + (ac.atkBonus || 0);
+            const defBonus = (wp.defBonus || 0) + (am.defBonus || 0) + (ac.defBonus || 0);
+            const evaBonus = (wp.evaBonus || 0) + (am.evaBonus || 0) + (ac.evaBonus || 0);
+            const ultBonus = (wp.ultBonus || 0) + (am.ultBonus || 0) + (ac.ultBonus || 0);
+
+            return {
+                maxHp: p.maxHp + hpBonus,
+                maxMp: p.maxMp + mpBonus,
+                atk: p.atk + atkBonus,
+                def: p.def + defBonus,
+                eva: Math.min(75, p.eva + evaBonus),
+                ultMult: p.ultMult + ultBonus
+            };
+        }
+
+        // Calculate Player Growth Stage (1 to 100) for Dynamic Boss Scaling
         function getPlayerGrowthStage() {
             const p = gameState.player;
-            const totalBeastLevels = Object.values(p.beasts).reduce((a, b) => a + b, 0);
-            // Calculate a composite power score
+            const eff = getEffectivePlayerStats();
+            const totalBeastLevels = Object.values(p.beasts).reduce((a, b) => a + (Number(b) || 0), 0);
+            // Calculate a composite power score including equipment bonuses
             const power = Math.round(
-                p.maxHp * 0.6 +
-                p.maxMp * 1.2 +
-                p.atk * 6 +
-                p.def * 6 +
-                p.eva * 15 +
-                p.ultMult * 2 +
-                totalBeastLevels * 140
+                eff.maxHp * 0.6 +
+                eff.maxMp * 1.2 +
+                eff.atk * 6 +
+                eff.def * 6 +
+                eff.eva * 15 +
+                eff.ultMult * 2 +
+                totalBeastLevels * 150
             );
-            // Map power to Stage 1..10
-            // Initial power is ~1850 (Stage 1)
-            const stage = Math.max(1, Math.min(10, Math.floor((power - 1400) / 750) + 1));
+            // Map power to Stage 1..100 (every 650 power increases 1 stage, max 100)
+            const stage = Math.max(1, Math.min(100, Math.floor((power - 1400) / 650) + 1));
             return { stage, power, totalBeastLevels };
         }
 
-        const STAGE_TITLES = [
-            '',
-            '第 1 階 · 初窺門徑',
-            '第 2 階 · 略有小成',
-            '第 3 階 · 融會貫通',
-            '第 4 階 · 爐火純青',
-            '第 5 階 · 出類拔萃',
-            '第 6 階 · 登峰造極',
-            '第 7 階 · 震古爍今',
-            '第 8 階 · 超凡入聖',
-            '第 9 階 · 天人合一',
-            '第 10 階 · 山海至尊'
-        ];
+        function getStageTitle(stage) {
+            const realmNames = [
+                '初窺門徑', '略有小成', '融會貫通', '爐火純青', '出類拔萃',
+                '登峰造極', '震古爍今', '超凡入聖', '天人合一', '山海至尊'
+            ];
+            const idx = Math.min(9, Math.floor((stage - 1) / 10));
+            return `第 ${stage} 階 · ${realmNames[idx]}`;
+        }
 
-        // Scale Boss Stats by Player Stage (1..10)
+        // Scale Boss Stats by Player Stage (1..100)
         function getScaledBossStats(bossDef, stage) {
-            // Stage 1 uses exact base stats specified by user; Stages 2-10 scale smoothly
-            const hpMult = 1 + (stage - 1) * 0.28;
-            const atkMult = 1 + (stage - 1) * 0.22;
-            const defMult = 1 + (stage - 1) * 0.20;
+            const hpMult = 1 + (stage - 1) * 0.24 + Math.pow(Math.max(0, stage - 10), 1.25) * 0.05;
+            const atkMult = 1 + (stage - 1) * 0.18 + Math.pow(Math.max(0, stage - 10), 1.15) * 0.03;
+            const defMult = 1 + (stage - 1) * 0.16 + Math.pow(Math.max(0, stage - 10), 1.15) * 0.03;
             return {
                 maxHp: Math.round(bossDef.baseHp * hpMult),
                 atk: Math.round(bossDef.baseAtk * atkMult),
                 def: Math.round(bossDef.baseDef * defMult),
-                eva: Math.min(45, bossDef.baseEva + (stage - 1) * 1)
+                eva: Math.min(50, bossDef.baseEva + Math.floor((stage - 1) * 0.35))
             };
         }
 
@@ -1392,7 +1769,7 @@
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
                 updateTopHeaderBar();
                 if (showToast) {
-                    showDialog('儲存成功', `少俠【${gameState.player.name}】的戰鬥能力數值與答題進度已安全儲存於本設備！`, 'fa-circle-check text-emerald-400');
+                    showDialog('儲存成功', `少俠【${gameState.player.name}】的戰鬥能力數值、裝備與答題進度已安全儲存於本設備！`, 'fa-circle-check text-emerald-400');
                 }
             } catch (e) {
                 console.error(e);
@@ -1411,7 +1788,8 @@
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
                 if (!raw) return;
-                gameState = JSON.parse(raw);
+                const parsed = JSON.parse(raw);
+                mergeAndNormalizeSaveData(parsed);
                 updateTopHeaderBar();
                 if (gameState.progress.introCompleted) {
                     showScreen('screen-hub');
@@ -1444,22 +1822,23 @@
 
         function updateTopHeaderBar() {
             const p = gameState.player;
+            const eff = getEffectivePlayerStats();
             const { stage } = getPlayerGrowthStage();
             document.getElementById('header-name').textContent = p.name;
             document.getElementById('header-stage').textContent = `第${stage}階`;
-            document.getElementById('header-hp').textContent = p.maxHp;
-            document.getElementById('header-mp').textContent = p.maxMp;
-            document.getElementById('header-atk').textContent = p.atk;
-            document.getElementById('header-def').textContent = p.def;
-            document.getElementById('header-solved').textContent = `${gameState.progress.solvedQuestionIds.length}/180`;
+            document.getElementById('header-hp').textContent = eff.maxHp;
+            document.getElementById('header-mp').textContent = eff.maxMp;
+            document.getElementById('header-atk').textContent = eff.atk;
+            document.getElementById('header-def').textContent = eff.def;
+            document.getElementById('header-solved').textContent = `${gameState.progress.solvedQuestionIds.length}/360`;
         }
 
         /*************************************************************************
-         * 6. 初入江湖試煉 (3部分各5題 = 15題) 與「與師父修行」問答系統
+         * 6. 初入江湖試煉 (6部分各5題 = 30題) 與「與師父修行」問答系統
          *************************************************************************/
         let currentQuizState = {
             mode: 'intro', // 'intro' or 'shifu'
-            shifuTopic: 1, // 0=all, 1, 2, 3
+            shifuTopic: 1, // 0=all, 1..6
             currentQuestion: null,
             answered: false,
             lastCorrect: false,
@@ -1471,7 +1850,7 @@
             showScreen('screen-quiz');
             document.getElementById('intro-stepper').classList.remove('hidden');
             document.getElementById('btn-exit-training').classList.add('hidden');
-            document.getElementById('quiz-mode-badge').textContent = '初入江湖試煉（三卷各5題）';
+            document.getElementById('quiz-mode-badge').textContent = '初入江湖試煉（六卷各5題）';
             loadNextQuizQuestion();
         }
 
@@ -1487,7 +1866,6 @@
 
         function pickRandomQuestion(topicFilterArray) {
             const pool = QUESTION_BANK.filter(q => topicFilterArray.includes(q.topic));
-            // Prefer questions not yet solved by the player
             const unsolvedPool = pool.filter(q => !gameState.progress.solvedQuestionIds.includes(q.id) && !currentQuizState.usedIdsInSession.has(q.id));
             let chosenPool = unsolvedPool.length > 0 ? unsolvedPool : pool.filter(q => !currentQuizState.usedIdsInSession.has(q.id));
             if (chosenPool.length === 0) {
@@ -1505,22 +1883,25 @@
 
             if (currentQuizState.mode === 'intro') {
                 const step = gameState.progress.introStep;
-                // Update stepper UI
-                document.getElementById('step-t1-cnt').textContent = step.t1;
-                document.getElementById('step-t2-cnt').textContent = step.t2;
-                document.getElementById('step-t3-cnt').textContent = step.t3;
+                for (let t = 1; t <= 6; t++) {
+                    step[`t${t}`] = step[`t${t}`] || 0;
+                    document.getElementById(`step-t${t}-cnt`).textContent = step[`t${t}`];
+                }
 
-                let activeTopic = 1;
-                if (step.t1 < 5) activeTopic = 1;
-                else if (step.t2 < 5) activeTopic = 2;
-                else if (step.t3 < 5) activeTopic = 3;
-                else {
-                    // All 15 questions completed!
+                let activeTopic = 0;
+                for (let t = 1; t <= 6; t++) {
+                    if (step[`t${t}`] < 5) {
+                        activeTopic = t;
+                        break;
+                    }
+                }
+
+                if (activeTopic === 0) {
                     gameState.progress.introCompleted = true;
                     saveToDevice(false);
                     showDialog(
                         '初入江湖試煉完成！',
-                        `恭喜少俠【${gameState.player.name}】完成導學案01、02、03三部分試煉！正式開啟山海江湖主城，你可隨時選擇「與師父修行」或「決戰巔峰」！`,
+                        `恭喜少俠【${gameState.player.name}】完成導學案01至06六部分試煉！正式開啟山海江湖主城，你可隨時選擇「與師父修行」或「決戰巔峰」！`,
                         'fa-dragon text-amber-400',
                         () => {
                             showScreen('screen-hub');
@@ -1530,26 +1911,24 @@
                     return;
                 }
 
-                // Highlight active stepper
-                [1, 2, 3].forEach(t => {
+                [1, 2, 3, 4, 5, 6].forEach(t => {
                     const el = document.getElementById(`step-t${t}`);
                     if (t === activeTopic) {
                         el.className = 'p-2 rounded-lg border border-amber-400 bg-amber-500/20 text-amber-200 font-bold';
-                    } else if ((t === 1 && step.t1 >= 5) || (t === 2 && step.t2 >= 5)) {
+                    } else if (step[`t${t}`] >= 5) {
                         el.className = 'p-2 rounded-lg border border-emerald-500/50 bg-emerald-950/40 text-emerald-300';
                     } else {
                         el.className = 'p-2 rounded-lg border border-stone-700 bg-stone-900/60 text-stone-400';
                     }
                 });
 
-                const totalDone = step.t1 + step.t2 + step.t3;
-                document.getElementById('quiz-progress-pill').textContent = `試煉進度：${totalDone + 1} / 15`;
+                const totalDone = step.t1 + step.t2 + step.t3 + step.t4 + step.t5 + step.t6;
+                document.getElementById('quiz-progress-pill').textContent = `試煉進度：${totalDone + 1} / 30`;
                 currentQuizState.currentQuestion = pickRandomQuestion([activeTopic]);
             } else {
-                // Shifu Training Mode
-                const topics = currentQuizState.shifuTopic === 0 ? [1, 2, 3] : [currentQuizState.shifuTopic];
+                const topics = currentQuizState.shifuTopic === 0 ? [1, 2, 3, 4, 5, 6] : [currentQuizState.shifuTopic];
                 currentQuizState.currentQuestion = pickRandomQuestion(topics);
-                document.getElementById('quiz-progress-pill').textContent = `已制霸題數：${gameState.progress.solvedQuestionIds.length} / 180`;
+                document.getElementById('quiz-progress-pill').textContent = `已制霸題數：${gameState.progress.solvedQuestionIds.length} / 360`;
             }
 
             const q = currentQuizState.currentQuestion;
@@ -1585,19 +1964,15 @@
             const isCorrect = selectedLetter === q.ans;
             currentQuizState.lastCorrect = isCorrect;
 
-            // Record intro step progress if in intro mode
             if (currentQuizState.mode === 'intro') {
-                if (q.topic === 1) gameState.progress.introStep.t1++;
-                else if (q.topic === 2) gameState.progress.introStep.t2++;
-                else if (q.topic === 3) gameState.progress.introStep.t3++;
+                const key = `t${q.topic}`;
+                gameState.progress.introStep[key] = (gameState.progress.introStep[key] || 0) + 1;
             }
 
-            // Record solved question ID if correct
             if (isCorrect && !gameState.progress.solvedQuestionIds.includes(q.id)) {
                 gameState.progress.solvedQuestionIds.push(q.id);
             }
 
-            // Highlight option buttons
             ['A', 'B', 'C', 'D'].forEach(letter => {
                 const btn = document.getElementById(`quiz-opt-${letter}`);
                 btn.disabled = true;
@@ -1650,7 +2025,7 @@
         }
 
         /*************************************************************************
-         * 7. 秘笈與《山海經》異獸吞噬 3選1 獎勵系統
+         * 7. 秘笈與《山海經》異獸吞噬 3選1 獎勵系統 (最高 7 階)
          *************************************************************************/
         let rewardCallback = null;
 
@@ -1659,20 +2034,20 @@
             const container = document.getElementById('reward-cards-container');
             container.innerHTML = '';
 
-            // Generate 3 distinct random choices (2 Stat Manuals + 1 Shanhaijing Beast, or 1 Manual + 2 Beasts)
             const shuffledManuals = [...STAT_MANUALS].sort(() => Math.random() - 0.5);
-            const beastKeys = Object.keys(SHANHAI_BEASTS).filter(k => gameState.player.beasts[k] < 5);
+            const beastKeys = Object.keys(SHANHAI_BEASTS).filter(k => (gameState.player.beasts[k] || 0) < MAX_BEAST_LEVEL);
             const shuffledBeasts = beastKeys.sort(() => Math.random() - 0.5);
 
             const choices = [];
-            // Choice 1: Stat Manual
             choices.push({ type: 'manual', data: shuffledManuals[0] });
-            // Choice 2: Stat Manual
-            choices.push({ type: 'manual', data: shuffledManuals[1] });
-            // Choice 3: Shanhaijing Beast (if any not maxed, else another Manual)
-            if (shuffledBeasts.length > 0) {
+            if (shuffledBeasts.length >= 2) {
+                choices.push({ type: 'beast', data: SHANHAI_BEASTS[shuffledBeasts[0]] });
+                choices.push({ type: 'beast', data: SHANHAI_BEASTS[shuffledBeasts[1]] });
+            } else if (shuffledBeasts.length === 1) {
+                choices.push({ type: 'manual', data: shuffledManuals[1] });
                 choices.push({ type: 'beast', data: SHANHAI_BEASTS[shuffledBeasts[0]] });
             } else {
+                choices.push({ type: 'manual', data: shuffledManuals[1] });
                 choices.push({ type: 'manual', data: shuffledManuals[2] });
             }
 
@@ -1709,15 +2084,16 @@
                                 <i class="fa-solid ${b.icon} text-xl"></i>
                             </div>
                             <h4 class="serif-title text-lg font-bold text-emerald-200 mb-0.5">${b.name} · ${b.abilityName}</h4>
-                            <div class="text-[11px] text-amber-300 mb-2">${b.origin} ｜ 境界：${curLv === 0 ? '未解鎖 ➔ 第1階' : `第${curLv}階 ➔ 第${nextLv}階`}</div>
+                            <div class="text-[11px] text-amber-300 mb-2">${b.origin} ｜ 境界：${curLv === 0 ? `未解鎖 ➔ 第1階 (上限${MAX_BEAST_LEVEL}階)` : `第${curLv}階 ➔ 第${nextLv}階 (上限${MAX_BEAST_LEVEL}階)`}</div>
                             <p class="text-xs text-stone-300 leading-relaxed">${b.desc}</p>
                         </div>
-                        <button class="mt-4 w-full btn-jade py-2 rounded-lg font-bold text-xs">吞噬異獸血脈 (額外+30HP)</button>
+                        <button class="mt-4 w-full btn-jade py-2 rounded-lg font-bold text-xs">吞噬異獸血脈 (額外+35HP/+5ATK)</button>
                     `;
                     card.onclick = () => {
                         gameState.player.beasts[b.key] = nextLv;
-                        gameState.player.maxHp += 30;
-                        gameState.player.hp += 30;
+                        gameState.player.maxHp += 35;
+                        gameState.player.hp += 35;
+                        gameState.player.atk += 5;
                         finishRewardSelection();
                     };
                 }
@@ -1758,24 +2134,30 @@
         function renderHub() {
             const p = gameState.player;
             const { stage, power } = getPlayerGrowthStage();
+            const totalBeastsCount = Object.keys(SHANHAI_BEASTS).length;
             const unlockedBeasts = Object.values(p.beasts).filter(v => v > 0).length;
             const solvedCount = gameState.progress.solvedQuestionIds.length;
 
             document.getElementById('hub-player-name').textContent = p.name;
-            document.getElementById('hub-stage-badge').textContent = `境界：${STAGE_TITLES[stage]}`;
+            document.getElementById('hub-stage-badge').textContent = `境界：${getStageTitle(stage)}`;
             document.getElementById('hub-power-score').textContent = power.toLocaleString();
-            document.getElementById('hub-beast-count').textContent = `${unlockedBeasts} / 8`;
-            document.getElementById('hub-mastery-rate').textContent = `${Math.round((solvedCount / 180) * 100)}% (${solvedCount}/180)`;
+            document.getElementById('hub-beast-count').textContent = `${unlockedBeasts} / ${totalBeastsCount}`;
+            document.getElementById('hub-mastery-rate').textContent = `${Math.round((solvedCount / 360) * 100)}% (${solvedCount}/360)`;
 
-            // Shifu topic counts
             const t1Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T1-')).length;
             const t2Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T2-')).length;
             const t3Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T3-')).length;
+            const t4Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T4-')).length;
+            const t5Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T5-')).length;
+            const t6Solved = gameState.progress.solvedQuestionIds.filter(id => id.startsWith('T6-')).length;
             document.getElementById('shifu-stat-t1').textContent = `${t1Solved}/50`;
             document.getElementById('shifu-stat-t2').textContent = `${t2Solved}/50`;
             document.getElementById('shifu-stat-t3').textContent = `${t3Solved}/80`;
+            document.getElementById('shifu-stat-t4').textContent = `${t4Solved}/50`;
+            document.getElementById('shifu-stat-t5').textContent = `${t5Solved}/80`;
+            document.getElementById('shifu-stat-t6').textContent = `${t6Solved}/50`;
 
-            document.getElementById('boss-scaling-stage').textContent = `第 ${stage} 階段 / 共 10 階段`;
+            document.getElementById('boss-scaling-stage').textContent = `第 ${stage} 階段 / 共 100 階段`;
             renderBossCards(stage);
             renderStatsTab();
         }
@@ -1790,22 +2172,31 @@
                 const isFinal = boss.id === 'boss_all';
 
                 const card = document.createElement('div');
-                card.className = `p-4 rounded-xl bg-stone-900/90 border ${isFinal ? 'border-amber-500/60 bg-gradient-to-br from-stone-900 to-red-950/30' : 'border-stone-700'} flex flex-col justify-between`;
+                card.className = `p-4 rounded-xl bg-stone-900/90 border ${isFinal ? 'sm:col-span-2 border-amber-500/70 bg-gradient-to-br from-stone-900 to-red-950/40' : 'border-stone-700'} flex flex-col justify-between`;
 
                 const traitsHtml = boss.traitLabels.map(t => `<span class="px-2 py-0.5 rounded text-[10px] bg-red-500/20 text-red-300 border border-red-500/30">${t}</span>`).join('');
+
+                const hasImg = Boolean(boss.imgUrl);
+                const avatarHtml = hasImg ? `
+                    <div class="relative shrink-0 cursor-pointer group" onclick="previewCharacterArt('${boss.name} · ${boss.subtitle}', '${boss.imgUrl}')">
+                        <img src="${boss.imgUrl}" alt="${boss.name}" 
+                            class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border-2 ${isFinal ? 'border-amber-400' : 'border-red-500/60'} shadow-md bg-stone-950 group-hover:scale-105 transition"
+                            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                        <div class="hidden w-14 h-14 sm:w-16 sm:h-16 rounded-xl ${isFinal ? 'bg-amber-500/20 text-amber-300 border-amber-400' : 'bg-red-500/20 text-red-300 border-red-500/40'} border items-center justify-center text-xl">
+                            <i class="fa-solid ${boss.icon}"></i>
+                        </div>
+                    </div>
+                ` : `
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl ${isFinal ? 'bg-amber-500/20 text-amber-300 border-amber-400' : 'bg-gradient-to-br from-red-950 to-stone-900 text-amber-300 border-amber-500/50'} border-2 flex items-center justify-center text-2xl shrink-0 shadow-md">
+                        <i class="fa-solid ${boss.icon}"></i>
+                    </div>
+                `;
 
                 card.innerHTML = `
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-2">
                             <div class="flex items-center gap-3">
-                                <div class="relative shrink-0 cursor-pointer group" onclick="previewCharacterArt('${boss.name} · ${boss.subtitle}', '${boss.imgUrl}')">
-                                    <img src="${boss.imgUrl}" alt="${boss.name}" 
-                                        class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border-2 ${isFinal ? 'border-amber-400' : 'border-red-500/60'} shadow-md bg-stone-950 group-hover:scale-105 transition"
-                                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
-                                    <div class="hidden w-14 h-14 sm:w-16 sm:h-16 rounded-xl ${isFinal ? 'bg-amber-500/20 text-amber-300 border-amber-400' : 'bg-red-500/20 text-red-300 border-red-500/40'} border items-center justify-center text-xl">
-                                        <i class="fa-solid ${boss.icon}"></i>
-                                    </div>
-                                </div>
+                                ${avatarHtml}
                                 <div>
                                     <h4 class="font-bold text-base text-white">${boss.name}</h4>
                                     <div class="text-[11px] text-stone-400">${boss.subtitle}</div>
@@ -1818,13 +2209,13 @@
                         <p class="text-xs text-stone-300 mb-3 leading-relaxed">${boss.desc}</p>
 
                         <div class="grid grid-cols-3 gap-1.5 text-center text-xs bg-stone-950/80 p-2 rounded-lg border border-stone-800 mb-3">
-                            <div><span class="text-stone-400 block text-[10px]">生命 HP</span><b class="text-rose-400 font-mono">${scaled.maxHp}</b></div>
-                            <div><span class="text-stone-400 block text-[10px]">攻擊 ATK</span><b class="text-amber-400 font-mono">${scaled.atk}</b></div>
-                            <div><span class="text-stone-400 block text-[10px]">防禦 DEF</span><b class="text-emerald-400 font-mono">${scaled.def}</b></div>
+                            <div><span class="text-stone-400 block text-[10px]">生命 HP</span><b class="text-rose-400 font-mono">${scaled.maxHp.toLocaleString()}</b></div>
+                            <div><span class="text-stone-400 block text-[10px]">攻擊 ATK</span><b class="text-amber-400 font-mono">${scaled.atk.toLocaleString()}</b></div>
+                            <div><span class="text-stone-400 block text-[10px]">防禦 DEF</span><b class="text-emerald-400 font-mono">${scaled.def.toLocaleString()}</b></div>
                         </div>
                     </div>
-                    <button onclick="startBossBattle('${boss.id}')" class="w-full ${isFinal ? 'btn-gold' : 'bg-red-700 hover:bg-red-600 text-white border border-red-400'} py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-gavel"></i> 挑戰【${boss.name}】(第${stage}階)
+                    <button onclick="startBossBattle('${boss.id}')" class="w-full ${isFinal ? 'btn-gold py-2.5 text-sm' : 'bg-red-700 hover:bg-red-600 text-white border border-red-400 py-2 text-xs'} rounded-lg font-bold transition flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-khanda"></i> 挑戰【${boss.name}】(第${stage}階)
                     </button>
                 `;
                 container.appendChild(card);
@@ -1833,12 +2224,33 @@
 
         function renderStatsTab() {
             const p = gameState.player;
-            document.getElementById('stat-hp').textContent = p.maxHp;
-            document.getElementById('stat-mp').textContent = p.maxMp;
-            document.getElementById('stat-atk').textContent = p.atk;
-            document.getElementById('stat-def').textContent = p.def;
-            document.getElementById('stat-eva').textContent = `${p.eva}%`;
-            document.getElementById('stat-ult').textContent = `${p.ultMult}%`;
+            const eff = getEffectivePlayerStats();
+            document.getElementById('stat-hp').textContent = eff.maxHp;
+            document.getElementById('stat-mp').textContent = eff.maxMp;
+            document.getElementById('stat-atk').textContent = eff.atk;
+            document.getElementById('stat-def').textContent = eff.def;
+            document.getElementById('stat-eva').textContent = `${eff.eva}%`;
+            document.getElementById('stat-ult').textContent = `${eff.ultMult}%`;
+
+            // Display equipped weapon & armor if present from interactive/updated versions
+            const wp = p.equipment?.weapon;
+            const am = p.equipment?.armor;
+            const wpNameEl = document.getElementById('equip-weapon-name');
+            const amNameEl = document.getElementById('equip-armor-name');
+            if (wp && wp.name) {
+                wpNameEl.textContent = `武器：${wp.name}`;
+                document.getElementById('equip-slot-weapon').className = 'p-2.5 rounded-lg bg-amber-950/40 border border-amber-500/60 text-amber-200 flex items-center gap-2 font-bold';
+            } else {
+                wpNameEl.textContent = '武器：未裝備';
+                document.getElementById('equip-slot-weapon').className = 'p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2';
+            }
+            if (am && am.name) {
+                amNameEl.textContent = `防具：${am.name}`;
+                document.getElementById('equip-slot-armor').className = 'p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/60 text-emerald-200 flex items-center gap-2 font-bold';
+            } else {
+                amNameEl.textContent = '防具：未裝備';
+                document.getElementById('equip-slot-armor').className = 'p-2.5 rounded-lg bg-stone-950 border border-dashed border-stone-700 text-stone-500 flex items-center gap-2';
+            }
 
             const grid = document.getElementById('beasts-grid');
             grid.innerHTML = '';
@@ -1853,7 +2265,7 @@
                             <span class="font-bold text-sm text-white">${b.name} · ${b.abilityName}</span>
                         </div>
                         <span class="text-xs font-bold px-2 py-0.5 rounded ${lv > 0 ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-stone-800 text-stone-400'}">
-                            ${lv > 0 ? `第 ${lv} 階 / 5` : '未吞噬'}
+                            ${lv > 0 ? `第 ${lv} 階 / ${MAX_BEAST_LEVEL}` : '未吞噬'}
                         </span>
                     </div>
                     <div class="text-[11px] text-amber-300/80 mb-1">${b.origin} (${b.type === 'active' ? `主動技 · 耗內力${b.mpCost}` : '被動常駐神通'})</div>
@@ -1909,7 +2321,7 @@
         }
 
         /*************************************************************************
-         * 9. 決戰巔峰：回合制戰鬥系統
+         * 9. 決戰巔峰：回合制戰鬥系統 (支援 100 階段與昏迷/冰凍/沉默/嘲諷/增攻/提防)
          *************************************************************************/
         let battleState = null;
 
@@ -1920,10 +2332,10 @@
             const { stage } = getPlayerGrowthStage();
             const scaled = getScaledBossStats(bossDef, stage);
             const p = gameState.player;
+            const eff = getEffectivePlayerStats();
 
-            // Reset player HP/MP to full before battle
-            p.hp = p.maxHp;
-            p.mp = p.maxMp;
+            p.hp = eff.maxHp;
+            p.mp = eff.maxMp;
 
             battleState = {
                 bossDef,
@@ -1933,16 +2345,22 @@
                 questionCorrect: false,
                 usedQIds: new Set(),
                 player: {
-                    hp: p.maxHp,
-                    maxHp: p.maxHp,
-                    mp: p.maxMp,
-                    maxMp: p.maxMp,
-                    atk: p.atk,
-                    def: p.def,
-                    eva: p.eva,
-                    ultMult: p.ultMult,
+                    hp: eff.maxHp,
+                    maxHp: eff.maxHp,
+                    mp: eff.maxMp,
+                    maxMp: eff.maxMp,
+                    atk: eff.atk,
+                    def: eff.def,
+                    eva: eff.eva,
+                    ultMult: eff.ultMult,
                     poisonTurns: 0,
                     mentalDebuffTurns: 0,
+                    stunTurns: 0,
+                    freezeTurns: 0,
+                    silenceTurns: 0,
+                    tauntTurns: 0,      // 狴犴嘲諷護體回合
+                    atkBuffTurns: 0,    // 朱厭增攻回合
+                    defBuffTurns: 0,    // 當康提防回合
                     berserkActive: false
                 },
                 boss: {
@@ -1955,6 +2373,11 @@
                     traits: bossDef.traits,
                     poisonTurns: 0,
                     mentalDebuffTurns: 0,
+                    stunTurns: 0,
+                    freezeTurns: 0,
+                    silenceTurns: 0,
+                    atkBuffTurns: 0,
+                    defBuffTurns: 0,
                     berserkActive: false
                 }
             };
@@ -1966,33 +2389,73 @@
             startBattleTurnQuestion();
         }
 
+        function getBattlePlayerEffectiveAtkDef() {
+            const bp = battleState.player;
+            const pBeasts = gameState.player.beasts;
+            const zhuyanLv = pBeasts.zhuyan || 1;
+            const dangkangLv = pBeasts.dangkang || 1;
+
+            const atkBuffMult = bp.atkBuffTurns > 0 ? (1 + 0.30 + zhuyanLv * 0.11) : 1.0;
+            const mentalMult = bp.mentalDebuffTurns > 0 ? 0.75 : 1.0;
+            const freezeAtkMult = bp.freezeTurns > 0 ? 0.80 : 1.0;
+
+            const defBuffMult = bp.defBuffTurns > 0 ? (1 + 0.35 + dangkangLv * 0.11) : 1.0;
+            const freezeDefMult = bp.freezeTurns > 0 ? 0.70 : 1.0;
+
+            return {
+                curAtk: Math.round(bp.atk * atkBuffMult * mentalMult * freezeAtkMult),
+                curDef: Math.round(bp.def * defBuffMult * freezeDefMult),
+                curEva: bp.freezeTurns > 0 ? 0 : bp.eva
+            };
+        }
+
+        function getBattleBossEffectiveAtkDef() {
+            const bb = battleState.boss;
+            const atkBuffMult = bb.atkBuffTurns > 0 ? 1.40 : 1.0;
+            const mentalMult = bb.mentalDebuffTurns > 0 ? 0.75 : 1.0;
+            const freezeAtkMult = bb.freezeTurns > 0 ? 0.75 : 1.0;
+
+            const defBuffMult = bb.defBuffTurns > 0 ? 1.45 : 1.0;
+            const freezeDefMult = bb.freezeTurns > 0 ? 0.65 : 1.0;
+
+            return {
+                curAtk: Math.round(bb.atk * atkBuffMult * mentalMult * freezeAtkMult),
+                curDef: Math.round(bb.def * defBuffMult * freezeDefMult),
+                curEva: (bb.freezeTurns > 0 || bb.stunTurns > 0) ? 0 : bb.eva
+            };
+        }
+
         function updateBattleHUD() {
             const bp = battleState.player;
             const bb = battleState.boss;
+            const pCur = getBattlePlayerEffectiveAtkDef();
+            const bCur = getBattleBossEffectiveAtkDef();
 
             document.getElementById('battle-turn-num').textContent = battleState.turn;
-            document.getElementById('battle-stage-label').textContent = `巔峰對決 · 第 ${battleState.stage} 階段`;
+            document.getElementById('battle-stage-label').textContent = `巔峰對決 · 第 ${battleState.stage} 階段 / 共 100 階段`;
 
-            // Player HUD
             document.getElementById('battle-player-name').textContent = gameState.player.name;
-            document.getElementById('battle-p-atk').textContent = bp.mentalDebuffTurns > 0 ? Math.round(bp.atk * 0.75) : bp.atk;
-            document.getElementById('battle-p-def').textContent = bp.def;
-            document.getElementById('battle-p-eva').textContent = `${bp.eva}%`;
+            document.getElementById('battle-p-atk').textContent = pCur.curAtk;
+            document.getElementById('battle-p-def').textContent = pCur.curDef;
+            document.getElementById('battle-p-eva').textContent = `${pCur.curEva}%`;
             document.getElementById('battle-p-hp-text').textContent = `${Math.max(0, bp.hp)} / ${bp.maxHp}`;
             document.getElementById('battle-p-hp-bar').style.width = `${Math.max(0, Math.min(100, (bp.hp / bp.maxHp) * 100))}%`;
             document.getElementById('battle-p-mp-text').textContent = `${Math.max(0, bp.mp)} / ${bp.maxMp}`;
             document.getElementById('battle-p-mp-bar').style.width = `${Math.max(0, Math.min(100, (bp.mp / bp.maxMp) * 100))}%`;
 
-            // Check Player Xingtian Low HP Berserk
             const xingtianLv = gameState.player.beasts.xingtian || 0;
-            bp.berserkActive = (xingtianLv > 0 && bp.hp <= bp.maxHp * 0.4);
+            bp.berserkActive = (xingtianLv > 0 && bp.hp <= bp.maxHp * 0.45);
 
             const pStatuses = [];
             if (bp.berserkActive) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-red-600 text-white text-[10px] font-bold">刑天狂暴</span>`);
+            if (bp.atkBuffTurns > 0) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-amber-600 text-white text-[10px] font-bold">朱厭增攻(${bp.atkBuffTurns})</span>`);
+            if (bp.defBuffTurns > 0) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-bold">當康提防(${bp.defBuffTurns})</span>`);
+            if (bp.tauntTurns > 0) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-orange-600 text-white text-[10px] font-bold">狴犴嘲諷護體(${bp.tauntTurns})</span>`);
             if (bp.mentalDebuffTurns > 0) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-fuchsia-900 text-fuchsia-200 text-[10px]">精神受創(${bp.mentalDebuffTurns})</span>`);
+            if (bp.freezeTurns > 0) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-cyan-900 text-cyan-200 text-[10px]">寒霜冰凍(${bp.freezeTurns})</span>`);
+            if (bp.silenceTurns > 0) pStatuses.push(`<span class="px-1.5 py-0.5 rounded bg-indigo-900 text-indigo-200 text-[10px]">禁言沉默(${bp.silenceTurns})</span>`);
             document.getElementById('battle-player-statuses').innerHTML = pStatuses.join('');
 
-            // Boss HUD
             document.getElementById('battle-boss-name').textContent = bb.name;
             const bossImgEl = document.getElementById('battle-boss-img');
             const bossFallbackEl = document.getElementById('battle-boss-icon-fallback');
@@ -2001,11 +2464,15 @@
                 bossImgEl.src = battleState.bossDef.imgUrl;
                 bossFallbackEl.classList.add('hidden');
                 bossFallbackEl.classList.remove('flex');
+            } else {
+                bossImgEl.style.display = 'none';
+                bossFallbackEl.classList.remove('hidden');
+                bossFallbackEl.classList.add('flex');
             }
             document.getElementById('battle-boss-icon').className = `fa-solid ${battleState.bossDef.icon} text-xl`;
-            document.getElementById('battle-b-atk').textContent = bb.mentalDebuffTurns > 0 ? Math.round(bb.atk * 0.75) : bb.atk;
-            document.getElementById('battle-b-def').textContent = bb.def;
-            document.getElementById('battle-b-eva').textContent = `${bb.eva}%`;
+            document.getElementById('battle-b-atk').textContent = bCur.curAtk;
+            document.getElementById('battle-b-def').textContent = bCur.curDef;
+            document.getElementById('battle-b-eva').textContent = `${bCur.curEva}%`;
             document.getElementById('battle-b-hp-text').textContent = `${Math.max(0, bb.hp)} / ${bb.maxHp}`;
             document.getElementById('battle-b-hp-bar').style.width = `${Math.max(0, Math.min(100, (bb.hp / bb.maxHp) * 100))}%`;
 
@@ -2022,8 +2489,13 @@
             }
 
             const bStatuses = [];
-            if (bb.poisonTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-lime-900/80 text-lime-300 border border-lime-500/40">相柳劇毒 (${bb.poisonTurns}回合)</span>`);
-            if (bb.mentalDebuffTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-fuchsia-900/80 text-fuchsia-300 border border-fuchsia-500/40">青丘攝魂減攻 (${bb.mentalDebuffTurns}回合)</span>`);
+            if (bb.stunTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-yellow-600 text-stone-950 font-bold">⚡ 雷神昏迷 (${bb.stunTurns}回合)</span>`);
+            if (bb.freezeTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-cyan-900/90 text-cyan-200 border border-cyan-400">❄️ 應龍冰凍 (${bb.freezeTurns}回合)</span>`);
+            if (bb.silenceTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-indigo-900/90 text-indigo-200 border border-indigo-400">🔇 精衛沉默 (${bb.silenceTurns}回合)</span>`);
+            if (bb.poisonTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-lime-900/80 text-lime-300 border border-lime-500/40">🐍 相柳劇毒 (${bb.poisonTurns}回合)</span>`);
+            if (bb.mentalDebuffTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-fuchsia-900/80 text-fuchsia-300 border border-fuchsia-500/40">🦊 九尾攝魂減攻 (${bb.mentalDebuffTurns}回合)</span>`);
+            if (bb.atkBuffTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-red-900/80 text-red-200 border border-red-400">🔥 對手增攻 (${bb.atkBuffTurns}回合)</span>`);
+            if (bb.defBuffTurns > 0) bStatuses.push(`<span class="px-2 py-0.5 rounded bg-amber-900/80 text-amber-200 border border-amber-400">🛡️ 對手提防 (${bb.defBuffTurns}回合)</span>`);
             document.getElementById('battle-boss-statuses').innerHTML = bStatuses.join('');
         }
 
@@ -2031,7 +2503,6 @@
             document.getElementById('battle-phase-question').classList.remove('hidden');
             document.getElementById('battle-phase-action').classList.add('hidden');
 
-            // Pick question from Boss's topic pool
             const pool = QUESTION_BANK.filter(q => battleState.bossDef.topicFilter.includes(q.topic));
             let available = pool.filter(q => !battleState.usedQIds.has(q.id));
             if (available.length === 0) {
@@ -2074,7 +2545,6 @@
 
             const banner = document.getElementById('battle-q-result-banner');
             if (isCorrect) {
-                // Recover 20 MP on correct answer
                 battleState.player.mp = Math.min(battleState.player.maxMp, battleState.player.mp + 20);
                 banner.className = 'p-3 rounded-xl border bg-emerald-950/70 border-emerald-500/60 text-emerald-200 text-xs sm:text-sm';
                 banner.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-1.5"></i><strong>答題正確！</strong>天道正氣加持，回復 20 點內力，本回合招式威力提升 <strong>1.35 倍</strong>，且防禦堅不可摧！`;
@@ -2092,30 +2562,35 @@
         function renderBattleSkillButtons() {
             const bp = battleState.player;
             const pBeasts = gameState.player.beasts;
+            const isSilenced = bp.silenceTurns > 0;
+
+            const silenceWarn = document.getElementById('player-silence-warning');
+            if (isSilenced) silenceWarn.classList.remove('hidden');
+            else silenceWarn.classList.add('hidden');
 
             document.getElementById('battle-ult-pct').textContent = `${bp.ultMult}%`;
             const ultBtn = document.getElementById('btn-move-ult');
-            ultBtn.disabled = bp.mp < 50;
-            if (bp.mp < 50) ultBtn.classList.add('opacity-40', 'cursor-not-allowed');
+            ultBtn.disabled = bp.mp < 50 || isSilenced;
+            if (bp.mp < 50 || isSilenced) ultBtn.classList.add('opacity-40', 'cursor-not-allowed');
             else ultBtn.classList.remove('opacity-40', 'cursor-not-allowed');
 
-            // Active Beast Skills: Qingniao (Heal), Xiangliu (Poison), Jiuweihu (Mental)
             const beastContainer = document.getElementById('battle-beast-skills');
             beastContainer.innerHTML = '';
 
-            ['qingniao', 'xiangliu', 'jiuweihu'].forEach(key => {
+            const activeBeastKeys = ['qingniao', 'xiangliu', 'jiuweihu', 'leishen', 'yinglong', 'jingwei', 'bian', 'zhuyan', 'dangkang'];
+            activeBeastKeys.forEach(key => {
                 const b = SHANHAI_BEASTS[key];
                 const lv = pBeasts[key] || 0;
                 const btn = document.createElement('button');
-                const canCast = lv > 0 && bp.mp >= b.mpCost;
+                const canCast = lv > 0 && bp.mp >= b.mpCost && !isSilenced;
 
                 btn.disabled = !canCast;
                 btn.className = `p-2.5 rounded-xl border text-left transition ${
                     lv === 0 
-                        ? 'bg-stone-950/50 border-stone-800 opacity-45 cursor-not-allowed' 
+                        ? 'bg-stone-950/50 border-stone-800 opacity-40 cursor-not-allowed' 
                         : canCast 
                             ? 'bg-stone-900 hover:bg-emerald-950/60 border-emerald-500/50 cursor-pointer' 
-                            : 'bg-stone-900 border-stone-700 opacity-50 cursor-not-allowed'
+                            : 'bg-stone-900 border-stone-700 opacity-45 cursor-not-allowed'
                 }`;
                 btn.onclick = () => executeBattleMove(key);
                 btn.innerHTML = `
@@ -2124,7 +2599,7 @@
                         <span>${lv > 0 ? `${b.mpCost} MP` : '未吞噬'}</span>
                     </div>
                     <div class="text-[10px] text-stone-400 mt-0.5">
-                        ${lv > 0 ? `第${lv}階神通` : '需於答題獎勵吞噬解鎖'}
+                        ${lv > 0 ? `第${lv}階 / ${MAX_BEAST_LEVEL}階神通` : '需於答題獎勵吞噬解鎖'}
                     </div>
                 `;
                 beastContainer.appendChild(btn);
@@ -2136,25 +2611,24 @@
             const bb = battleState.boss;
             const pBeasts = gameState.player.beasts;
 
-            // Answer multiplier
             const ansMult = battleState.questionCorrect ? 1.35 : 0.60;
-            // Player Xingtian Berserk multiplier
             const xingtianLv = pBeasts.xingtian || 0;
-            const pBerserkMult = (xingtianLv > 0 && bp.hp <= bp.maxHp * 0.4) ? (1 + 0.30 + xingtianLv * 0.10) : 1.0;
-            // Player effective ATK
-            const effPlayerAtk = Math.round(bp.atk * (bp.mentalDebuffTurns > 0 ? 0.75 : 1.0) * pBerserkMult);
+            const pBerserkMult = (xingtianLv > 0 && bp.hp <= bp.maxHp * 0.45) ? (1 + 0.30 + xingtianLv * 0.12) : 1.0;
+
+            const pCur = getBattlePlayerEffectiveAtkDef();
+            const bCur = getBattleBossEffectiveAtkDef();
+            const effPlayerAtk = Math.round(pCur.curAtk * pBerserkMult);
 
             let playerDefending = false;
             let playerDodging = false;
             let dmgToBoss = 0;
 
-            // 1. PLAYER ACTION
             if (moveType === 'attack') {
                 bp.mp = Math.min(bp.maxMp, bp.mp + 15);
-                if (Math.random() * 100 < bb.eva) {
+                if (Math.random() * 100 < bCur.curEva) {
                     appendBattleLog(`💨 對手【${bb.name}】身形一晃，閃避了你的基礎攻擊！`, 'text-stone-400');
                 } else {
-                    const raw = Math.max(25, effPlayerAtk * 1.45 - bb.def * 0.45);
+                    const raw = Math.max(25, effPlayerAtk * 1.45 - bCur.curDef * 0.45);
                     dmgToBoss = Math.round(raw * ansMult);
                     bb.hp -= dmgToBoss;
                     appendBattleLog(`⚔️ 你施展【基礎攻擊】，對【${bb.name}】造成 ${dmgToBoss} 點傷害！`, 'text-amber-300');
@@ -2171,14 +2645,14 @@
                 appendBattleLog(`🌪️ 你施展【身法閃避】，閃避率大幅提升，伺機反擊！`, 'text-teal-300');
             } else if (moveType === 'ultimate') {
                 bp.mp -= 50;
-                const ultChanceToHit = 100 - (bb.eva * 0.4); // Ultimate is harder to dodge
+                const ultChanceToHit = 100 - (bCur.curEva * 0.35);
                 if (Math.random() * 100 > ultChanceToHit) {
                     appendBattleLog(`💨 對手【${bb.name}】驚險避開了你的必殺絕學！`, 'text-stone-400');
                 } else {
-                    const raw = Math.max(60, (effPlayerAtk * (bp.ultMult / 100)) - bb.def * 0.25);
+                    const raw = Math.max(60, (effPlayerAtk * (bp.ultMult / 100)) - bCur.curDef * 0.25);
                     dmgToBoss = Math.round(raw * ansMult);
                     bb.hp -= dmgToBoss;
-                    appendBattleLog(`🐉 你傾盡真氣施展【必殺絕學】，爆發 ${dmgToBoss} 點毀滅性傷害！`, 'text-purple-300 font-bold');
+                    appendBattleLog(`🐉 你傾盡真氣施展【必殺絕學】，爆發 ${dmgToBoss} 點破防重擊！`, 'text-purple-300 font-bold');
                 }
             } else if (moveType === 'qingniao') {
                 const lv = pBeasts.qingniao;
@@ -2187,11 +2661,13 @@
                 const healAmt = Math.round(bp.maxHp * healPct * (battleState.questionCorrect ? 1.2 : 0.85));
                 bp.hp = Math.min(bp.maxHp, bp.hp + healAmt);
                 bp.mentalDebuffTurns = 0;
-                appendBattleLog(`🕊️ 你召喚《山海經》【青鳥】施展療傷神通，回復 ${healAmt} 點生命並淨化負面狀態！`, 'text-emerald-300 font-bold');
+                bp.freezeTurns = 0;
+                bp.silenceTurns = 0;
+                appendBattleLog(`🕊️ 你召喚《山海經》【青鳥】施展瑤池療傷，回復 ${healAmt} 點生命並淨化所有負面狀態！`, 'text-emerald-300 font-bold');
             } else if (moveType === 'xiangliu') {
                 const lv = pBeasts.xiangliu;
                 bp.mp -= 35;
-                const raw = Math.max(35, effPlayerAtk * (1.2 + lv * 0.15) - bb.def * 0.3);
+                const raw = Math.max(35, effPlayerAtk * (1.2 + lv * 0.16) - bCur.curDef * 0.3);
                 dmgToBoss = Math.round(raw * ansMult);
                 bb.hp -= dmgToBoss;
                 bb.poisonTurns = 3;
@@ -2199,15 +2675,65 @@
             } else if (moveType === 'jiuweihu') {
                 const lv = pBeasts.jiuweihu;
                 bp.mp -= 40;
-                // Ignores 60% of Boss DEF
-                const raw = Math.max(45, effPlayerAtk * (1.4 + lv * 0.18) - bb.def * 0.18);
+                const raw = Math.max(45, effPlayerAtk * (1.4 + lv * 0.18) - bCur.curDef * 0.15);
                 dmgToBoss = Math.round(raw * ansMult);
                 bb.hp -= dmgToBoss;
                 bb.mentalDebuffTurns = 3;
                 appendBattleLog(`🦊 你召喚《山海經》【九尾狐】施展精神攻擊，穿透防禦造成 ${dmgToBoss} 點傷害，並削弱對手攻擊力 3 回合！`, 'text-fuchsia-300 font-bold');
+            } else if (moveType === 'leishen') {
+                const lv = pBeasts.leishen;
+                bp.mp -= 45;
+                const raw = Math.max(45, effPlayerAtk * (1.35 + lv * 0.16) - bCur.curDef * 0.28);
+                dmgToBoss = Math.round(raw * ansMult);
+                bb.hp -= dmgToBoss;
+                const stunChance = Math.min(92, 50 + lv * 6 + (battleState.questionCorrect ? 15 : 0));
+                if (Math.random() * 100 < stunChance) {
+                    bb.stunTurns = 1;
+                    appendBattleLog(`⚡ 你召喚《山海經》【雷神】轟下天雷，造成 ${dmgToBoss} 點傷害，並成功將對手震至【昏迷】1回合！`, 'text-yellow-300 font-bold');
+                } else {
+                    appendBattleLog(`⚡ 你召喚《山海經》【雷神】轟下天雷，造成 ${dmgToBoss} 點傷害！`, 'text-yellow-300');
+                }
+            } else if (moveType === 'yinglong') {
+                const lv = pBeasts.yinglong;
+                bp.mp -= 40;
+                const raw = Math.max(40, effPlayerAtk * (1.28 + lv * 0.15) - bCur.curDef * 0.28);
+                dmgToBoss = Math.round(raw * ansMult);
+                bb.hp -= dmgToBoss;
+                bb.freezeTurns = 2;
+                appendBattleLog(`❄️ 你召喚《山海經》創世【應龍】捲起玄冥寒霜，造成 ${dmgToBoss} 點傷害，並令對手【冰凍】2回合（閃避歸零、攻防驟降）！`, 'text-cyan-300 font-bold');
+            } else if (moveType === 'jingwei') {
+                const lv = pBeasts.jingwei;
+                bp.mp -= 35;
+                const raw = Math.max(35, effPlayerAtk * (1.25 + lv * 0.15) - bCur.curDef * 0.25);
+                dmgToBoss = Math.round(raw * ansMult);
+                bb.hp -= dmgToBoss;
+                bb.silenceTurns = 2;
+                appendBattleLog(`🔇 你召喚《山海經》【精衛】施展滄海禁言，造成 ${dmgToBoss} 點傷害，並令對手【沉默】2回合（封印所有特殊技能）！`, 'text-indigo-300 font-bold');
+            } else if (moveType === 'bian') {
+                const lv = pBeasts.bian;
+                bp.mp -= 30;
+                const raw = Math.max(30, effPlayerAtk * (1.1 + lv * 0.12) - bCur.curDef * 0.3);
+                dmgToBoss = Math.round(raw * ansMult);
+                bb.hp -= dmgToBoss;
+                bp.tauntTurns = 2;
+                appendBattleLog(`🐯 你召喚《山海經》【狴犴】發動威獄【嘲諷】，造成 ${dmgToBoss} 點傷害，強制對手普攻並開啟減傷反擊護盾 2 回合！`, 'text-orange-300 font-bold');
+            } else if (moveType === 'zhuyan') {
+                const lv = pBeasts.zhuyan;
+                bp.mp -= 30;
+                bp.atkBuffTurns = 3;
+                const raw = Math.max(35, effPlayerAtk * (1.2 + lv * 0.14) - bCur.curDef * 0.35);
+                dmgToBoss = Math.round(raw * ansMult);
+                bb.hp -= dmgToBoss;
+                appendBattleLog(`🦍 你召喚《山海經》神猿【朱厭】覺醒赤焰兵威，自身【攻擊力大幅增加】3回合，並順勢轟出 ${dmgToBoss} 點傷害！`, 'text-red-300 font-bold');
+            } else if (moveType === 'dangkang') {
+                const lv = pBeasts.dangkang;
+                bp.mp -= 30;
+                bp.defBuffTurns = 3;
+                const healAmt = Math.round(bp.maxHp * (0.12 + lv * 0.03) * (battleState.questionCorrect ? 1.2 : 0.9));
+                bp.hp = Math.min(bp.maxHp, bp.hp + healAmt);
+                appendBattleLog(`🐗 你召喚《山海經》瑞獸【當康】凝聚瑞兆金身，自身【防禦力大幅提高】3回合，並回復 ${healAmt} 點生命！`, 'text-amber-200 font-bold');
             }
 
-            // Passive Qiongqi Vampirism (吸血)
             const qiongqiLv = pBeasts.qiongqi || 0;
             if (dmgToBoss > 0 && qiongqiLv > 0) {
                 const leechPct = 0.12 + qiongqiLv * 0.05;
@@ -2216,23 +2742,23 @@
                 appendBattleLog(`🦇 【窮奇吸血】發動，從傷害中汲取 ${leechHp} 點生命！`, 'text-rose-400');
             }
 
-            // Passive Feiyi Regen
             const feiyiLv = pBeasts.feiyi || 0;
-            if (feiyiLv > 0 && bp.hp < bp.maxHp) {
-                const regen = Math.round(bp.maxHp * (0.02 + feiyiLv * 0.01));
-                bp.hp = Math.min(bp.maxHp, bp.hp + regen);
+            if (feiyiLv > 0) {
+                if (bp.hp < bp.maxHp) {
+                    const regen = Math.round(bp.maxHp * (0.02 + feiyiLv * 0.01));
+                    bp.hp = Math.min(bp.maxHp, bp.hp + regen);
+                }
+                bp.mp = Math.min(bp.maxMp, bp.mp + feiyiLv * 2);
             }
 
-            // Boss Poison Tick
             if (bb.hp > 0 && bb.poisonTurns > 0) {
                 const xiangliuLv = pBeasts.xiangliu || 1;
-                const poisonDmg = Math.round(bb.maxHp * (0.05 + xiangliuLv * 0.015));
+                const poisonDmg = Math.round(bb.maxHp * (0.045 + xiangliuLv * 0.012));
                 bb.hp -= poisonDmg;
                 bb.poisonTurns--;
                 appendBattleLog(`☠️ 【相柳蝕骨毒】發作，【${bb.name}】流失 ${poisonDmg} 點生命！`, 'text-lime-400');
             }
 
-            // Check if Boss is defeated
             if (bb.hp <= 0) {
                 bb.hp = 0;
                 updateBattleHUD();
@@ -2240,13 +2766,11 @@
                 return;
             }
 
-            // Check Boss Berserk trigger (below 35% HP)
             if (bb.traits.includes('berserk') && !bb.berserkActive && bb.hp <= bb.maxHp * 0.35) {
                 bb.berserkActive = true;
                 appendBattleLog(`🔥 警告！【${bb.name}】生命垂危，觸發【低血量狂暴】，攻擊力大幅飆升 45%！`, 'text-red-400 font-bold');
             }
 
-            // 2. BOSS TURN ACTION
             executeBossTurn(playerDefending, playerDodging);
         }
 
@@ -2255,20 +2779,46 @@
             const bb = battleState.boss;
             const pBeasts = gameState.player.beasts;
 
-            // Boss Self-Heal Check (Citizen Alliance Master)
-            if (bb.traits.includes('heal') && bb.hp < bb.maxHp * 0.65 && Math.random() < 0.30) {
-                const healAmt = Math.round(bb.maxHp * 0.14);
+            // 1. Check if Boss is Stunned (雷神昏迷)
+            if (bb.stunTurns > 0) {
+                bb.stunTurns--;
+                appendBattleLog(`⚡ 【${bb.name}】處於【雷神昏迷】狀態，全身麻痺無法行動！`, 'text-yellow-300 font-bold');
+                tickTurnEndTimers();
+                return;
+            }
+
+            // 2. Check if Boss is Frozen and 45% chance to skip turn
+            if (bb.freezeTurns > 0 && Math.random() < 0.45) {
+                appendBattleLog(`❄️ 【${bb.name}】受【應龍寒霜】冰封影響，行動凍結無法出招！`, 'text-cyan-300 font-bold');
+                tickTurnEndTimers();
+                return;
+            }
+
+            const pCur = getBattlePlayerEffectiveAtkDef();
+            const bCur = getBattleBossEffectiveAtkDef();
+            const bossCanCastSkills = (bb.silenceTurns === 0 && bp.tauntTurns === 0);
+
+            // Boss Special Actions (if not silenced and not taunted)
+            if (bossCanCastSkills && bb.traits.includes('heal') && bb.hp < bb.maxHp * 0.65 && Math.random() < 0.28) {
+                const healAmt = Math.round(bb.maxHp * 0.13);
                 bb.hp = Math.min(bb.maxHp, bb.hp + healAmt);
-                appendBattleLog(`✨ 【${bb.name}】運轉盟主玄功自我療傷，恢復了 ${healAmt} 點生命值！`, 'text-emerald-400 font-bold');
+                appendBattleLog(`✨ 【${bb.name}】運轉玄功自我療傷，恢復了 ${healAmt} 點生命值！`, 'text-emerald-400 font-bold');
+            } else if (bossCanCastSkills && bb.traits.includes('defBuff') && bb.defBuffTurns === 0 && Math.random() < 0.30) {
+                bb.defBuffTurns = 2;
+                appendBattleLog(`🛡️ 【${bb.name}】施展【行政主導·銅牆鐵壁】，防禦力大幅提高 2 回合！`, 'text-amber-300 font-bold');
+            } else if (bossCanCastSkills && bb.traits.includes('atkBuff') && bb.atkBuffTurns === 0 && Math.random() < 0.30) {
+                bb.atkBuffTurns = 2;
+                appendBattleLog(`🔥 【${bb.name}】凝聚真氣施展【增加攻擊力】，接下來 2 回合攻擊力提升 40%！`, 'text-red-300 font-bold');
             } else {
-                // Boss Attacks or Mental Attacks
-                const useMental = bb.traits.includes('mental') && Math.random() < 0.42;
-                const effectiveEva = Math.min(85, bp.eva + (playerDodging ? 45 : 0));
+                const useMental = bossCanCastSkills && bb.traits.includes('mental') && Math.random() < 0.38;
+                const useFreeze = bossCanCastSkills && bb.traits.includes('freeze') && Math.random() < 0.30;
+                const useSilence = bossCanCastSkills && bb.traits.includes('silence') && Math.random() < 0.28;
+                const effectiveEva = Math.min(85, pCur.curEva + (playerDodging ? 45 : 0));
 
                 if (Math.random() * 100 < effectiveEva) {
                     appendBattleLog(`💨 你身法如電，成功閃避了【${bb.name}】的攻勢！`, 'text-teal-300 font-bold');
                     if (playerDodging) {
-                        const counterDmg = Math.round(bp.atk * 1.15);
+                        const counterDmg = Math.round(pCur.curAtk * 1.2);
                         bb.hp -= counterDmg;
                         appendBattleLog(`⚡ 你順勢施展凌波反擊，對【${bb.name}】造成 ${counterDmg} 點傷害！`, 'text-amber-300');
                         if (bb.hp <= 0) {
@@ -2280,17 +2830,17 @@
                     }
                 } else {
                     const bossBerserkMult = bb.berserkActive ? 1.45 : 1.0;
-                    const bossDebuffMult = bb.mentalDebuffTurns > 0 ? 0.75 : 1.0;
                     const wrongAnsPenalty = battleState.questionCorrect ? 1.0 : 1.25;
-                    const effBossAtk = bb.atk * bossBerserkMult * bossDebuffMult * wrongAnsPenalty;
+                    const tauntDmgReduction = bp.tauntTurns > 0 ? Math.max(0.35, 0.65 - (pBeasts.bian || 1) * 0.04) : 1.0;
+                    const defendMult = playerDefending ? 0.45 : 1.0;
+                    const effBossAtk = bCur.curAtk * bossBerserkMult * wrongAnsPenalty;
 
                     let dmgToPlayer = 0;
                     if (useMental) {
-                        // Mental Attack ignores 50% player DEF, but reduced by Baize (抗精神攻擊)
                         const baizeLv = pBeasts.baize || 0;
-                        const resistMult = baizeLv > 0 ? Math.max(0.15, 1 - (0.30 + baizeLv * 0.12)) : 1.0;
-                        const raw = Math.max(25, effBossAtk * 1.35 - bp.def * 0.25);
-                        dmgToPlayer = Math.round(raw * resistMult * (playerDefending ? 0.45 : 1.0));
+                        const resistMult = baizeLv > 0 ? Math.max(0.15, 1 - (0.28 + baizeLv * 0.10)) : 1.0;
+                        const raw = Math.max(25, effBossAtk * 1.35 - pCur.curDef * 0.25);
+                        dmgToPlayer = Math.round(raw * resistMult * defendMult * tauntDmgReduction);
                         bp.hp -= dmgToPlayer;
 
                         if (baizeLv > 0) {
@@ -2299,19 +2849,42 @@
                             bp.mentalDebuffTurns = 2;
                             appendBattleLog(`👁️ 【${bb.name}】發動【精神攻擊】直擊心神，造成 ${dmgToPlayer} 點傷害並令你攻擊力下降！`, 'text-fuchsia-400 font-bold');
                         }
+                    } else if (useFreeze) {
+                        const feiyiLv = pBeasts.feiyi || 0;
+                        const raw = Math.max(22, effBossAtk * 1.25 - pCur.curDef * 0.45);
+                        dmgToPlayer = Math.round(raw * defendMult * tauntDmgReduction);
+                        bp.hp -= dmgToPlayer;
+                        if (feiyiLv > 0 && Math.random() * 100 < feiyiLv * 14) {
+                            appendBattleLog(`❄️ 【${bb.name}】施展寒霜攻擊造成 ${dmgToPlayer} 傷害，但你體內【肥遺】生機化解了冰凍效果！`, 'text-teal-300');
+                        } else {
+                            bp.freezeTurns = 2;
+                            appendBattleLog(`❄️ 【${bb.name}】施展【寒霜冰凍】，造成 ${dmgToPlayer} 點傷害並令你陷入冰凍 2 回合！`, 'text-cyan-300 font-bold');
+                        }
+                    } else if (useSilence) {
+                        const baizeLv = pBeasts.baize || 0;
+                        const raw = Math.max(22, effBossAtk * 1.25 - pCur.curDef * 0.45);
+                        dmgToPlayer = Math.round(raw * defendMult * tauntDmgReduction);
+                        bp.hp -= dmgToPlayer;
+                        if (baizeLv > 0 && Math.random() * 100 < baizeLv * 14) {
+                            appendBattleLog(`🔇 【${bb.name}】企圖封印你的神通（造成 ${dmgToPlayer} 傷害），被【白澤】靈識成功化解！`, 'text-sky-300');
+                        } else {
+                            bp.silenceTurns = 1;
+                            appendBattleLog(`🔇 【${bb.name}】揮動法槌施展【禁言沉默】，造成 ${dmgToPlayer} 點傷害並封印你下回合的主動神通！`, 'text-indigo-300 font-bold');
+                        }
                     } else {
-                        const raw = Math.max(18, effBossAtk * 1.25 - bp.def * 0.55);
-                        dmgToPlayer = Math.round(raw * (playerDefending ? 0.45 : 1.0));
+                        const raw = Math.max(18, effBossAtk * 1.25 - pCur.curDef * 0.55);
+                        dmgToPlayer = Math.round(raw * defendMult * tauntDmgReduction);
                         bp.hp -= dmgToPlayer;
                         appendBattleLog(`💥 【${bb.name}】猛烈出招，對你造成 ${dmgToPlayer} 點傷害！`, 'text-red-300');
                     }
 
-                    // Passive Kui Counter-attack (夔牛反擊)
+                    // 夔牛雷霆反擊 或 狴犴嘲諷反擊
                     const kuiLv = pBeasts.kui || 0;
-                    if (bp.hp > 0 && kuiLv > 0 && Math.random() * 100 < (25 + kuiLv * 10)) {
-                        const reflectDmg = Math.round(bp.atk * 0.65);
+                    const bianActive = bp.tauntTurns > 0;
+                    if (bp.hp > 0 && (bianActive || (kuiLv > 0 && Math.random() * 100 < (22 + kuiLv * 9)))) {
+                        const reflectDmg = Math.round(pCur.curAtk * (0.65 + (kuiLv + (pBeasts.bian || 0)) * 0.08));
                         bb.hp -= reflectDmg;
-                        appendBattleLog(`⚡ 【夔牛雷霆反擊】觸發！震退對手並造成 ${reflectDmg} 點反擊傷害！`, 'text-amber-400 font-bold');
+                        appendBattleLog(`⚡ 【${bianActive ? '狴犴威獄反擊' : '夔牛雷霆反擊'}】觸發！震退對手並造成 ${reflectDmg} 點反擊傷害！`, 'text-amber-400 font-bold');
                         if (bb.hp <= 0) {
                             bb.hp = 0;
                             updateBattleHUD();
@@ -2322,11 +2895,26 @@
                 }
             }
 
-            // Decrement status durations
-            if (bp.mentalDebuffTurns > 0) bp.mentalDebuffTurns--;
-            if (bb.mentalDebuffTurns > 0) bb.mentalDebuffTurns--;
+            tickTurnEndTimers();
+        }
 
-            // Check Player Defeat
+        function tickTurnEndTimers() {
+            const bp = battleState.player;
+            const bb = battleState.boss;
+
+            if (bp.mentalDebuffTurns > 0) bp.mentalDebuffTurns--;
+            if (bp.freezeTurns > 0) bp.freezeTurns--;
+            if (bp.silenceTurns > 0) bp.silenceTurns--;
+            if (bp.tauntTurns > 0) bp.tauntTurns--;
+            if (bp.atkBuffTurns > 0) bp.atkBuffTurns--;
+            if (bp.defBuffTurns > 0) bp.defBuffTurns--;
+
+            if (bb.mentalDebuffTurns > 0) bb.mentalDebuffTurns--;
+            if (bb.freezeTurns > 0) bb.freezeTurns--;
+            if (bb.silenceTurns > 0) bb.silenceTurns--;
+            if (bb.atkBuffTurns > 0) bb.atkBuffTurns--;
+            if (bb.defBuffTurns > 0) bb.defBuffTurns--;
+
             if (bp.hp <= 0) {
                 bp.hp = 0;
                 updateBattleHUD();
@@ -2334,7 +2922,6 @@
                 return;
             }
 
-            // Next Turn
             battleState.turn++;
             updateBattleHUD();
             startBattleTurnQuestion();
@@ -2390,7 +2977,7 @@
         }
 
         /*************************************************************************
-         * 10. 存檔匯出 / 匯入與自訂對話框 (相容未來更新版與多人互動版)
+         * 10. 存檔匯出 / 匯入與無損合併系統 (100% 相容更新版與多人互動版)
          *************************************************************************/
         function openSaveModal() {
             document.getElementById('modal-save').classList.remove('hidden');
@@ -2424,7 +3011,7 @@
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            showDialog('進度代碼已複製', '已成功複製進度代碼字串至剪貼簿！你可在另一部設備貼上此代碼以還原角色。', 'fa-copy text-amber-400');
+            showDialog('進度代碼已複製', '已成功複製進度代碼字串至剪貼簿！你可在另一部設備或「多人互動版」貼上此代碼。', 'fa-copy text-amber-400');
         }
 
         function handleFileImport(event) {
@@ -2446,7 +3033,6 @@
             const rawCode = document.getElementById('import-code-input').value.trim();
             if (!rawCode) return;
             try {
-                // Support both raw JSON and base64 encoded string
                 let parsed;
                 if (rawCode.startsWith('{')) {
                     parsed = JSON.parse(rawCode);
@@ -2459,21 +3045,58 @@
             }
         }
 
+        // 無損深度合併存檔：保留互動版或更新版新增的任何裝備、額外獎勵與擴充欄位
+        function mergeAndNormalizeSaveData(parsed) {
+            const base = createDefaultGameState(parsed.player?.name || '少俠');
+            gameState = {
+                ...base,
+                ...parsed,
+                player: {
+                    ...base.player,
+                    ...(parsed.player || {}),
+                    beasts: {
+                        ...base.player.beasts,
+                        ...(parsed.player?.beasts || {})
+                    },
+                    equipment: {
+                        ...base.player.equipment,
+                        ...(parsed.player?.equipment || {})
+                    }
+                },
+                progress: {
+                    ...base.progress,
+                    ...(parsed.progress || {}),
+                    introStep: {
+                        ...base.progress.introStep,
+                        ...(parsed.progress?.introStep || {})
+                    },
+                    bossDefeats: {
+                        ...base.progress.bossDefeats,
+                        ...(parsed.progress?.bossDefeats || {})
+                    }
+                },
+                multiplayerRecord: {
+                    ...base.multiplayerRecord,
+                    ...(parsed.multiplayerRecord || {})
+                },
+                customExtensions: {
+                    ...base.customExtensions,
+                    ...(parsed.customExtensions || {})
+                }
+            };
+        }
+
         function validateAndLoadSave(parsed) {
             if (!parsed || !parsed.player || typeof parsed.player.maxHp !== 'number') {
                 showDialog('格式不相容', '存檔缺少必要的角色戰鬥能力數值。', 'fa-triangle-exclamation text-red-400');
                 return;
             }
-            gameState = parsed;
-            // Ensure equipment & beasts keys exist for forward/backward compatibility
-            if (!gameState.player.equipment) {
-                gameState.player.equipment = { weapon: null, armor: null, accessory: null, inventory: [] };
-            }
+            mergeAndNormalizeSaveData(parsed);
             saveToDevice(false);
             closeSaveModal();
             showDialog(
                 '進度匯入成功！',
-                `歡迎回來，少俠【${gameState.player.name}】！已成功載入你的戰鬥能力數值、山海經異獸及 ${gameState.progress.solvedQuestionIds.length} 題答題紀錄！`,
+                `歡迎回來，少俠【${gameState.player.name}】！已成功載入你的戰鬥能力數值、山海經異獸、裝備及 ${gameState.progress.solvedQuestionIds.length} 題答題紀錄！`,
                 'fa-cloud-arrow-up text-emerald-400',
                 () => {
                     if (gameState.progress.introCompleted) {
